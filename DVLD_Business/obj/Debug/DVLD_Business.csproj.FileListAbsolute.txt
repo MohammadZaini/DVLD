@@ -1,0 +1,9 @@
+E:\C# Full Project\DVLD\DVLD_Business\bin\Debug\DVLD_Business.dll
+E:\C# Full Project\DVLD\DVLD_Business\bin\Debug\DVLD_Business.pdb
+E:\C# Full Project\DVLD\DVLD_Business\bin\Debug\DVLD_DataAccess.dll
+E:\C# Full Project\DVLD\DVLD_Business\bin\Debug\DVLD_DataAccess.pdb
+E:\C# Full Project\DVLD\DVLD_Business\obj\Debug\DVLD_Business.csproj.AssemblyReference.cache
+E:\C# Full Project\DVLD\DVLD_Business\obj\Debug\DVLD_Business.csproj.CoreCompileInputs.cache
+E:\C# Full Project\DVLD\DVLD_Business\obj\Debug\DVLD_Business.csproj.CopyComplete
+E:\C# Full Project\DVLD\DVLD_Business\obj\Debug\DVLD_Business.dll
+E:\C# Full Project\DVLD\DVLD_Business\obj\Debug\DVLD_Business.pdb

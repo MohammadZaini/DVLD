@@ -1,0 +1,87 @@
+﻿using DVLD.ApplicationTypes;
+using DVLD.ApplicationTypes.NewDrivingLicense;
+using DVLD.People;
+using DVLD.TestTypes;
+using DVLD.Users;
+using DVLD_Business;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace DVLD
+{
+    public partial class frmMain : Form
+    {
+        public frmMain()
+        {
+            InitializeComponent();
+
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListPeople frm = new frmListPeople();
+            frm.ShowDialog();
+        }
+
+        private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUserInfo UserInfo = new frmUserInfo(clsGlobalSettings.LoggedInUser.PersonID);
+            UserInfo.ShowDialog();
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListUsers ListUsers = new frmListUsers();
+            ListUsers.ShowDialog();
+        }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsGlobalSettings.LoggedInUser = null;
+            this.Close();
+            this.Dispose();
+          
+            frmUserLogin userLogin = new frmUserLogin();
+            userLogin.ShowDialog();
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChangePassword ChangePasswordform = new frmChangePassword(clsGlobalSettings.LoggedInUser.PersonID, 
+                                                                         clsGlobalSettings.LoggedInUser.UserID);
+            ChangePasswordform.ShowDialog();
+        }
+
+        private void manageApplicationTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmApplicationTypes AppTypesfrm = new frmApplicationTypes();
+            AppTypesfrm.ShowDialog();
+        }
+
+        private void manageTestTypesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmTestTypes TestTypesfrm = new frmTestTypes();
+            TestTypesfrm.ShowDialog();
+        }
+
+        private void localLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAddLocalDrivingLicenseApplication LocalLicenseFrm = new frmAddLocalDrivingLicenseApplication(1);
+            LocalLicenseFrm.ShowDialog();
+        }
+
+        private void localDrivingLicenseApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListLocalDrivingApplications localDrivingApplicationsfrm = new frmListLocalDrivingApplications();    
+            localDrivingApplicationsfrm.ShowDialog();
+        }
+    }
+}
