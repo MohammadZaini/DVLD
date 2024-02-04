@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListLocalDrivingApplications));
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.cbFilters = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -36,8 +37,6 @@
             this.lblRecordsCount = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvLocalDrivingApps = new System.Windows.Forms.DataGridView();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.btnAddApplication = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showApplicationDetailtsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,13 +46,19 @@
             this.issueDrivingLicenseFirstTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showPersonLicenseHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.btnAddApplication = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDrivingApps)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // txtFilter
             // 
-            this.txtFilter.Location = new System.Drawing.Point(257, 155);
+            this.txtFilter.Location = new System.Drawing.Point(249, 309);
             this.txtFilter.Multiline = true;
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(164, 24);
@@ -73,7 +78,7 @@
             "National No.",
             "Full Name",
             "Status"});
-            this.cbFilters.Location = new System.Drawing.Point(87, 155);
+            this.cbFilters.Location = new System.Drawing.Point(79, 309);
             this.cbFilters.Name = "cbFilters";
             this.cbFilters.Size = new System.Drawing.Size(164, 24);
             this.cbFilters.TabIndex = 13;
@@ -83,7 +88,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(9, 163);
+            this.label3.Location = new System.Drawing.Point(1, 317);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(72, 16);
             this.label3.TabIndex = 12;
@@ -94,7 +99,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(250, 66);
+            this.label2.Location = new System.Drawing.Point(222, 231);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(537, 37);
             this.label2.TabIndex = 11;
@@ -104,7 +109,7 @@
             // 
             this.lblRecordsCount.AutoSize = true;
             this.lblRecordsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRecordsCount.Location = new System.Drawing.Point(119, 496);
+            this.lblRecordsCount.Location = new System.Drawing.Point(111, 650);
             this.lblRecordsCount.Name = "lblRecordsCount";
             this.lblRecordsCount.Size = new System.Drawing.Size(35, 18);
             this.lblRecordsCount.TabIndex = 10;
@@ -114,7 +119,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(22, 496);
+            this.label1.Location = new System.Drawing.Point(14, 650);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 18);
             this.label1.TabIndex = 9;
@@ -127,22 +132,11 @@
             this.dgvLocalDrivingApps.AllowUserToOrderColumns = true;
             this.dgvLocalDrivingApps.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLocalDrivingApps.ContextMenuStrip = this.contextMenuStrip1;
-            this.dgvLocalDrivingApps.Location = new System.Drawing.Point(12, 201);
+            this.dgvLocalDrivingApps.Location = new System.Drawing.Point(4, 355);
             this.dgvLocalDrivingApps.Name = "dgvLocalDrivingApps";
             this.dgvLocalDrivingApps.ReadOnly = true;
             this.dgvLocalDrivingApps.Size = new System.Drawing.Size(963, 279);
             this.dgvLocalDrivingApps.TabIndex = 8;
-            // 
-            // btnAddApplication
-            // 
-            this.btnAddApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddApplication.Location = new System.Drawing.Point(873, 145);
-            this.btnAddApplication.Name = "btnAddApplication";
-            this.btnAddApplication.Size = new System.Drawing.Size(94, 41);
-            this.btnAddApplication.TabIndex = 14;
-            this.btnAddApplication.Text = "Add Application";
-            this.btnAddApplication.UseVisualStyleBackColor = true;
-            this.btnAddApplication.Click += new System.EventHandler(this.btnAddApplication_Click);
             // 
             // contextMenuStrip1
             // 
@@ -207,11 +201,44 @@
             this.showPersonLicenseHistoryToolStripMenuItem.Size = new System.Drawing.Size(248, 22);
             this.showPersonLicenseHistoryToolStripMenuItem.Text = "Show Person License History";
             // 
+            // btnAddApplication
+            // 
+            this.btnAddApplication.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddApplication.Image = ((System.Drawing.Image)(resources.GetObject("btnAddApplication.Image")));
+            this.btnAddApplication.Location = new System.Drawing.Point(874, 267);
+            this.btnAddApplication.Name = "btnAddApplication";
+            this.btnAddApplication.Size = new System.Drawing.Size(85, 82);
+            this.btnAddApplication.TabIndex = 14;
+            this.btnAddApplication.UseVisualStyleBackColor = true;
+            this.btnAddApplication.Click += new System.EventHandler(this.btnAddApplication_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(390, 80);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(157, 137);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(553, 142);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(40, 37);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 17;
+            this.pictureBox2.TabStop = false;
+            // 
             // frmListLocalDrivingApplications
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(979, 523);
+            this.ClientSize = new System.Drawing.Size(979, 686);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtFilter);
             this.Controls.Add(this.cbFilters);
             this.Controls.Add(this.label3);
@@ -225,6 +252,8 @@
             this.Load += new System.EventHandler(this.frmListLocalDrivingApplications_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalDrivingApps)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,5 +279,7 @@
         private System.Windows.Forms.ToolStripMenuItem issueDrivingLicenseFirstTimeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showLicenseToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem showPersonLicenseHistoryToolStripMenuItem;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }
