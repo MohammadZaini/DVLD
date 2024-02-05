@@ -41,7 +41,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblScheduleTest = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -49,6 +49,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblAlreadySatForTest = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -81,10 +82,11 @@
             // dtpTestAppointentDate
             // 
             this.dtpTestAppointentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpTestAppointentDate.Location = new System.Drawing.Point(158, 360);
+            this.dtpTestAppointentDate.Location = new System.Drawing.Point(168, 360);
             this.dtpTestAppointentDate.Name = "dtpTestAppointentDate";
             this.dtpTestAppointentDate.Size = new System.Drawing.Size(95, 20);
             this.dtpTestAppointentDate.TabIndex = 34;
+            this.dtpTestAppointentDate.ValueChanged += new System.EventHandler(this.dtpTestAppointentDate_ValueChanged);
             // 
             // lblTrial
             // 
@@ -176,16 +178,16 @@
             this.label2.TabIndex = 25;
             this.label2.Text = "D.L.App.ID:";
             // 
-            // label1
+            // lblScheduleTest
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(114, 171);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(201, 31);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "Schedule Test";
+            this.lblScheduleTest.AutoSize = true;
+            this.lblScheduleTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScheduleTest.ForeColor = System.Drawing.Color.Red;
+            this.lblScheduleTest.Location = new System.Drawing.Point(104, 122);
+            this.lblScheduleTest.Name = "lblScheduleTest";
+            this.lblScheduleTest.Size = new System.Drawing.Size(201, 31);
+            this.lblScheduleTest.TabIndex = 24;
+            this.lblScheduleTest.Text = "Schedule Test";
             // 
             // pictureBox7
             // 
@@ -250,17 +252,30 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(120, 41);
+            this.pictureBox1.Location = new System.Drawing.Point(120, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(168, 101);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 23;
             this.pictureBox1.TabStop = false;
             // 
+            // lblAlreadySatForTest
+            // 
+            this.lblAlreadySatForTest.AutoSize = true;
+            this.lblAlreadySatForTest.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAlreadySatForTest.ForeColor = System.Drawing.Color.Red;
+            this.lblAlreadySatForTest.Location = new System.Drawing.Point(29, 167);
+            this.lblAlreadySatForTest.Name = "lblAlreadySatForTest";
+            this.lblAlreadySatForTest.Size = new System.Drawing.Size(366, 16);
+            this.lblAlreadySatForTest.TabIndex = 43;
+            this.lblAlreadySatForTest.Text = "Person already sat for the test , appointment locked!";
+            this.lblAlreadySatForTest.Visible = false;
+            // 
             // ctrlVisionTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblAlreadySatForTest);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.lblFees);
             this.Controls.Add(this.label11);
@@ -279,10 +294,10 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblScheduleTest);
             this.Controls.Add(this.pictureBox1);
             this.Name = "ctrlVisionTest";
-            this.Size = new System.Drawing.Size(395, 430);
+            this.Size = new System.Drawing.Size(405, 430);
             this.Load += new System.EventHandler(this.ctrlVisionTest_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
@@ -316,7 +331,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblScheduleTest;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblAlreadySatForTest;
     }
 }

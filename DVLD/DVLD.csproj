@@ -76,6 +76,12 @@
     <Compile Include="ApplicationTypes\NewDrivingLicense\frmScheduleTest.Designer.cs">
       <DependentUpon>frmScheduleTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="ApplicationTypes\NewDrivingLicense\frmTakeTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApplicationTypes\NewDrivingLicense\frmTakeTest.Designer.cs">
+      <DependentUpon>frmTakeTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationTypes\NewDrivingLicense\frmVisionTestAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmScheduleTest.resx">
       <DependentUpon>frmScheduleTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmTakeTest.resx">
+      <DependentUpon>frmTakeTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmVisionTestAppointment.resx">
       <DependentUpon>frmVisionTestAppointment.cs</DependentUpon>

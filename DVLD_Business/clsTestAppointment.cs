@@ -1,6 +1,7 @@
 ﻿using DVLD_DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,6 +64,24 @@ namespace DVLD_Business
             }
 
             return false;
+        }
+
+        public static bool IsAppointmentExist(int localDrivingLicenseAppID) {
+            return clsTestAppointmentData.IsAppointmentExist(localDrivingLicenseAppID);
+        }
+
+        public static DataTable ListPeronTestAppointments(int localDrivingLicenseAppID) {
+            return clsTestAppointmentData.ListPersonTestAppointments(localDrivingLicenseAppID);
+        }
+
+        public static bool LockTestAppointment(int testAppointmentID) { 
+            
+            return clsTestAppointmentData.LockTestAppointment(testAppointmentID);
+        }
+
+        public static bool IsAppointmentLocked(int testAppointmentID) {
+
+            return clsTestAppointmentData.IsAppointmentLocked(testAppointmentID);
         }
     }
 }

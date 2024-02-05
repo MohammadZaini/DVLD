@@ -28,18 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVisionTestAppointment));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvTestAppointments = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.takeTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
             this.lblRecordsCount = new System.Windows.Forms.Label();
-            this.btnClose = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.ctrlDrivingLicenseAppAndApplicationInfo1 = new DVLD.Controls.ctrlDrivingLicenseAppAndApplicationInfo();
-            this.button2 = new System.Windows.Forms.Button();
-            this.btnReserveAppointment = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnBookAppointment = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTestAppointments)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,14 +70,52 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Appointments:";
             // 
-            // dataGridView1
+            // dgvTestAppointments
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(15, 550);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(716, 168);
-            this.dataGridView1.TabIndex = 5;
+            this.dgvTestAppointments.AllowUserToAddRows = false;
+            this.dgvTestAppointments.AllowUserToDeleteRows = false;
+            this.dgvTestAppointments.AllowUserToOrderColumns = true;
+            this.dgvTestAppointments.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dgvTestAppointments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTestAppointments.ContextMenuStrip = this.contextMenuStrip1;
+            this.dgvTestAppointments.Location = new System.Drawing.Point(15, 550);
+            this.dgvTestAppointments.Name = "dgvTestAppointments";
+            this.dgvTestAppointments.ReadOnly = true;
+            this.dgvTestAppointments.Size = new System.Drawing.Size(716, 168);
+            this.dgvTestAppointments.TabIndex = 5;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.editToolStripMenuItem,
+            this.takeTestToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 118);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(136, 38);
+            this.toolStripMenuItem2.Text = " ";
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editToolStripMenuItem.Image")));
+            this.editToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(136, 38);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // takeTestToolStripMenuItem
+            // 
+            this.takeTestToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("takeTestToolStripMenuItem.Image")));
+            this.takeTestToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
+            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(136, 38);
+            this.takeTestToolStripMenuItem.Text = "Take Test";
+            this.takeTestToolStripMenuItem.Click += new System.EventHandler(this.takeTestToolStripMenuItem_Click);
             // 
             // label3
             // 
@@ -93,18 +137,18 @@
             this.lblRecordsCount.TabIndex = 7;
             this.lblRecordsCount.Text = "???";
             // 
-            // btnClose
+            // btnExit
             // 
-            this.btnClose.BackColor = System.Drawing.Color.Red;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnClose.Location = new System.Drawing.Point(707, 12);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(27, 26);
-            this.btnClose.TabIndex = 9;
-            this.btnClose.Text = "X";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnExit.BackColor = System.Drawing.Color.Red;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnExit.Location = new System.Drawing.Point(707, 12);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(27, 26);
+            this.btnExit.TabIndex = 9;
+            this.btnExit.Text = "X";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // ctrlDrivingLicenseAppAndApplicationInfo1
             // 
@@ -113,30 +157,30 @@
             this.ctrlDrivingLicenseAppAndApplicationInfo1.Size = new System.Drawing.Size(722, 328);
             this.ctrlDrivingLicenseAppAndApplicationInfo1.TabIndex = 2;
             // 
-            // button2
+            // btnClose
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(596, 749);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(135, 38);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Close";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(596, 749);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(135, 38);
+            this.btnClose.TabIndex = 8;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // btnReserveAppointment
+            // btnBookAppointment
             // 
-            this.btnReserveAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReserveAppointment.Image = ((System.Drawing.Image)(resources.GetObject("btnReserveAppointment.Image")));
-            this.btnReserveAppointment.Location = new System.Drawing.Point(677, 502);
-            this.btnReserveAppointment.Name = "btnReserveAppointment";
-            this.btnReserveAppointment.Size = new System.Drawing.Size(54, 36);
-            this.btnReserveAppointment.TabIndex = 3;
-            this.btnReserveAppointment.UseVisualStyleBackColor = true;
-            this.btnReserveAppointment.Click += new System.EventHandler(this.btnReserveAppointment_Click);
+            this.btnBookAppointment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBookAppointment.Image = ((System.Drawing.Image)(resources.GetObject("btnBookAppointment.Image")));
+            this.btnBookAppointment.Location = new System.Drawing.Point(677, 502);
+            this.btnBookAppointment.Name = "btnBookAppointment";
+            this.btnBookAppointment.Size = new System.Drawing.Size(54, 36);
+            this.btnBookAppointment.TabIndex = 3;
+            this.btnBookAppointment.UseVisualStyleBackColor = true;
+            this.btnBookAppointment.Click += new System.EventHandler(this.btnBookAppointment_Click);
             // 
             // pictureBox1
             // 
@@ -153,20 +197,22 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(743, 799);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.button2);
             this.Controls.Add(this.lblRecordsCount);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvTestAppointments);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.btnReserveAppointment);
+            this.Controls.Add(this.btnBookAppointment);
             this.Controls.Add(this.ctrlDrivingLicenseAppAndApplicationInfo1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmVisionTestAppointment";
             this.Text = "frmVisionTestAppointment";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.frmVisionTestAppointment_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTestAppointments)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -178,12 +224,16 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private Controls.ctrlDrivingLicenseAppAndApplicationInfo ctrlDrivingLicenseAppAndApplicationInfo1;
-        private System.Windows.Forms.Button btnReserveAppointment;
+        private System.Windows.Forms.Button btnBookAppointment;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvTestAppointments;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblRecordsCount;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem takeTestToolStripMenuItem;
     }
 }

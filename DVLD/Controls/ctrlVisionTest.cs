@@ -13,6 +13,8 @@ namespace DVLD.Controls
 {
     public partial class ctrlVisionTest : UserControl
     {
+        public DateTime ApplicationDate { get; set; }
+        public decimal PaidFees { get; set; }
         public ctrlVisionTest()
         {
             InitializeComponent();
@@ -35,12 +37,32 @@ namespace DVLD.Controls
 
             clsTestType testType = clsTestType.Find(1);
 
-            if(testType != null)
-                lblFees.Text = testType.Fees.ToString();
+            if (testType != null) 
+            {
+                PaidFees = testType.Fees;
+                lblFees.Text = PaidFees.ToString();
+            }
         }
         private void ctrlVisionTest_Load(object sender, EventArgs e)
         {
             dtpTestAppointentDate.MinDate = DateTime.Now;
+        }
+
+        private void dtpTestAppointentDate_ValueChanged(object sender, EventArgs e)
+        {
+            ApplicationDate = dtpTestAppointentDate.Value;
+        }
+
+        public bool ToggleTestAppointmentMode(int testAppointmentID) {
+
+            if (clsTestAppointment.IsAppointmentLocked(testAppointmentID))
+            { 
+                dtpTestAppointentDate.Enabled = false;
+                lblAlreadySatForTest.Visible = true;
+                lblScheduleTest.Text = "Schedule Retake Test";
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScheduleTest));
             this.gbRetakeTestInfo = new System.Windows.Forms.GroupBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.lblTotalFees = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.lblRetakeTestAppID = new System.Windows.Forms.Label();
@@ -37,18 +40,15 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.ctrlVisionTest1 = new DVLD.Controls.ctrlVisionTest();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnExist = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.gbRetakeTestInfo.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbRetakeTestInfo
@@ -69,6 +69,36 @@
             this.gbRetakeTestInfo.TabIndex = 23;
             this.gbRetakeTestInfo.TabStop = false;
             this.gbRetakeTestInfo.Text = "Retake Test Info";
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(365, 31);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(26, 22);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox10.TabIndex = 25;
+            this.pictureBox10.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(128, 31);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(26, 22);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox9.TabIndex = 25;
+            this.pictureBox9.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(128, 60);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(26, 29);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 16;
+            this.pictureBox8.TabStop = false;
             // 
             // lblTotalFees
             // 
@@ -96,9 +126,9 @@
             this.lblRetakeTestAppID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRetakeTestAppID.Location = new System.Drawing.Point(168, 60);
             this.lblRetakeTestAppID.Name = "lblRetakeTestAppID";
-            this.lblRetakeTestAppID.Size = new System.Drawing.Size(31, 16);
+            this.lblRetakeTestAppID.Size = new System.Drawing.Size(33, 16);
             this.lblRetakeTestAppID.TabIndex = 8;
-            this.lblRetakeTestAppID.Text = "???";
+            this.lblRetakeTestAppID.Text = "N/A";
             // 
             // lblRetakeTestAppFees
             // 
@@ -106,9 +136,9 @@
             this.lblRetakeTestAppFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRetakeTestAppFees.Location = new System.Drawing.Point(168, 31);
             this.lblRetakeTestAppFees.Name = "lblRetakeTestAppFees";
-            this.lblRetakeTestAppFees.Size = new System.Drawing.Size(31, 16);
+            this.lblRetakeTestAppFees.Size = new System.Drawing.Size(15, 16);
             this.lblRetakeTestAppFees.TabIndex = 7;
-            this.lblRetakeTestAppFees.Text = "???";
+            this.lblRetakeTestAppFees.Text = "0";
             // 
             // label8
             // 
@@ -142,18 +172,45 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vision Test";
             // 
-            // button1
+            // ctrlVisionTest1
             // 
-            this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(442, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(28, 23);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.ctrlVisionTest1.ApplicationDate = new System.DateTime(2024, 2, 6, 2, 27, 13, 212);
+            this.ctrlVisionTest1.Location = new System.Drawing.Point(17, 19);
+            this.ctrlVisionTest1.Name = "ctrlVisionTest1";
+            this.ctrlVisionTest1.PaidFees = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ctrlVisionTest1.Size = new System.Drawing.Size(411, 417);
+            this.ctrlVisionTest1.TabIndex = 25;
+            // 
+            // btnSave
+            // 
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
+            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSave.Location = new System.Drawing.Point(325, 548);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(118, 38);
+            this.btnSave.TabIndex = 24;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnExist
+            // 
+            this.btnExist.BackColor = System.Drawing.Color.Red;
+            this.btnExist.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExist.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnExist.Location = new System.Drawing.Point(442, 12);
+            this.btnExist.Name = "btnExist";
+            this.btnExist.Size = new System.Drawing.Size(28, 23);
+            this.btnExist.TabIndex = 25;
+            this.btnExist.Text = "X";
+            this.btnExist.UseVisualStyleBackColor = false;
+            this.btnExist.Click += new System.EventHandler(this.btnExist_Click);
             // 
             // btnClose
             // 
@@ -169,63 +226,13 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // btnSave
-            // 
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(325, 548);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(118, 38);
-            this.btnSave.TabIndex = 24;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(365, 31);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(26, 22);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox10.TabIndex = 25;
-            this.pictureBox10.TabStop = false;
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(128, 31);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(26, 22);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox9.TabIndex = 25;
-            this.pictureBox9.TabStop = false;
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(128, 60);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(26, 29);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox8.TabIndex = 16;
-            this.pictureBox8.TabStop = false;
-            // 
-            // ctrlVisionTest1
-            // 
-            this.ctrlVisionTest1.Location = new System.Drawing.Point(17, 19);
-            this.ctrlVisionTest1.Name = "ctrlVisionTest1";
-            this.ctrlVisionTest1.Size = new System.Drawing.Size(411, 417);
-            this.ctrlVisionTest1.TabIndex = 25;
-            // 
             // frmScheduleTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 695);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnExist);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmScheduleTest";
@@ -233,10 +240,10 @@
             this.Load += new System.EventHandler(this.frmScheduleTest_Load);
             this.gbRetakeTestInfo.ResumeLayout(false);
             this.gbRetakeTestInfo.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -245,7 +252,7 @@
         private System.Windows.Forms.GroupBox gbRetakeTestInfo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnExist;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.PictureBox pictureBox9;
