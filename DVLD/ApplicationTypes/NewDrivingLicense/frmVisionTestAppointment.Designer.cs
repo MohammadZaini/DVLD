@@ -35,7 +35,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblRecordsCount = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
-            this.drivingLicenseAppAndApplicationInfo1 = new DVLD.Controls.DrivingLicenseAppAndApplicationInfo();
+            this.ctrlDrivingLicenseAppAndApplicationInfo1 = new DVLD.Controls.ctrlDrivingLicenseAppAndApplicationInfo();
             this.button2 = new System.Windows.Forms.Button();
             this.btnReserveAppointment = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -106,12 +106,12 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // drivingLicenseAppAndApplicationInfo1
+            // ctrlDrivingLicenseAppAndApplicationInfo1
             // 
-            this.drivingLicenseAppAndApplicationInfo1.Location = new System.Drawing.Point(12, 168);
-            this.drivingLicenseAppAndApplicationInfo1.Name = "drivingLicenseAppAndApplicationInfo1";
-            this.drivingLicenseAppAndApplicationInfo1.Size = new System.Drawing.Size(722, 328);
-            this.drivingLicenseAppAndApplicationInfo1.TabIndex = 2;
+            this.ctrlDrivingLicenseAppAndApplicationInfo1.Location = new System.Drawing.Point(12, 168);
+            this.ctrlDrivingLicenseAppAndApplicationInfo1.Name = "ctrlDrivingLicenseAppAndApplicationInfo1";
+            this.ctrlDrivingLicenseAppAndApplicationInfo1.Size = new System.Drawing.Size(722, 328);
+            this.ctrlDrivingLicenseAppAndApplicationInfo1.TabIndex = 2;
             // 
             // button2
             // 
@@ -160,7 +160,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnReserveAppointment);
-            this.Controls.Add(this.drivingLicenseAppAndApplicationInfo1);
+            this.Controls.Add(this.ctrlDrivingLicenseAppAndApplicationInfo1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -177,7 +177,7 @@
 
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private Controls.DrivingLicenseAppAndApplicationInfo drivingLicenseAppAndApplicationInfo1;
+        private Controls.ctrlDrivingLicenseAppAndApplicationInfo ctrlDrivingLicenseAppAndApplicationInfo1;
         private System.Windows.Forms.Button btnReserveAppointment;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dataGridView1;

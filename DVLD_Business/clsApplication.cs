@@ -18,6 +18,9 @@ namespace DVLD_Business
         public int ApplicationTypeID { get; set; }
         public decimal PaidFees { get; set; }
         public int CreatedByUserID { get; set; }
+        public string CreatedByUserName { get; set; }
+        public int PassedTests { get; set; }
+        public string ApplicationStatusName { get; set; }
 
 
         public clsApplication()

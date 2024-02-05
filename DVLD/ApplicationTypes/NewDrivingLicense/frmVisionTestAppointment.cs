@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DVLD.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,10 +13,14 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 {
     public partial class frmVisionTestAppointment : Form
     {
-        public frmVisionTestAppointment()
+        private int _localDrivingApplicationID;
+        public frmVisionTestAppointment(int localDrivingApplicationID)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;    
+            _localDrivingApplicationID = localDrivingApplicationID;
+
+            ctrlDrivingLicenseAppAndApplicationInfo1.LoadApplicationDetials(localDrivingApplicationID);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -30,7 +35,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 
         private void btnReserveAppointment_Click(object sender, EventArgs e)
         {
-            frmScheduleTest scheduleTestfrm = new frmScheduleTest();
+            frmScheduleTest scheduleTestfrm = new frmScheduleTest(_localDrivingApplicationID);
             scheduleTestfrm.ShowDialog();
         }
     }

@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DVLD_DataAccess
 {
@@ -15,7 +16,7 @@ namespace DVLD_DataAccess
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
 
-            string query = @"Select * From LocalDrivingLicenseApplicationsView;";
+            string query = @"Select * From LocalDrivingLicenseApplicationsListView;";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -158,6 +159,58 @@ namespace DVLD_DataAccess
             }
 
             return applicationID;
+        }
+
+        public static bool FindByLocalDrivingLicenseAppID(int localLicenseApplicationID, ref string className, ref string fullName, 
+            ref int applicationID, ref int applicationTypeID, ref int applicantPersonID, ref string applicationStatus, 
+            ref DateTime statusDate, ref int passedTests, ref string createdByUsername) {
+
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select * 
+                             From LocalDrivingLicenseApplicationsView
+                             Where [L.D.L.App ID] = @localLicenseApplicationID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@localLicenseApplicationID", localLicenseApplicationID);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    isFound = true;
+
+                    className = (string)reader["Class Name"];
+                    fullName = (string)reader["Full Name"];
+                    applicationID = (int)reader["ApplicationID"];
+                    applicationTypeID = (int)reader["ApplicationTypeID"];
+                    applicantPersonID = (int)reader["ApplicantPersonID"];
+                    applicationStatus = (string)reader["Status"];
+                    statusDate = (DateTime)reader["Status Date"];
+                    passedTests = (int)reader["Passed Tests"];
+                    createdByUsername = (string)reader["UserName"];
+
+                }
+
+                reader.Close();
+            }
+            catch
+            {
+                
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
         }
     }
 }

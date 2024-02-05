@@ -12,20 +12,14 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 {
     public partial class frmScheduleTest : Form
     {
-        public frmScheduleTest()
+        private int _localDrivingLicenseAppID;
+        public frmScheduleTest(int localDrivingLicenseAppID)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
-        }
+            _localDrivingLicenseAppID = localDrivingLicenseAppID;
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
+            ctrlVisionTest1.LoadTestAppointmentDetails(localDrivingLicenseAppID);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,6 +30,11 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void frmScheduleTest_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

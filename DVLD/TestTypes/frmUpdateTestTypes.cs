@@ -14,7 +14,7 @@ namespace DVLD.TestTypes
     public partial class frmUpdateTestTypes : Form
     {
         private int _TestID;
-        private clsTest _Test;
+        private clsTestType _Test;
         public frmUpdateTestTypes(int TestID)
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace DVLD.TestTypes
 
             lblID.Text = _TestID.ToString();
 
-            _Test = clsTest.Find(_TestID);
+            _Test = clsTestType.Find(_TestID);
 
             if (_Test != null) {
 

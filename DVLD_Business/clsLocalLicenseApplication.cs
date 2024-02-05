@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DVLD_Business
 {
@@ -15,12 +16,32 @@ namespace DVLD_Business
 
         public int LocalLicenseClassID { get; set; }
 
+        public string LicenseClassName { get; set; }
+
+        public string ApplicantFullName { get; set; }
+
         public clsApplication Application { get; set; }
 
         public clsLocalLicenseApplication() {
             this.LocalLicenseApplicationID = -1;
             this.LocalLicenseClassID = -1;
             Application = new clsApplication();
+        }
+
+        public clsLocalLicenseApplication(int localLicenseApplicationID, string licenseClassName, string applicantFullName,
+            int applicationID, int applicationTypeID , int applicantPersonID, string applicationStatus, DateTime statusDate, int passedTests, string createByUserName)
+        {
+            LocalLicenseApplicationID = localLicenseApplicationID;
+            LicenseClassName = licenseClassName;
+            ApplicantFullName = applicantFullName;
+            Application = new clsApplication();
+            Application.ApplicationID = applicationID;
+            Application.ApplicationDate = statusDate;
+            Application.ApplicationStatusName = applicationStatus;
+            Application.PassedTests = passedTests;
+            Application.CreatedByUserName = createByUserName;
+            Application.ApplicationTypeID = applicationTypeID;
+            Application.ApplicantPersonID = applicantPersonID;      
         }
 
         public static DataTable ListLocalLicenseApplications() { 
@@ -48,6 +69,25 @@ namespace DVLD_Business
 
         public bool UpdateApplicationStatus(int applicationID, decimal applicationStatus) {
             return Application.UpdateApplicationStatus(applicationID, applicationStatus);
+        }
+
+        public static clsLocalLicenseApplication Find(int localLicenseApplicationID) {
+
+            string className = "", applicantFullName = "", applicatiomStatus = "";
+            int applicationID = 0, applicationTypeID = 0, applicantPersonID = 0; 
+            DateTime statusDate = DateTime.Now;
+            int passedTests = 0;
+            string createByUserName = "";
+            
+
+            if (clsLocalLicenseApplicationData.FindByLocalDrivingLicenseAppID(localLicenseApplicationID, ref className, ref
+                applicantFullName, ref applicationID, ref applicationTypeID, ref applicantPersonID, ref applicatiomStatus, 
+                ref statusDate, ref passedTests, ref createByUserName))
+
+                return new clsLocalLicenseApplication(localLicenseApplicationID, className, applicantFullName,
+                    applicationID, applicationTypeID, applicantPersonID, applicatiomStatus,  statusDate,  passedTests,  createByUserName);
+            else
+                return null;
         }
     }
 }

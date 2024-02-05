@@ -21,7 +21,7 @@ namespace DVLD.TestTypes
 
 
         private void _ListTestTypes() {
-            dgvTestTypes.DataSource = clsTest.ListTestTypes();
+            dgvTestTypes.DataSource = clsTestType.ListTestTypes();
             dgvTestTypes.Columns["Description"].Width = 300;
             dgvTestTypes.Columns["Title"].Width = 150;
             lblRecordsCount.Text = dgvTestTypes.RowCount.ToString();

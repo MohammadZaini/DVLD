@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DVLD_Business
 {
-    public class clsTest
+    public class clsTestType
     {
         public int TestID { get; set; }
         public string Title { get; set; }
@@ -16,7 +16,7 @@ namespace DVLD_Business
         public decimal Fees { get; set; }
 
 
-        private clsTest(int TestID, string Title, string Description, decimal Fees) { 
+        private clsTestType(int TestID, string Title, string Description, decimal Fees) { 
         
             this.TestID = TestID;
             this.Title = Title;
@@ -28,13 +28,13 @@ namespace DVLD_Business
             return clsTestTypeData.ListTestTypes();
         }
 
-        public static clsTest Find(int TestID) {
+        public static clsTestType Find(int TestID) {
 
             string TestTitle = "", TestTypeDescription = "";
             decimal TestFees = 0;
 
             if (clsTestTypeData.FindTestTypeByID(TestID, ref TestTitle, ref TestTypeDescription, ref TestFees))
-                return new clsTest(TestID, TestTitle, TestTypeDescription, TestFees);
+                return new clsTestType(TestID, TestTitle, TestTypeDescription, TestFees);
             else
                 return null;
         }

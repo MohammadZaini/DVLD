@@ -104,7 +104,8 @@ namespace DVLD.ApplicationTypes
 
         private void shToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmVisionTestAppointment VisionTestAppointmentfrm = new frmVisionTestAppointment();
+            int selectedLocalDrivingAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
+            frmVisionTestAppointment VisionTestAppointmentfrm = new frmVisionTestAppointment(selectedLocalDrivingAppID);
             VisionTestAppointmentfrm.ShowDialog();
         }
     }

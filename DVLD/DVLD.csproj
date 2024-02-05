@@ -100,11 +100,17 @@
     <Compile Include="Controls\ctrlUserCard.Designer.cs">
       <DependentUpon>ctrlUserCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\DrivingLicenseAppAndApplicationInfo.cs">
+    <Compile Include="Controls\ctrlVisionTest.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\DrivingLicenseAppAndApplicationInfo.Designer.cs">
-      <DependentUpon>DrivingLicenseAppAndApplicationInfo.cs</DependentUpon>
+    <Compile Include="Controls\ctrlVisionTest.Designer.cs">
+      <DependentUpon>ctrlVisionTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ctrlDrivingLicenseAppAndApplicationInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlDrivingLicenseAppAndApplicationInfo.Designer.cs">
+      <DependentUpon>ctrlDrivingLicenseAppAndApplicationInfo.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -201,8 +207,11 @@
     <EmbeddedResource Include="Controls\ctrlUserCard.resx">
       <DependentUpon>ctrlUserCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\DrivingLicenseAppAndApplicationInfo.resx">
-      <DependentUpon>DrivingLicenseAppAndApplicationInfo.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\ctrlVisionTest.resx">
+      <DependentUpon>ctrlVisionTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlDrivingLicenseAppAndApplicationInfo.resx">
+      <DependentUpon>ctrlDrivingLicenseAppAndApplicationInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

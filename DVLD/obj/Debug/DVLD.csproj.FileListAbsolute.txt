@@ -31,5 +31,6 @@ E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.TestTypes.frmUpdateTestTypes.resourc
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.frmListLocalDrivingApplications.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.NewDrivingLicense.frmAddLocalDrivingLicenseApplication.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.NewDrivingLicense.frmVisionTestAppointment.resources
-E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Controls.DrivingLicenseAppAndApplicationInfo.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.NewDrivingLicense.frmScheduleTest.resources
+E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Controls.ctrlVisionTest.resources
+E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Controls.ctrlDrivingLicenseAppAndApplicationInfo.resources
