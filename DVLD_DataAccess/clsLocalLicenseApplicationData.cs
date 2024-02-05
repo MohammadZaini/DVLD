@@ -15,14 +15,7 @@ namespace DVLD_DataAccess
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
 
-            string query = @"SELECT LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID as LDLAppID, LicenseClasses.ClassName, 
-                             People.NationalNo, FullName = People.FirstName + ' ' + People.SecondName + ' ' + People.ThirdName + ' ' + People.LastName, 
-                             Applications.ApplicationDate, PassedTest = 0 , Case When ApplicationStatus = 1 then 'New' When ApplicationStatus = 2 
-                             then 'Cancelled' When ApplicationStatus = 3 Then 'Completed' End As ApplciationStatus
-                             FROM Applications INNER JOIN LocalDrivingLicenseApplications 
-                             ON Applications.ApplicationID = LocalDrivingLicenseApplications.ApplicationID 
-                             INNER JOIN LicenseClasses ON LocalDrivingLicenseApplications.LicenseClassID = LicenseClasses.LicenseClassID 
-                             INNER JOIN People ON Applications.ApplicantPersonID = People.PersonID;";
+            string query = @"Select * From LocalDrivingLicenseApplicationsView;";
 
             SqlCommand command = new SqlCommand(query, connection);
 

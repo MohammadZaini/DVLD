@@ -59,35 +59,54 @@ namespace DVLD.People
             lbRemoveImage.Visible = pbProfilePic.Image != null;
 ;
             if (_Mode == enMode.Add) {
-                lblAddEdit.Text = "Add New Person";
-                dtpDateOfBirth.MaxDate = DateTime.Now.AddYears(-18);
-                rbMale.Checked = true;
-                lbRemoveImage.Visible = false;
-                _Person = new clsPerson();
+                _InitializeAddMode();
                 return;
             }
             
             _Person = clsPerson.Find(_PersonID);
-  
+                     
+            if (_Person != null) {
+                _UpdateGenderSelection();
+                _UpdatePersonDetails();
+                _UpdateSelectedCountry();
+                _SetUpdateMode();
+            }
+        }
+
+
+        private void _InitializeAddMode() {
+            lblAddEdit.Text = "Add New Person";
+            dtpDateOfBirth.MaxDate = DateTime.Now.AddYears(-18);
+            rbMale.Checked = true;
+            lbRemoveImage.Visible = false;
+            _Person = new clsPerson();
+        }
+
+        private void _UpdateGenderSelection() {
             if (_Person.Gender == 0)
                 rbMale.Checked = true;
             else
                 rbFemale.Checked = true;
-            
-            if (_Person != null) { 
-                txtFirstName.Text = _Person.FirstName;
-                txtSecondName.Text = _Person.SecondName;
-                txtThirdName.Text = _Person.ThirdName;
-                txtLastName.Text = _Person.LastName;
-                txtAddress.Text = _Person.Address;
-                txtPhone.Text = _Person.Phone;
-                txtNationalNo.Text = _Person.NationalityNo;
-                txtEmail.Text = _Person.Email;
-                dtpDateOfBirth.Value = _Person.DateOfBirth;
-                cbCountry.SelectedIndex = cbCountry.FindString(clsCountry.Find(_Person.NationalityCountryID).CountryName);
-                pbProfilePic.ImageLocation = _Person.ImagePath;             
-            }
+        }
 
+        private void _UpdatePersonDetails() {
+            txtFirstName.Text = _Person.FirstName;
+            txtSecondName.Text = _Person.SecondName;
+            txtThirdName.Text = _Person.ThirdName;
+            txtLastName.Text = _Person.LastName;
+            txtAddress.Text = _Person.Address;
+            txtPhone.Text = _Person.Phone;
+            txtNationalNo.Text = _Person.NationalityNo;
+            txtEmail.Text = _Person.Email;
+            dtpDateOfBirth.Value = _Person.DateOfBirth;
+            pbProfilePic.ImageLocation = _Person.ImagePath;
+        }
+
+        private void _UpdateSelectedCountry() { 
+            cbCountry.SelectedIndex = cbCountry.FindString(clsCountry.Find(_Person.NationalityCountryID).CountryName);
+        }
+
+        private void _SetUpdateMode() {
             _Mode = enMode.Update;
             lblAddEdit.Text = "Update Informarion";
             lblPersonID.Text = Convert.ToString(_PersonID);

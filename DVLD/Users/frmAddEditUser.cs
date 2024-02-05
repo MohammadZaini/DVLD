@@ -55,8 +55,8 @@ namespace DVLD.Users
             else
                 btnSave.Enabled = tcUserInfo.SelectedTab == LoginInfoTab;
 
-            if (tcUserInfo.SelectedTab == LoginInfoTab)
-                txtUsername.Focus();
+            //if (tcUserInfo.SelectedTab == LoginInfoTab)
+            //    txtUsername.Focus();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

@@ -101,5 +101,11 @@ namespace DVLD.ApplicationTypes
             newLocalLicneseAppFrm.ShowDialog();
             _ListLocalLicenseApplications();
         }
+
+        private void shToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmVisionTestAppointment VisionTestAppointmentfrm = new frmVisionTestAppointment();
+            VisionTestAppointmentfrm.ShowDialog();
+        }
     }
 }
