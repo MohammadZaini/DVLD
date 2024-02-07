@@ -59,35 +59,28 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
             if (_localDrivingLicenseApp == null)
                 return;
 
-            // IsAppointmentExist() returns True if the appointment Exists
-            if (clsTestAppointment.IsAppointmentExist(_localDrivingApplicationID,_localDrivingLicenseApp.LicenseClassID)) 
-            {
-                if (clsTestAppointment.IsAppointmentLocked(_localDrivingApplicationID))
-                {
-                    if (clsTestAppointment.IsPersonFailed(_localDrivingApplicationID))
-                    {
-                        _ShowScheduleTestForm();
-                    }
-                    else
-                        MessageBox.Show("You already succeeded in this one!");
-                }
-                else 
-                {
-                    MessageBox.Show("This person already has an active appointment! You cannot add a new appointment", 
-                        "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                
-            }
-            else
-            {
-               //if (!clsTestAppointment.IsAppointmentLocked(_localDrivingApplicationID))
-               //    MessageBox.Show("This person already has an active appointment! You cannot add a new appointment", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
-               //else
-               //{
-                    _ShowScheduleTestForm();
-               // }
 
+            if (!clsTestAppointment.IsAppointmentExist(_localDrivingApplicationID, _localDrivingLicenseApp.LicenseClassID))
+            { 
+                _ShowScheduleTestForm();
+                return;
             }
+
+            if (!clsTestAppointment.IsAppointmentLocked(_localDrivingApplicationID))
+            {
+                MessageBox.Show("This person already has an active appointment scheduled for this license class",
+                       "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (clsTestAppointment.IsPersonFailed(_localDrivingApplicationID))
+            { 
+                _ShowScheduleTestForm();
+                return;
+            }
+
+            MessageBox.Show("This person has already succeeded in this test!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
         private void _ShowScheduleTestForm(int selectedTestAppointmentID = -1) {

@@ -214,7 +214,6 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
-
         public static int PassedTestsCount(int localLicenseApplicationID) {
             int passedTestsCount = 0;
 
@@ -254,6 +253,48 @@ namespace DVLD_DataAccess
             }
 
             return passedTestsCount;
+        }
+
+        public static int FailureCount(int localLicenseApplicationID) { 
+
+            int failureCount = 0;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select FailureCount = Count(*) From TestAppointments
+                             Inner Join Tests
+                             On TestAppointments.TestAppointmentID = Tests.TestAppointmentID
+                             Inner Join LocalDrivingLicenseApplications
+                             On TestAppointments.LocalDrivingLicenseApplicationID = 
+                             LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
+                             Where Tests.TestResult = 0 
+                             And LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @localLicenseApplicationID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@localLicenseApplicationID", localLicenseApplicationID);
+
+            try
+            {
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int failureNo))
+                    failureCount = failureNo;
+
+
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return failureCount;
         }
     }
 }

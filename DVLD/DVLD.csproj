@@ -118,6 +118,12 @@
     <Compile Include="Controls\ctrlDrivingLicenseAppAndApplicationInfo.Designer.cs">
       <DependentUpon>ctrlDrivingLicenseAppAndApplicationInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ctrlScheduledTest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlScheduledTest.Designer.cs">
+      <DependentUpon>ctrlScheduledTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -216,11 +222,14 @@
     <EmbeddedResource Include="Controls\ctrlUserCard.resx">
       <DependentUpon>ctrlUserCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ctrlVisionTest.resx">
+    <EmbeddedResource Include="Controls\ctrlScheduleTest.resx">
       <DependentUpon>ctrlVisionTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ctrlDrivingLicenseAppAndApplicationInfo.resx">
       <DependentUpon>ctrlDrivingLicenseAppAndApplicationInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlScheduledTest.resx">
+      <DependentUpon>ctrlScheduledTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

@@ -68,7 +68,7 @@ namespace DVLD_DataAccess
                              LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
                              Where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = 
                              @localDrivingLicenseAppID 
-                             And LicenseClasses.LicenseClassID = @licenseClassID And IsLocked = 0;";
+                             And LicenseClasses.LicenseClassID = @licenseClassID";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@localDrivingLicenseAppID", localDrivingLicenseAppID);
@@ -298,7 +298,7 @@ namespace DVLD_DataAccess
             string query = @"Select Top 1 found = 1 From TestAppointments
                              Inner Join Tests
                              On TestAppointments.TestAppointmentID = Tests.TestAppointmentID
-                             Where Tests.TestResult = 1 And LocalDrivingLicenseApplicationID = @localDrivingLicenseApplicationID
+                             Where Tests.TestResult = 0 And LocalDrivingLicenseApplicationID = @localDrivingLicenseApplicationID
                              Order By TestAppointments.TestAppointmentID Desc;";
 
             SqlCommand command = new SqlCommand(query, connection);

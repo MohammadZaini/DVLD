@@ -33,6 +33,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
             _InitializeUI();
 
             ctrlVisionTest1.LoadTestAppointmentDetails(localDrivingLicenseAppID);
+            
 
         }
 
@@ -60,6 +61,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
             _testAppointment.PaidFees = ctrlVisionTest1.PaidFees;
             _testAppointment.CreatedByUserID = clsGlobalSettings.LoggedInUser.UserID;
             _testAppointment.IsLocked = false;
+            
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -74,7 +76,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
                 int retakeTestFees =  (int)clsApplicationType.Find(8).AppFees;
                 lblRetakeTestAppFees.Text = retakeTestFees.ToString();
                 lblTotalFees.Text = (retakeTestFees + (int)ctrlVisionTest1.PaidFees).ToString();
-               
+                
             }
             else
                 gbRetakeTestInfo.Enabled = false;

@@ -35,13 +35,14 @@ namespace DVLD.Controls
         private void _UpdateAppointmentDetails(clsLocalLicenseApplication localLicenseApplication) {
             lblLicenseClass.Text = localLicenseApplication.LicenseClassName;
             lblApplicantName.Text = localLicenseApplication.ApplicantFullName;
+            lblFees.Text = ((int)PaidFees).ToString();
+            lblTrial.Text = clsLocalLicenseApplication.FailureCount(localLicenseApplication.LocalLicenseApplicationID).ToString();
 
             clsTestType testType = clsTestType.Find(1);
 
             if (testType != null) 
             {
                 PaidFees = testType.Fees;
-                lblFees.Text = ((int)PaidFees).ToString();
             }
         }
         private void ctrlVisionTest_Load(object sender, EventArgs e)

@@ -35,3 +35,4 @@ E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.NewDrivingLicense.f
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Controls.ctrlVisionTest.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Controls.ctrlDrivingLicenseAppAndApplicationInfo.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.NewDrivingLicense.frmTakeTest.resources
+E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Controls.ctrlScheduledTest.resources
