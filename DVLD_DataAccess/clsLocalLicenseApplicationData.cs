@@ -161,9 +161,9 @@ namespace DVLD_DataAccess
             return applicationID;
         }
 
-        public static bool FindByLocalDrivingLicenseAppID(int localLicenseApplicationID, ref string className, ref string fullName, 
-            ref int applicationID, ref int applicationTypeID, ref int applicantPersonID, ref string applicationStatus, 
-            ref DateTime statusDate, ref int passedTests, ref string createdByUsername) {
+        public static bool FindByLocalDrivingLicenseAppID(int localLicenseApplicationID, ref int licenseClassID, 
+            ref string className, ref string fullName, ref int applicationID, ref int applicationTypeID, ref int applicantPersonID,
+            ref string applicationStatus, ref DateTime statusDate, ref int passedTests, ref string createdByUsername) {
 
             bool isFound = false;
 
@@ -191,6 +191,7 @@ namespace DVLD_DataAccess
                     applicationID = (int)reader["ApplicationID"];
                     applicationTypeID = (int)reader["ApplicationTypeID"];
                     applicantPersonID = (int)reader["ApplicantPersonID"];
+                    licenseClassID = (int)reader["LicenseClassID"];
                     applicationStatus = (string)reader["Status"];
                     statusDate = (DateTime)reader["Status Date"];
                     passedTests = (int)reader["Passed Tests"];
@@ -211,6 +212,48 @@ namespace DVLD_DataAccess
             }
 
             return isFound;
+        }
+
+
+        public static int PassedTestsCount(int localLicenseApplicationID) {
+            int passedTestsCount = 0;
+
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select PassedTestsCount = (Select Count(TestTypeID)) From TestAppointments
+                            inner Join Tests
+                            On TestAppointments.TestAppointmentID = Tests.TestAppointmentID
+                            Inner Join LocalDrivingLicenseApplications
+                            On LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = 
+                            TestAppointments.LocalDrivingLicenseApplicationID And TestResult = 1
+                            Where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @localLicenseApplicationID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@localLicenseApplicationID", localLicenseApplicationID);
+
+            try
+            {
+                connection.Open();
+
+                object result = command.ExecuteScalar();
+
+                if (result != null && int.TryParse(result.ToString(), out int passedTestsNo))
+                    passedTestsCount = passedTestsNo;
+
+
+            }
+            catch
+            {
+
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return passedTestsCount;
         }
     }
 }

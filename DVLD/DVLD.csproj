@@ -70,22 +70,22 @@
     <Compile Include="ApplicationTypes\NewDrivingLicense\frmAddLocalDrivingLicenseApplication.Designer.cs">
       <DependentUpon>frmAddLocalDrivingLicenseApplication.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmScheduleTest.cs">
+    <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmScheduleTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmScheduleTest.Designer.cs">
+    <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmScheduleTest.Designer.cs">
       <DependentUpon>frmScheduleTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmTakeTest.cs">
+    <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmTakeTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmTakeTest.Designer.cs">
+    <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmTakeTest.Designer.cs">
       <DependentUpon>frmTakeTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmVisionTestAppointment.cs">
+    <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmVisionTestAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmVisionTestAppointment.Designer.cs">
+    <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmVisionTestAppointment.Designer.cs">
       <DependentUpon>frmVisionTestAppointment.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ctrlPersonCard.cs">
@@ -198,13 +198,13 @@
     <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmAddLocalDrivingLicenseApplication.resx">
       <DependentUpon>frmAddLocalDrivingLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmScheduleTest.resx">
+    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\Tests\frmScheduleTest.resx">
       <DependentUpon>frmScheduleTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmTakeTest.resx">
+    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\Tests\frmTakeTest.resx">
       <DependentUpon>frmTakeTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmVisionTestAppointment.resx">
+    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\Tests\frmVisionTestAppointment.resx">
       <DependentUpon>frmVisionTestAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ctrlPersonCard.resx">

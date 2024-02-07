@@ -34,16 +34,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dgvTestAppointments = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.takeTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label3 = new System.Windows.Forms.Label();
             this.lblRecordsCount = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
-            this.ctrlDrivingLicenseAppAndApplicationInfo1 = new DVLD.Controls.ctrlDrivingLicenseAppAndApplicationInfo();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnBookAppointment = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ctrlDrivingLicenseAppAndApplicationInfo1 = new DVLD.Controls.ctrlDrivingLicenseAppAndApplicationInfo();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestAppointments)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -87,24 +86,18 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
             this.editToolStripMenuItem,
             this.takeTestToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 118);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(136, 38);
-            this.toolStripMenuItem2.Text = " ";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(197, 102);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editToolStripMenuItem.Image")));
             this.editToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(136, 38);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
@@ -113,7 +106,7 @@
             this.takeTestToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("takeTestToolStripMenuItem.Image")));
             this.takeTestToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
-            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(136, 38);
+            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
             this.takeTestToolStripMenuItem.Text = "Take Test";
             this.takeTestToolStripMenuItem.Click += new System.EventHandler(this.takeTestToolStripMenuItem_Click);
             // 
@@ -150,13 +143,6 @@
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // ctrlDrivingLicenseAppAndApplicationInfo1
-            // 
-            this.ctrlDrivingLicenseAppAndApplicationInfo1.Location = new System.Drawing.Point(12, 168);
-            this.ctrlDrivingLicenseAppAndApplicationInfo1.Name = "ctrlDrivingLicenseAppAndApplicationInfo1";
-            this.ctrlDrivingLicenseAppAndApplicationInfo1.Size = new System.Drawing.Size(722, 328);
-            this.ctrlDrivingLicenseAppAndApplicationInfo1.TabIndex = 2;
-            // 
             // btnClose
             // 
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -191,6 +177,13 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // ctrlDrivingLicenseAppAndApplicationInfo1
+            // 
+            this.ctrlDrivingLicenseAppAndApplicationInfo1.Location = new System.Drawing.Point(12, 168);
+            this.ctrlDrivingLicenseAppAndApplicationInfo1.Name = "ctrlDrivingLicenseAppAndApplicationInfo1";
+            this.ctrlDrivingLicenseAppAndApplicationInfo1.Size = new System.Drawing.Size(722, 328);
+            this.ctrlDrivingLicenseAppAndApplicationInfo1.TabIndex = 2;
             // 
             // frmVisionTestAppointment
             // 
@@ -232,7 +225,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem takeTestToolStripMenuItem;
     }

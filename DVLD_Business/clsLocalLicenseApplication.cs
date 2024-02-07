@@ -15,6 +15,7 @@ namespace DVLD_Business
         public int LocalLicenseApplicationID { get; set; }
 
         public int LocalLicenseClassID { get; set; }
+        public int LicenseClassID { get; set; }
 
         public string LicenseClassName { get; set; }
 
@@ -28,10 +29,11 @@ namespace DVLD_Business
             Application = new clsApplication();
         }
 
-        public clsLocalLicenseApplication(int localLicenseApplicationID, string licenseClassName, string applicantFullName,
+        public clsLocalLicenseApplication(int localLicenseApplicationID, int licenseClassID , string licenseClassName, string applicantFullName,
             int applicationID, int applicationTypeID , int applicantPersonID, string applicationStatus, DateTime statusDate, int passedTests, string createByUserName)
         {
             LocalLicenseApplicationID = localLicenseApplicationID;
+            LicenseClassID = licenseClassID;
             LicenseClassName = licenseClassName;
             ApplicantFullName = applicantFullName;
             Application = new clsApplication();
@@ -74,20 +76,24 @@ namespace DVLD_Business
         public static clsLocalLicenseApplication Find(int localLicenseApplicationID) {
 
             string className = "", applicantFullName = "", applicatiomStatus = "";
-            int applicationID = 0, applicationTypeID = 0, applicantPersonID = 0; 
+            int applicationID = 0, applicationTypeID = 0, applicantPersonID = 0, licenseClassID = 0; 
             DateTime statusDate = DateTime.Now;
             int passedTests = 0;
             string createByUserName = "";
             
 
-            if (clsLocalLicenseApplicationData.FindByLocalDrivingLicenseAppID(localLicenseApplicationID, ref className, ref
-                applicantFullName, ref applicationID, ref applicationTypeID, ref applicantPersonID, ref applicatiomStatus, 
-                ref statusDate, ref passedTests, ref createByUserName))
+            if (clsLocalLicenseApplicationData.FindByLocalDrivingLicenseAppID(localLicenseApplicationID, ref licenseClassID, 
+                ref className, ref applicantFullName, ref applicationID, ref applicationTypeID, ref applicantPersonID, 
+                ref applicatiomStatus, ref statusDate, ref passedTests, ref createByUserName))
 
-                return new clsLocalLicenseApplication(localLicenseApplicationID, className, applicantFullName,
+                return new clsLocalLicenseApplication(localLicenseApplicationID, licenseClassID, className, applicantFullName,
                     applicationID, applicationTypeID, applicantPersonID, applicatiomStatus,  statusDate,  passedTests,  createByUserName);
             else
                 return null;
+        }
+
+        public static int PassedTestsCount(int localLicenseApplicationID) { 
+            return clsLocalLicenseApplicationData.PassedTestsCount(localLicenseApplicationID);
         }
     }
 }

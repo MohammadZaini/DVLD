@@ -22,6 +22,7 @@ namespace DVLD.Controls
 
         public void LoadTestAppointmentDetails(int drivingLicenseAppID) { 
             lblDrivingLicenseAppID.Text = drivingLicenseAppID.ToString();
+            dtpTestAppointentDate.Value = ApplicationDate;
 
             clsLocalLicenseApplication localLicenseApplication = clsLocalLicenseApplication.Find(drivingLicenseAppID);
 
@@ -40,7 +41,7 @@ namespace DVLD.Controls
             if (testType != null) 
             {
                 PaidFees = testType.Fees;
-                lblFees.Text = PaidFees.ToString();
+                lblFees.Text = ((int)PaidFees).ToString();
             }
         }
         private void ctrlVisionTest_Load(object sender, EventArgs e)
@@ -53,9 +54,9 @@ namespace DVLD.Controls
             ApplicationDate = dtpTestAppointentDate.Value;
         }
 
-        public bool ToggleTestAppointmentMode(int testAppointmentID) {
+        public bool ToggleTestAppointmentMode(int localDrivingLicenseAppID) {
 
-            if (clsTestAppointment.IsAppointmentLocked(testAppointmentID))
+            if (clsTestAppointment.IsAppointmentLocked(localDrivingLicenseAppID))
             { 
                 dtpTestAppointentDate.Enabled = false;
                 lblAlreadySatForTest.Visible = true;

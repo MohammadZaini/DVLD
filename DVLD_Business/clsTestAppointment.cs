@@ -11,6 +11,7 @@ namespace DVLD_Business
     public class clsTestAppointment
     {
         enum enMode { AddNew = 0, Update = 1}
+
         private enMode _Mode = enMode.AddNew;
         public int TestAppointmentID { get; set; }
         public int TestTypeID { get; set; }
@@ -33,12 +34,47 @@ namespace DVLD_Business
             _Mode = enMode.AddNew;
         }
 
+        private clsTestAppointment(int testAppointmentID,  int testTypeID,  int localDrivingLicenseApplicationID,
+             int createdByUserID,  DateTime appointmentDate, decimal paidFees, bool isLocked) { 
+            
+            this.TestAppointmentID = testAppointmentID;
+            this.TestTypeID = testTypeID;
+            this.LocalDrivingLicenseApplicationID = localDrivingLicenseApplicationID;
+            this.CreatedByUserID = createdByUserID;
+            this.AppointmentDate = appointmentDate;
+            this.PaidFees = paidFees;
+            this.IsLocked = isLocked;
+
+            _Mode = enMode.Update;
+        }
+
+        public static clsTestAppointment Find(int TestAppointmentID)
+        {
+
+            int testTypeID = 0, localDrivingLicenseApplicationID = 0, createdByUserID = 0;
+            DateTime appointmentDate = DateTime.Now;
+            decimal paidFees = 0;
+            bool isLocked = false;
+           
+            if (clsTestAppointmentData.FindTestAppointmentByID(TestAppointmentID, ref testTypeID, ref localDrivingLicenseApplicationID,
+                ref createdByUserID, ref appointmentDate, ref paidFees, ref isLocked))
+                return new clsTestAppointment(TestAppointmentID, testTypeID, localDrivingLicenseApplicationID,
+                 createdByUserID,  appointmentDate,  paidFees,  isLocked);
+            else
+                return null;
+        }
+
         private bool _AddNewAppointment() {
 
             this.TestAppointmentID = clsTestAppointmentData.AddNewAppointment(this.TestTypeID, this.LocalDrivingLicenseApplicationID,
                 this.AppointmentDate, this.PaidFees, this.CreatedByUserID, this.IsLocked);
 
             return (this.TestAppointmentID != -1); // -1 means the appointment has not been added
+        }
+
+        private bool _UpdateAppointment() {
+
+            return clsTestAppointmentData.UpdateTestAppointment(this.TestAppointmentID, this.AppointmentDate);
         }
 
         public bool Save() { 
@@ -55,7 +91,7 @@ namespace DVLD_Business
                         return false;
 
                 case enMode.Update:
-                    if (_AddNewAppointment())
+                    if (_UpdateAppointment())
                     {
                         return true;
                     }
@@ -66,8 +102,8 @@ namespace DVLD_Business
             return false;
         }
 
-        public static bool IsAppointmentExist(int localDrivingLicenseAppID) {
-            return clsTestAppointmentData.IsAppointmentExist(localDrivingLicenseAppID);
+        public static bool IsAppointmentExist(int localDrivingLicenseAppID, int licenseClassID) {
+            return clsTestAppointmentData.IsAppointmentExist(localDrivingLicenseAppID, licenseClassID);
         }
 
         public static DataTable ListPeronTestAppointments(int localDrivingLicenseAppID) {
@@ -79,9 +115,13 @@ namespace DVLD_Business
             return clsTestAppointmentData.LockTestAppointment(testAppointmentID);
         }
 
-        public static bool IsAppointmentLocked(int testAppointmentID) {
+        public static bool IsAppointmentLocked(int localDrivingLicenseAppID) {
 
-            return clsTestAppointmentData.IsAppointmentLocked(testAppointmentID);
+            return clsTestAppointmentData.IsAppointmentLocked(localDrivingLicenseAppID);
+        }
+
+        public static bool IsPersonFailed(int localDrivingLicenseAppID) {
+            return clsTestAppointmentData.IsPersonFailed(localDrivingLicenseAppID);
         }
     }
 }
