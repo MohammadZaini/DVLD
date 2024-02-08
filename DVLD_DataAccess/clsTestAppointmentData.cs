@@ -11,7 +11,7 @@ namespace DVLD_DataAccess
     public static class clsTestAppointmentData
     {
         public static int AddNewAppointment(int testTypeID, int localDrivingLicenseAppID, DateTime appointmentDate, 
-            decimal paidFees, int createdByUserID, bool isLocked) {
+            decimal paidFees, int createdByUserID, bool isLocked, int retakeTestApplicationID) {
 
             int appointmentID = -1;
 
@@ -20,7 +20,7 @@ namespace DVLD_DataAccess
             string query = @"Insert Into TestAppointments 
                             Values (
                             @TestID, @LocalDrivingLicenseAppID, @AppointmentDate, @PaidFees, 
-                            @CreatedByUserID, @IsLocked)
+                            @CreatedByUserID, @IsLocked, @retakeTestApplicationID)
                             Select SCOPE_IDENTITY();";
 
             SqlCommand command = new SqlCommand(query, connection);
@@ -30,6 +30,12 @@ namespace DVLD_DataAccess
             command.Parameters.AddWithValue("@PaidFees", paidFees);
             command.Parameters.AddWithValue("@CreatedByUserID", createdByUserID);
             command.Parameters.AddWithValue("@IsLocked", isLocked);
+
+            if(retakeTestApplicationID != 0)
+                command.Parameters.AddWithValue("@retakeTestApplicationID", retakeTestApplicationID);
+            else
+                command.Parameters.AddWithValue("@retakeTestApplicationID", System.DBNull.Value);
+
 
             try
             {
@@ -245,7 +251,7 @@ namespace DVLD_DataAccess
         }
 
         public static bool FindTestAppointmentByID(int testAppointmentID, ref int testTypeID, ref int localDrivingLicenseApplicationID,
-            ref int createdByUserID, ref DateTime appointmentDate, ref decimal paidFees, ref bool isLocked) {
+            ref int createdByUserID, ref DateTime appointmentDate, ref decimal paidFees, ref bool isLocked, ref int retakeTestApplicationID) {
 
             bool isFound = false;
 
@@ -275,7 +281,7 @@ namespace DVLD_DataAccess
                     createdByUserID = (int)reader["CreatedByUserID"];
                     paidFees = (decimal)reader["PaidFees"];
                     isLocked = (bool)reader["IsLocked"];
-
+                    retakeTestApplicationID = (int)reader["RetakeTestApplicationID"];
                 }
             }
             catch

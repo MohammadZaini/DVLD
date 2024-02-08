@@ -62,7 +62,8 @@ namespace DVLD.Controls
 
             dtpTestAppointentDate.Enabled = !isAppointmentLocked;
             lblAlreadySatForTest.Visible = isAppointmentLocked;
-            lblScheduleTest.Text = "Schedule Retake Test";
+
+            lblScheduleTest.Text = isAppointmentLocked ? "Schedule Retake Test" : "Schedule Test";
 
             return isAppointmentLocked;
         }

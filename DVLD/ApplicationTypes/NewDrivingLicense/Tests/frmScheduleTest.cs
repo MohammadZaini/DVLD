@@ -51,10 +51,14 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
             _Mode = (testAppointmentID == -1) ? enMode.Addnew : enMode.Edit;                       
         }
         private void _InitializeUI() {
+
+            int retakeTestAppID = _testAppointment.RetakeTestApplicationID;
+
             ctrlVisionTest1.PaidFees = _testAppointment.PaidFees;
             lblTotalFees.Text = ((int)ctrlVisionTest1.PaidFees).ToString();
             ctrlVisionTest1.ApplicationDate = _testAppointment.AppointmentDate;
-            _SetSaveButtonState(_localDrivingLicenseAppID);
+            lblRetakeTestAppID.Text = retakeTestAppID == 0 ? "N/A" : retakeTestAppID.ToString();
+            _SetSaveButtonState(_testAppointmentID);
         }
         private void _InitializeTestAppointment()
         {
@@ -121,15 +125,27 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
         }
 
         private void _CreateNewRetakeTestApplication() {
-            // current localLicenseApplication 
-            clsLocalLicenseApplication currentLocalLicenseApplication = clsLocalLicenseApplication.Find(_localDrivingLicenseAppID);
+            // current localLicenseApplication to get the applicant person ID 
+            clsLocalLicenseApplication currentLocalLicenseApplication = _CurrentLocalLicenseApplication(_localDrivingLicenseAppID);
             int applicantPersonID = currentLocalLicenseApplication.Application.ApplicantPersonID;
-
-            // create a new local license application with a retake test type
-            clsApplication newApplication = new clsApplication();
 
             const int retakeTestTypeID = 8;
             const int appStatusNew = 1;
+
+            // create a new retake test type and connect it with the current Local License Application
+            clsApplication newApplication = _InitializeNewRetakeTestApplication(applicantPersonID, retakeTestTypeID, appStatusNew);
+
+            int applicationID = newApplication.AddNewApplication();
+            _testAppointment.RetakeTestApplicationID = applicationID;
+        }
+
+        private clsLocalLicenseApplication _CurrentLocalLicenseApplication(int localDrivingLicenseAppID) { 
+            return clsLocalLicenseApplication.Find(localDrivingLicenseAppID);
+        }
+
+        private clsApplication _InitializeNewRetakeTestApplication(int applicantPersonID, int retakeTestTypeID, int appStatusNew) {
+
+            clsApplication newApplication = new clsApplication();
 
             newApplication.ApplicantPersonID = applicantPersonID;
             newApplication.ApplicationDate = DateTime.Now;
@@ -140,20 +156,9 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
             newApplication.PaidFees = testType.AppFees;
             newApplication.CreatedByUserID = clsGlobalSettings.LoggedInUser.UserID;
 
-            int applicationID = newApplication.AddNewApplication();
-
-           // _CreateNewLocalLicenseApplicationWithRetakeTest(newLocalLicenseApplication, licenseClassID);
-
+            return newApplication;
         }
 
-        private void _CreateNewLocalLicenseApplicationWithRetakeTest(clsLocalLicenseApplication newLocalLicenseApplication, int licenseClassID) { 
-            newLocalLicenseApplication.LocalLicenseClassID = licenseClassID;
-
-            if (newLocalLicenseApplication.Save())
-                MessageBox.Show("Data Saved Successfully2", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-                MessageBox.Show("Something went wrong2", "Failuer", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-        }
+      
     }
 }

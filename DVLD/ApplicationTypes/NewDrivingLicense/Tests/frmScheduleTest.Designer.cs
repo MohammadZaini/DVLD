@@ -40,10 +40,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ctrlVisionTest1 = new DVLD.Controls.ctrlVisionTest();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExist = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.ctrlVisionTest1 = new DVLD.Controls.ctrlVisionTest();
             this.gbRetakeTestInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -172,6 +172,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vision Test";
             // 
+            // ctrlVisionTest1
+            // 
+            this.ctrlVisionTest1.ApplicationDate = new System.DateTime(2024, 2, 8, 17, 38, 5, 141);
+            this.ctrlVisionTest1.Location = new System.Drawing.Point(17, 19);
+            this.ctrlVisionTest1.Name = "ctrlVisionTest1";
+            this.ctrlVisionTest1.PaidFees = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ctrlVisionTest1.Size = new System.Drawing.Size(411, 417);
+            this.ctrlVisionTest1.TabIndex = 25;
+            // 
             // btnSave
             // 
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -212,19 +225,6 @@
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // ctrlVisionTest1
-            // 
-            this.ctrlVisionTest1.ApplicationDate = new System.DateTime(2024, 2, 8, 1, 17, 27, 254);
-            this.ctrlVisionTest1.Location = new System.Drawing.Point(17, 19);
-            this.ctrlVisionTest1.Name = "ctrlVisionTest1";
-            this.ctrlVisionTest1.PaidFees = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.ctrlVisionTest1.Size = new System.Drawing.Size(411, 417);
-            this.ctrlVisionTest1.TabIndex = 25;
             // 
             // frmScheduleTest
             // 

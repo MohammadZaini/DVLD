@@ -20,6 +20,7 @@ namespace DVLD_Business
         public decimal PaidFees { get; set; }
         public int CreatedByUserID { get; set; }
         public bool IsLocked { get; set; }
+        public int RetakeTestApplicationID { get; set; }
 
         public clsTestAppointment()
         {
@@ -30,12 +31,13 @@ namespace DVLD_Business
             PaidFees = 0;
             CreatedByUserID = -1;
             IsLocked = false;
+            RetakeTestApplicationID = 0;
 
             _Mode = enMode.AddNew;
         }
 
         private clsTestAppointment(int testAppointmentID,  int testTypeID,  int localDrivingLicenseApplicationID,
-             int createdByUserID,  DateTime appointmentDate, decimal paidFees, bool isLocked) { 
+             int createdByUserID,  DateTime appointmentDate, decimal paidFees, bool isLocked, int retakeTestApplicationID) { 
             
             this.TestAppointmentID = testAppointmentID;
             this.TestTypeID = testTypeID;
@@ -44,6 +46,7 @@ namespace DVLD_Business
             this.AppointmentDate = appointmentDate;
             this.PaidFees = paidFees;
             this.IsLocked = isLocked;
+            this.RetakeTestApplicationID = retakeTestApplicationID;
 
             _Mode = enMode.Update;
         }
@@ -51,15 +54,15 @@ namespace DVLD_Business
         public static clsTestAppointment Find(int TestAppointmentID)
         {
 
-            int testTypeID = 0, localDrivingLicenseApplicationID = 0, createdByUserID = 0;
+            int testTypeID = 0, localDrivingLicenseApplicationID = 0, createdByUserID = 0, retakeTestApplicationID = 0;
             DateTime appointmentDate = DateTime.Now;
             decimal paidFees = 0;
             bool isLocked = false;
            
             if (clsTestAppointmentData.FindTestAppointmentByID(TestAppointmentID, ref testTypeID, ref localDrivingLicenseApplicationID,
-                ref createdByUserID, ref appointmentDate, ref paidFees, ref isLocked))
+                ref createdByUserID, ref appointmentDate, ref paidFees, ref isLocked, ref retakeTestApplicationID))
                 return new clsTestAppointment(TestAppointmentID, testTypeID, localDrivingLicenseApplicationID,
-                 createdByUserID,  appointmentDate,  paidFees,  isLocked);
+                 createdByUserID,  appointmentDate,  paidFees,  isLocked, retakeTestApplicationID);
             else
                 return null;
         }
@@ -67,7 +70,7 @@ namespace DVLD_Business
         private bool _AddNewAppointment() {
 
             this.TestAppointmentID = clsTestAppointmentData.AddNewAppointment(this.TestTypeID, this.LocalDrivingLicenseApplicationID,
-                this.AppointmentDate, this.PaidFees, this.CreatedByUserID, this.IsLocked);
+                this.AppointmentDate, this.PaidFees, this.CreatedByUserID, this.IsLocked, this.RetakeTestApplicationID);
 
             return (this.TestAppointmentID != -1); // -1 means the appointment has not been added
         }
