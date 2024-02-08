@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScheduleTest));
             this.gbRetakeTestInfo = new System.Windows.Forms.GroupBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
@@ -39,10 +40,10 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.ctrlVisionTest1 = new DVLD.Controls.ctrlVisionTest();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnExist = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.ctrlVisionTest1 = new DVLD.Controls.ctrlVisionTest();
             this.gbRetakeTestInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
@@ -71,6 +72,7 @@
             // 
             // pictureBox10
             // 
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
             this.pictureBox10.Location = new System.Drawing.Point(365, 31);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(26, 22);
@@ -80,6 +82,7 @@
             // 
             // pictureBox9
             // 
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
             this.pictureBox9.Location = new System.Drawing.Point(128, 31);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(26, 22);
@@ -89,9 +92,10 @@
             // 
             // pictureBox8
             // 
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
             this.pictureBox8.Location = new System.Drawing.Point(128, 60);
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(26, 29);
+            this.pictureBox8.Size = new System.Drawing.Size(26, 22);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox8.TabIndex = 16;
             this.pictureBox8.TabStop = false;
@@ -168,23 +172,11 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Vision Test";
             // 
-            // ctrlVisionTest1
-            // 
-            this.ctrlVisionTest1.ApplicationDate = new System.DateTime(2024, 2, 7, 23, 1, 24, 983);
-            this.ctrlVisionTest1.Location = new System.Drawing.Point(17, 19);
-            this.ctrlVisionTest1.Name = "ctrlVisionTest1";
-            this.ctrlVisionTest1.PaidFees = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.ctrlVisionTest1.Size = new System.Drawing.Size(411, 417);
-            this.ctrlVisionTest1.TabIndex = 25;
-            // 
             // btnSave
             // 
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(325, 548);
             this.btnSave.Name = "btnSave";
@@ -211,6 +203,7 @@
             // 
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Image = ((System.Drawing.Image)(resources.GetObject("btnClose.Image")));
             this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClose.Location = new System.Drawing.Point(183, 648);
             this.btnClose.Name = "btnClose";
@@ -219,6 +212,19 @@
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // ctrlVisionTest1
+            // 
+            this.ctrlVisionTest1.ApplicationDate = new System.DateTime(2024, 2, 8, 1, 17, 27, 254);
+            this.ctrlVisionTest1.Location = new System.Drawing.Point(17, 19);
+            this.ctrlVisionTest1.Name = "ctrlVisionTest1";
+            this.ctrlVisionTest1.PaidFees = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ctrlVisionTest1.Size = new System.Drawing.Size(411, 417);
+            this.ctrlVisionTest1.TabIndex = 25;
             // 
             // frmScheduleTest
             // 

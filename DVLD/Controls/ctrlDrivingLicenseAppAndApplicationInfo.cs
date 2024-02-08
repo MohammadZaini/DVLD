@@ -58,6 +58,8 @@ namespace DVLD.Controls
 
             frmPersonDetails personDetailsFrm = new frmPersonDetails(_localLicenseApplication.Application.ApplicantPersonID);
             personDetailsFrm.ShowDialog();
+
+            
         }
     }
 }

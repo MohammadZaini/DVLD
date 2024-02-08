@@ -35,15 +35,16 @@ namespace DVLD.Controls
         private void _UpdateAppointmentDetails(clsLocalLicenseApplication localLicenseApplication) {
             lblLicenseClass.Text = localLicenseApplication.LicenseClassName;
             lblApplicantName.Text = localLicenseApplication.ApplicantFullName;
-            lblFees.Text = ((int)PaidFees).ToString();
             lblTrial.Text = clsLocalLicenseApplication.FailureCount(localLicenseApplication.LocalLicenseApplicationID).ToString();
 
-            clsTestType testType = clsTestType.Find(1);
+            clsTestType testType = clsTestType.Find(1); // Vision Test
 
             if (testType != null) 
             {
                 PaidFees = testType.Fees;
             }
+
+            lblFees.Text = ((int)PaidFees).ToString();
         }
         private void ctrlVisionTest_Load(object sender, EventArgs e)
         {
@@ -57,14 +58,13 @@ namespace DVLD.Controls
 
         public bool ToggleTestAppointmentMode(int localDrivingLicenseAppID) {
 
-            if (clsTestAppointment.IsAppointmentLocked(localDrivingLicenseAppID))
-            { 
-                dtpTestAppointentDate.Enabled = false;
-                lblAlreadySatForTest.Visible = true;
-                lblScheduleTest.Text = "Schedule Retake Test";
-                return true;
-            }
-            return false;
+            bool isAppointmentLocked = clsTestAppointment.IsAppointmentLocked(localDrivingLicenseAppID);
+
+            dtpTestAppointentDate.Enabled = !isAppointmentLocked;
+            lblAlreadySatForTest.Visible = isAppointmentLocked;
+            lblScheduleTest.Text = "Schedule Retake Test";
+
+            return isAppointmentLocked;
         }
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTakeTest));
-            this.ctrlVisionTest1 = new DVLD.Controls.ctrlVisionTest();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnExit = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,28 +40,15 @@
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.ctrlScheduledTest1 = new DVLD.Controls.ctrlScheduledTest();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // ctrlVisionTest1
-            // 
-            this.ctrlVisionTest1.ApplicationDate = new System.DateTime(2024, 2, 6, 0, 26, 54, 152);
-            this.ctrlVisionTest1.Location = new System.Drawing.Point(7, 22);
-            this.ctrlVisionTest1.Margin = new System.Windows.Forms.Padding(4);
-            this.ctrlVisionTest1.Name = "ctrlVisionTest1";
-            this.ctrlVisionTest1.PaidFees = new decimal(new int[] {
-            0,
-            0,
-            0,
-            0});
-            this.ctrlVisionTest1.Size = new System.Drawing.Size(500, 529);
-            this.ctrlVisionTest1.TabIndex = 0;
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.ctrlVisionTest1);
+            this.groupBox1.Controls.Add(this.ctrlScheduledTest1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 46);
             this.groupBox1.Name = "groupBox1";
@@ -183,6 +169,20 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // ctrlScheduledTest1
+            // 
+            this.ctrlScheduledTest1.ApplicationDate = new System.DateTime(((long)(0)));
+            this.ctrlScheduledTest1.Location = new System.Drawing.Point(7, 34);
+            this.ctrlScheduledTest1.Margin = new System.Windows.Forms.Padding(4);
+            this.ctrlScheduledTest1.Name = "ctrlScheduledTest1";
+            this.ctrlScheduledTest1.PaidFees = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.ctrlScheduledTest1.Size = new System.Drawing.Size(496, 524);
+            this.ctrlScheduledTest1.TabIndex = 0;
+            // 
             // frmTakeTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -211,8 +211,6 @@
         }
 
         #endregion
-
-        private Controls.ctrlVisionTest ctrlVisionTest1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Label label1;
@@ -224,5 +222,6 @@
         private System.Windows.Forms.TextBox txtNotes;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnClose;
+        private Controls.ctrlScheduledTest ctrlScheduledTest1;
     }
 }

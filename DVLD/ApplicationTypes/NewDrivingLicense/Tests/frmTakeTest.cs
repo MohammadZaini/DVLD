@@ -1,4 +1,5 @@
-﻿using DVLD_Business;
+﻿using DVLD.Controls;
+using DVLD_Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,15 +14,37 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 {
     public partial class frmTakeTest : Form
     {
+        enum enTestType { VisionTest = 0, WrittenTest = 1, StreetTest = 2 };
+
         private clsTest _test;
         private int _testAppointmentID;
+        private clsTestAppointment _testAppointment;
+        private enTestType _testType = enTestType.VisionTest;
+      
         public frmTakeTest(int localDrivingLicenseApplicationID, int testAppointmentID)
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;
+            CenterToScreen();
 
-            ctrlVisionTest1.LoadTestAppointmentDetails(localDrivingLicenseApplicationID);
             _testAppointmentID = testAppointmentID;
+            _testAppointment = clsTestAppointment.Find(testAppointmentID);
+
+            if (_testAppointment != null)
+            { 
+                _InitializeUI();
+                _LoadTestAppointmentDetails(localDrivingLicenseApplicationID, 
+                    _testAppointment.TestTypeID);
+            }
+        }
+
+        private void _LoadTestAppointmentDetails(int localDrivingLicenseApplicationID, int testTypeID) {
+            ctrlScheduledTest1.LoadTestAppointmentDetails(localDrivingLicenseApplicationID,
+                    testTypeID);
+        }
+        private void _InitializeUI()
+        {
+            ctrlScheduledTest1.ApplicationDate = _testAppointment.AppointmentDate;
+            ctrlScheduledTest1.PaidFees = _testAppointment.PaidFees;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

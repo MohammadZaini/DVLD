@@ -15,7 +15,6 @@ namespace DVLD_Business
         public int LocalLicenseApplicationID { get; set; }
 
         public int LocalLicenseClassID { get; set; }
-        public int LicenseClassID { get; set; }
 
         public string LicenseClassName { get; set; }
 
@@ -33,7 +32,7 @@ namespace DVLD_Business
             int applicationID, int applicationTypeID , int applicantPersonID, string applicationStatus, DateTime statusDate, int passedTests, string createByUserName)
         {
             LocalLicenseApplicationID = localLicenseApplicationID;
-            LicenseClassID = licenseClassID;
+            LocalLicenseClassID = licenseClassID;
             LicenseClassName = licenseClassName;
             ApplicantFullName = applicantFullName;
             Application = new clsApplication();

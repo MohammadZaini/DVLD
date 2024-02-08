@@ -108,6 +108,7 @@ namespace DVLD.ApplicationTypes
             int selectedLocalDrivingAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
             frmVisionTestAppointment VisionTestAppointmentfrm = new frmVisionTestAppointment(selectedLocalDrivingAppID);
             VisionTestAppointmentfrm.ShowDialog();
+            _ListLocalLicenseApplications();
         }
 
         private void cmsLicenseApplication_Opening(object sender, CancelEventArgs e)

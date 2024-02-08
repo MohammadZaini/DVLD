@@ -20,9 +20,10 @@ namespace DVLD.People
         public frmPersonDetails(int PersonID)
         {
             InitializeComponent();
+            CenterToScreen();
+
             ctrlPersonCard1.LoadPersonData(PersonID);
 
-            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
     }

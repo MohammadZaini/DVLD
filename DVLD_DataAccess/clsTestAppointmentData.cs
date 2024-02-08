@@ -327,7 +327,5 @@ namespace DVLD_DataAccess
 
             return isFailed;
         }
-
-
     }
 }

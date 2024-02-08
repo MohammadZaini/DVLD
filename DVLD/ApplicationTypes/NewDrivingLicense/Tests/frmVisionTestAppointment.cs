@@ -60,7 +60,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
                 return;
 
 
-            if (!clsTestAppointment.IsAppointmentExist(_localDrivingApplicationID, _localDrivingLicenseApp.LicenseClassID))
+            if (!clsTestAppointment.IsAppointmentExist(_localDrivingApplicationID, _localDrivingLicenseApp.LocalLicenseClassID))
             { 
                 _ShowScheduleTestForm();
                 return;
@@ -75,6 +75,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 
             if (clsTestAppointment.IsPersonFailed(_localDrivingApplicationID))
             { 
+                // Show Retake Schedule Test
                 _ShowScheduleTestForm();
                 return;
             }
@@ -101,10 +102,10 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
-            if(clsTestAppointment.IsAppointmentLocked(_localDrivingApplicationID))
-                takeTestToolStripMenuItem.Enabled = false;
-            else
-                takeTestToolStripMenuItem.Enabled = true;
+            //if(clsTestAppointment.IsAppointmentLocked(_localDrivingApplicationID))
+            //    takeTestToolStripMenuItem.Enabled = false;
+            //else
+            //    takeTestToolStripMenuItem.Enabled = true;
 
         }
     }

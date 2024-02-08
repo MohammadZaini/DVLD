@@ -18,7 +18,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
         public frmAddLocalDrivingLicenseApplication(int applicationTypeID)
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;
+            CenterToScreen();
             _applicationTypeID = applicationTypeID;
         }
 
