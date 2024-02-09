@@ -31,7 +31,7 @@ namespace DVLD.Controls
             InitializeComponent();
         }
 
-        public void LoadTestAppointmentDetails(int drivingLicenseAppID, int testType, int testMode, int testAppoinmentID = 1)
+        public void LoadTestAppointmentDetails(int drivingLicenseAppID, int testType, int testMode,int testAppoinmentID = 1)
         {
             _testAppointmentID = testAppoinmentID;
             _localDrivingLicenseAppID = drivingLicenseAppID;
@@ -60,7 +60,7 @@ namespace DVLD.Controls
         private void _UpdateAppointmentDetails(clsLocalLicenseApplication localLicenseApplication)
         {
             lblDrivingLicenseAppID.Text = _localDrivingLicenseAppID.ToString();
-            dtpTestAppointentDate.Value = ApplicationDate;
+            dtpTestAppointentDate.Value = DateTime.Now;
             lblLicenseClass.Text = localLicenseApplication.LicenseClassName;
             lblApplicantName.Text = localLicenseApplication.ApplicantFullName;
             lblTrial.Text = clsLocalLicenseApplication.FailureCount(localLicenseApplication.LocalLicenseApplicationID).ToString();
@@ -73,12 +73,15 @@ namespace DVLD.Controls
             lblFees.Text = ((int)PaidFees).ToString();
         }
 
-        private void _ToggleTestAppointmentMode(int testMode, bool isLocked = false)
+        private void _ToggleTestAppointmentMode(int testMode)
         {
+
+            bool isAppointmentLocked = clsTestAppointment.IsAppointmentLocked(_testAppointmentID);
+
 
             _testMode = (enTestMode)testMode;
 
-            if ((_testMode == enTestMode.FirstTimeTest) || (_testMode == enTestMode.Edit && !isLocked))
+            if ((_testMode == enTestMode.FirstTimeTest) || (_testMode == enTestMode.Edit && !isAppointmentLocked))
             {
                 dtpTestAppointentDate.Enabled = true;
                 btnSave.Enabled = true;
@@ -89,7 +92,7 @@ namespace DVLD.Controls
 
             lblScheduleTest.Text = "Schedule Retake Test";
 
-            if (_testMode == enTestMode.Edit && isLocked)
+            if (_testMode == enTestMode.Edit && isAppointmentLocked)
             {
                 gbRetakeTestInfo.Enabled = true;
                 lblAlreadySatForTest.Visible = true;
@@ -129,30 +132,13 @@ namespace DVLD.Controls
 
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (_testAppointment == null)
-                return;
-
-            _InitializeTestAppointment();
-
-            if (clsTestAppointment.IsPersonFailed(_localDrivingLicenseAppID))
-            {
-                _CreateNewRetakeTestApplication();
-            }
-
-            if (_testAppointment.Save())
-                MessageBox.Show("Data Saved Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-                MessageBox.Show("Something went wrong", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
 
         private void _InitializeTestAppointment()
         {
             _testAppointment.TestTypeID = 1; // Vision Test
             _testAppointment.LocalDrivingLicenseApplicationID = _localDrivingLicenseAppID;
-            _testAppointment.AppointmentDate = ApplicationDate;
-            _testAppointment.PaidFees = PaidFees;
+            _testAppointment.AppointmentDate = dtpTestAppointentDate.Value;
+            _testAppointment.PaidFees = 10;
             _testAppointment.CreatedByUserID = clsGlobalSettings.LoggedInUser.UserID;
             _testAppointment.IsLocked = false;
 
@@ -160,7 +146,7 @@ namespace DVLD.Controls
 
         private void _InitializeTestAppointmentObject()
         {
-            _testAppointment = (_testMode == enTestMode.FirstTimeTest) ? new clsTestAppointment() : clsTestAppointment.Find(_testAppointmentID);
+            _testAppointment = (_testMode == enTestMode.Edit) ? clsTestAppointment.Find(_testAppointmentID) : new clsTestAppointment();
         }
 
         private void _CreateNewRetakeTestApplication()
@@ -200,6 +186,24 @@ namespace DVLD.Controls
             newApplication.CreatedByUserID = clsGlobalSettings.LoggedInUser.UserID;
 
             return newApplication;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (_testAppointment == null)
+                return;
+
+            _InitializeTestAppointment();
+
+            if (clsTestAppointment.IsPersonFailed(_localDrivingLicenseAppID))
+            {
+                _CreateNewRetakeTestApplication();
+            }
+
+            if (_testAppointment.Save())
+                MessageBox.Show("Data Saved Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+                MessageBox.Show("Something went wrong", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

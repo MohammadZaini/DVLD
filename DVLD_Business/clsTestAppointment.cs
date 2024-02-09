@@ -119,9 +119,9 @@ namespace DVLD_Business
             return clsTestAppointmentData.LockTestAppointment(testAppointmentID);
         }
 
-        public static bool IsAppointmentLocked(int localDrivingLicenseAppID) {
+        public static bool IsAppointmentLocked(int testAppointmentID) {
 
-            return clsTestAppointmentData.IsAppointmentLocked(localDrivingLicenseAppID);
+            return clsTestAppointmentData.IsAppointmentLocked(testAppointmentID);
         }
 
         public static bool IsAppointmentActive(int localDrivingLicenseAppID)

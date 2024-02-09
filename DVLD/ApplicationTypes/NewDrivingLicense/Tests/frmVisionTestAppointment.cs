@@ -49,7 +49,9 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
         {
             int selectedTestAppointmentID = (int)dgvTestAppointments.CurrentRow.Cells[0].Value;
 
-            _ShowScheduleTestForm(selectedTestAppointmentID);
+            // 1 ---> Vision Test
+            // 2 ---> Edit Mode
+            _ShowScheduleTestForm(1,2,selectedTestAppointmentID);
         }
 
         private void btnBookAppointment_Click(object sender, EventArgs e)
@@ -61,8 +63,10 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 
 
             if (!clsTestAppointment.IsAppointmentExist(_localDrivingApplicationID, _localDrivingLicenseApp.LocalLicenseClassID))
-            { 
-                _ShowScheduleTestForm();
+            {
+                // 1 ---> Vision Test
+                // 1 ---> First Time Test Mode
+                _ShowScheduleTestForm(1,1);
                 return;
             }
 
@@ -76,7 +80,9 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
             if (clsTestAppointment.IsPersonFailed(_localDrivingApplicationID))
             { 
                 // Show Retake Schedule Test
-                _ShowScheduleTestForm();
+                // 1 ---> Vision Test
+                // 3 ---> Retake Mode
+                _ShowScheduleTestForm(1,3);
                 return;
             }
 
@@ -84,8 +90,8 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 
         }
 
-        private void _ShowScheduleTestForm(int selectedTestAppointmentID = -1) {
-            frmScheduleTest scheduleTestfrm = new frmScheduleTest(_localDrivingApplicationID, selectedTestAppointmentID);
+        private void _ShowScheduleTestForm(int testType, int testMode, int selectedTestAppointmentID = -1) {
+            frmScheduleTest scheduleTestfrm = new frmScheduleTest(_localDrivingApplicationID, testType, testMode, selectedTestAppointmentID);
             scheduleTestfrm.ShowDialog();
             _ListPersonAppointments();
         }

@@ -178,17 +178,17 @@ namespace DVLD_DataAccess
             return isLocked;
         }
 
-        public static bool IsAppointmentLocked(int localDrivingLicenseAppID) {
+        public static bool IsAppointmentLocked(int testAppointmentID) {
             bool isLocked = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
 
             string query = @"Select Found = 1 
                              From TestAppointments 
-                             Where LocalDrivingLicenseApplicationID = @localDrivingLicenseAppID And IsLocked = 1";
+                             Where TestAppointmentID = @testAppointmentID And IsLocked = 1";
 
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@localDrivingLicenseAppID", localDrivingLicenseAppID);
+            command.Parameters.AddWithValue("@testAppointmentID", testAppointmentID);
 
             try
             {
@@ -370,7 +370,6 @@ namespace DVLD_DataAccess
 
             return isFailed;
         }
-
 
     }
 }
