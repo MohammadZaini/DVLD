@@ -56,16 +56,26 @@ namespace DVLD.Controls
             ApplicationDate = dtpTestAppointentDate.Value;
         }
 
-        public bool ToggleTestAppointmentMode(int localDrivingLicenseAppID) {
+        public bool ToggleTestAppointmentMode(int localDrivingLicenseAppID, bool isEditMode)
+        {
 
             bool isAppointmentLocked = clsTestAppointment.IsAppointmentLocked(localDrivingLicenseAppID);
 
-            dtpTestAppointentDate.Enabled = !isAppointmentLocked;
-            lblAlreadySatForTest.Visible = isAppointmentLocked;
-
             lblScheduleTest.Text = isAppointmentLocked ? "Schedule Retake Test" : "Schedule Test";
 
-            return isAppointmentLocked;
+            if (isEditMode)
+            {
+                dtpTestAppointentDate.Enabled = !isAppointmentLocked;
+                lblAlreadySatForTest.Visible = isAppointmentLocked;
+                return true;
+            }
+            else
+            {
+                dtpTestAppointentDate.Enabled = isAppointmentLocked;
+                lblAlreadySatForTest.Visible = !isAppointmentLocked;
+                return false;
+
+            }
         }
     }
 }

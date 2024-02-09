@@ -66,7 +66,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
                 return;
             }
 
-            if (!clsTestAppointment.IsAppointmentLocked(_localDrivingApplicationID))
+            if (clsTestAppointment.IsAppointmentActive(_localDrivingApplicationID))
             {
                 MessageBox.Show("This person already has an active appointment scheduled for this license class",
                        "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);

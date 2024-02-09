@@ -111,7 +111,8 @@ namespace DVLD_DataAccess
 
             string query = @"Select [Appointment ID] = TestAppointmentID, [Appointment Date] = AppointmentDate, 
                             [Paid Fees] = PaidFees, [Is Locked] = IsLocked From TestAppointments
-                            Where LocalDrivingLicenseApplicationID = @localDrivingLicenseAppID;";
+                            Where LocalDrivingLicenseApplicationID = @localDrivingLicenseAppID
+                            Order By [Appointment ID] Desc ;";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@localDrivingLicenseAppID", localDrivingLicenseAppID);
@@ -185,6 +186,42 @@ namespace DVLD_DataAccess
             string query = @"Select Found = 1 
                              From TestAppointments 
                              Where LocalDrivingLicenseApplicationID = @localDrivingLicenseAppID And IsLocked = 1";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@localDrivingLicenseAppID", localDrivingLicenseAppID);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    isLocked = true;
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+            return isLocked;
+        }
+
+        public static bool IsAppointmentActive(int localDrivingLicenseAppID)
+        {
+            bool isLocked = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select Found = 1 
+                             From TestAppointments 
+                             Where LocalDrivingLicenseApplicationID = @localDrivingLicenseAppID And IsLocked = 0";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@localDrivingLicenseAppID", localDrivingLicenseAppID);
@@ -333,5 +370,7 @@ namespace DVLD_DataAccess
 
             return isFailed;
         }
+
+
     }
 }

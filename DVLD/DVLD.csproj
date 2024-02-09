@@ -100,6 +100,12 @@
     <Compile Include="Controls\ctrlPersonCardWithFilter.Designer.cs">
       <DependentUpon>ctrlPersonCardWithFilter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ctrlScheduleTest.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlScheduleTest.Designer.cs">
+      <DependentUpon>ctrlScheduleTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ctrlUserCard.cs">
       <SubType>UserControl</SubType>
     </Compile>

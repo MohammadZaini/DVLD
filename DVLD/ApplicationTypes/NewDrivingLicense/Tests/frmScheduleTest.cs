@@ -13,7 +13,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 {
     public partial class frmScheduleTest : Form
     {
-        private enum enMode {Addnew = 0, Edit = 1};
+        private enum enMode {Addnew = 0, Edit = 1, Retake = 2};
 
         private enMode _Mode = enMode.Addnew;
 
@@ -37,8 +37,8 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
         private void _LoadTestAppointmentDetails(int localDrivingLicenseAppID) { 
             ctrlVisionTest1.LoadTestAppointmentDetails(localDrivingLicenseAppID);
         }
-        private void _SetSaveButtonState(int testAppointmentID) {
-            if (ctrlVisionTest1.ToggleTestAppointmentMode(testAppointmentID))
+        private void _SetSaveButtonState(int localDrivingLicenseAppID, bool isEditMode) {
+            if (ctrlVisionTest1.ToggleTestAppointmentMode(localDrivingLicenseAppID, isEditMode))
                 btnSave.Enabled = false;
             else
                 btnSave.Enabled = true;
@@ -54,11 +54,13 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 
             int retakeTestAppID = _testAppointment.RetakeTestApplicationID;
 
+            bool isEditMode = _Mode == enMode.Edit;
+
             ctrlVisionTest1.PaidFees = _testAppointment.PaidFees;
             lblTotalFees.Text = ((int)ctrlVisionTest1.PaidFees).ToString();
             ctrlVisionTest1.ApplicationDate = _testAppointment.AppointmentDate;
             lblRetakeTestAppID.Text = retakeTestAppID == 0 ? "N/A" : retakeTestAppID.ToString();
-            _SetSaveButtonState(_testAppointmentID);
+            _SetSaveButtonState(_localDrivingLicenseAppID, isEditMode);
         }
         private void _InitializeTestAppointment()
         {
@@ -98,7 +100,10 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
             int retakeTestFees = (int)clsApplicationType.Find(retakeTestAppType).AppFees;
             lblRetakeTestAppFees.Text = retakeTestFees.ToString();
             lblTotalFees.Text = (retakeTestFees + (int)ctrlVisionTest1.PaidFees).ToString();
-            _SetSaveButtonState(_testAppointmentID);
+
+            bool isEditMode = _Mode == enMode.Edit;
+
+            _SetSaveButtonState(_localDrivingLicenseAppID, isEditMode);
 
         }
         private void btnSave_Click(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -123,8 +124,16 @@ namespace DVLD_Business
             return clsTestAppointmentData.IsAppointmentLocked(localDrivingLicenseAppID);
         }
 
+        public static bool IsAppointmentActive(int localDrivingLicenseAppID)
+        {
+
+            return clsTestAppointmentData.IsAppointmentActive(localDrivingLicenseAppID);
+        }
+
         public static bool IsPersonFailed(int localDrivingLicenseAppID) {
             return clsTestAppointmentData.IsPersonFailed(localDrivingLicenseAppID);
         }
+
+       
     }
 }

@@ -19,7 +19,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
         private clsTest _test;
         private int _testAppointmentID;
         private clsTestAppointment _testAppointment;
-        private enTestType _testType = enTestType.VisionTest;
+       // private enTestType _testType = enTestType.VisionTest;
       
         public frmTakeTest(int localDrivingLicenseApplicationID, int testAppointmentID)
         {
