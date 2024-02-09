@@ -9,11 +9,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DVLD_Business.clsPerson;
 
 namespace DVLD.Controls
 {
-    public partial class ctrlScheduleTest : UserControl
+    public partial class ScheduleTestCtrl : UserControl
     {
         private enum enTestType { Vision = 1, Written = 2, Street = 3 };
         private enum enTestMode { FirstTimeTest = 1, Edit = 2, Retake = 3 };
@@ -26,7 +25,7 @@ namespace DVLD.Controls
 
         public DateTime ApplicationDate { get; set; }
         public decimal PaidFees { get; set; }
-        public ctrlScheduleTest()
+        public ScheduleTestCtrl()
         {
             InitializeComponent();
         }
@@ -35,7 +34,7 @@ namespace DVLD.Controls
         {
             _testAppointmentID = testAppoinmentID;
             _localDrivingLicenseAppID = drivingLicenseAppID;
-            
+
             _testType = (enTestType)testType;
             _testMode = (enTestMode)testMode;
 
@@ -73,12 +72,13 @@ namespace DVLD.Controls
             lblFees.Text = ((int)PaidFees).ToString();
         }
 
-        private void _ToggleTestAppointmentMode(int testMode, bool isLocked = false) {
+        private void _ToggleTestAppointmentMode(int testMode, bool isLocked = false)
+        {
 
             _testMode = (enTestMode)testMode;
 
             if ((_testMode == enTestMode.FirstTimeTest) || (_testMode == enTestMode.Edit && !isLocked))
-            { 
+            {
                 dtpTestAppointentDate.Enabled = true;
                 btnSave.Enabled = true;
                 gbRetakeTestInfo.Enabled = false;
@@ -188,7 +188,7 @@ namespace DVLD.Controls
 
             clsApplication newApplication = new clsApplication();
 
-            newApplication.ApplicantPersonID = applicantPersonID;          
+            newApplication.ApplicantPersonID = applicantPersonID;
             newApplication.ApplicationStatus = appStatusNew;
             newApplication.ApplicationTypeID = retakeTestTypeID;
             newApplication.ApplicationDate = DateTime.Now;

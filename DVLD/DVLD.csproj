@@ -100,11 +100,11 @@
     <Compile Include="Controls\ctrlPersonCardWithFilter.Designer.cs">
       <DependentUpon>ctrlPersonCardWithFilter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ctrlScheduleTest.cs">
+    <Compile Include="Controls\ctrlScheduleTest1.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ctrlScheduleTest.Designer.cs">
-      <DependentUpon>ctrlScheduleTest.cs</DependentUpon>
+    <Compile Include="Controls\ctrlScheduleTest1.Designer.cs">
+      <DependentUpon>ctrlScheduleTest1.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ctrlUserCard.cs">
       <SubType>UserControl</SubType>
@@ -224,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ctrlPersonCardWithFilter.resx">
       <DependentUpon>ctrlPersonCardWithFilter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlScheduleTest1.resx">
+      <DependentUpon>ctrlScheduleTest1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ctrlUserCard.resx">
       <DependentUpon>ctrlUserCard.cs</DependentUpon>

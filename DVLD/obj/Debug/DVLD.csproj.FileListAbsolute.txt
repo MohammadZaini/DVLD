@@ -36,3 +36,4 @@ E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.csproj.CoreCompileInputs.cache
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.csproj.CopyComplete
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.exe
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.pdb
+E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Controls.ctrlScheduleTest1.resources
