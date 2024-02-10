@@ -14,7 +14,10 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 {
     public partial class frmTakeTest : Form
     {
-        enum enTestType { VisionTest = 0, WrittenTest = 1, StreetTest = 2 };
+        public delegate void DataBackEventHandler(int passedTests);
+
+        public DataBackEventHandler DataBack;
+        enum enTestType { VisionTest = 1, WrittenTest = 2, StreetTest = 3 };
 
         private clsTest _test;
         private int _testAppointmentID;
@@ -70,6 +73,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
             { 
                 MessageBox.Show("Data Saved Successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 clsTestAppointment.LockTestAppointment(_testAppointmentID);
+
             }
             else
                 MessageBox.Show("Data failed to save!", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);

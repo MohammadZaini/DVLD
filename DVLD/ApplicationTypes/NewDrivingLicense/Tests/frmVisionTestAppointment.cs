@@ -108,10 +108,12 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
-            //if(clsTestAppointment.IsAppointmentLocked(_localDrivingApplicationID))
-            //    takeTestToolStripMenuItem.Enabled = false;
-            //else
-            //    takeTestToolStripMenuItem.Enabled = true;
+            int selectedTestAppointmentID = (int)dgvTestAppointments.CurrentRow.Cells[0].Value;
+
+            if(clsTestAppointment.IsAppointmentLocked(selectedTestAppointmentID))
+                takeTestToolStripMenuItem.Enabled = false;
+            else
+                takeTestToolStripMenuItem.Enabled = true;
 
         }
     }

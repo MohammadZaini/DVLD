@@ -14,16 +14,16 @@ namespace DVLD.Controls
 {
     public partial class ctrlScheduleTest1 : UserControl
     {
-
+       
         private enum enTestType { Vision = 1, Written = 2, Street = 3 };
         private enum enTestMode { FirstTimeTest = 1, Edit = 2, Retake = 3 };
 
         private enTestType _testType = enTestType.Vision;
         private enTestMode _testMode = enTestMode.FirstTimeTest;
         private clsTestAppointment _testAppointment;
-        private int _localDrivingLicenseAppID;
         private int _testAppointmentID;
-
+        private int _localDrivingLicenseAppID;
+        private decimal _retakeTestFees;
         public DateTime ApplicationDate { get; set; }
         public decimal PaidFees { get; set; }
         public ctrlScheduleTest1()
@@ -49,31 +49,37 @@ namespace DVLD.Controls
 
             // Update the Test Type Photo based on Test Type
             _UpdateTestTypePhoto();
-
-            // Toggle The test Appointment mode based on the Mode: FirstTime / Edit / Retake
-            _ToggleTestAppointmentMode(testMode);
-
+ 
             // Update the test Appointment UI
             _UpdateAppointmentDetails(localLicenseApplication);
+
+            // Update The test Appointment mode based on the Mode: FirstTime / Edit / Retake
+            _UpdateUIForTestAppointmentMode(testMode);
+
         }
 
         private void _UpdateAppointmentDetails(clsLocalLicenseApplication localLicenseApplication)
         {
             lblDrivingLicenseAppID.Text = _localDrivingLicenseAppID.ToString();
-            dtpTestAppointentDate.Value = DateTime.Now;
-            lblLicenseClass.Text = localLicenseApplication.LicenseClassName;
-            lblApplicantName.Text = localLicenseApplication.ApplicantFullName;
+            dtpTestAppointentDate.Value = _testMode == enTestMode.Edit ? _testAppointment.AppointmentDate : DateTime.Now;
+            lblLicenseClass.Text = localLicenseApplication?.LicenseClassName;
+            lblApplicantName.Text = localLicenseApplication?.ApplicantFullName;
             lblTrial.Text = clsLocalLicenseApplication.FailureCount(localLicenseApplication.LocalLicenseApplicationID).ToString();
 
-            clsTestType testType = clsTestType.Find((int)_testMode); // Vision Test
+            const int RetakeTestApplicationTypeID = 8;
+            _retakeTestFees = clsApplicationType.Find(RetakeTestApplicationTypeID).AppFees;
+
+            clsTestType testType = clsTestType.Find((int)_testType); // Vision Test
 
             if (testType != null)
                 PaidFees = testType.Fees;
 
             lblFees.Text = ((int)PaidFees).ToString();
+            lblTotalFees.Text = (_testMode == enTestMode.Retake ? _retakeTestFees + (int)PaidFees : (int)PaidFees).ToString();
+
         }
 
-        private void _ToggleTestAppointmentMode(int testMode)
+        private void _UpdateUIForTestAppointmentMode(int testMode)
         {
 
             bool isAppointmentLocked = clsTestAppointment.IsAppointmentLocked(_testAppointmentID);
@@ -83,10 +89,7 @@ namespace DVLD.Controls
 
             if ((_testMode == enTestMode.FirstTimeTest) || (_testMode == enTestMode.Edit && !isAppointmentLocked))
             {
-                dtpTestAppointentDate.Enabled = true;
-                btnSave.Enabled = true;
-                gbRetakeTestInfo.Enabled = false;
-                lblAlreadySatForTest.Visible = false;
+                _UpdateUIForFirstTimeMode();
                 return;
             }
 
@@ -94,24 +97,49 @@ namespace DVLD.Controls
 
             if (_testMode == enTestMode.Edit && isAppointmentLocked)
             {
-                gbRetakeTestInfo.Enabled = true;
-                lblAlreadySatForTest.Visible = true;
-                btnSave.Enabled = false;
-                dtpTestAppointentDate.Enabled = false;
+                _UpdateUIForEditMode();
                 return;
             }
 
             if (_testMode == enTestMode.Retake)
             {
-                gbRetakeTestInfo.Enabled = true;
-                lblAlreadySatForTest.Visible = false;
-                btnSave.Enabled = true;
-                dtpTestAppointentDate.Enabled = true;
-                lblRetakeTestAppFees.Text = "some fees";
+                _UpdateUIForRetakeMode();
                 return;
             }
         }
 
+        private void _UpdateUIForFirstTimeMode()
+        {
+            dtpTestAppointentDate.Enabled = true;
+            btnSave.Enabled = true;
+            gbRetakeTestInfo.Enabled = false;
+            lblAlreadySatForTest.Visible = false;
+        }
+
+        private void _UpdateUIForEditMode()
+        {
+            gbRetakeTestInfo.Enabled = true;
+            lblAlreadySatForTest.Visible = true;
+            btnSave.Enabled = false;
+            dtpTestAppointentDate.Enabled = false;
+          
+            int retakeTestApplicationID = (int)_testAppointment?.RetakeTestApplicationID;
+            lblRetakeTestAppID.Text = (retakeTestApplicationID == 0 ? "N/A" : retakeTestApplicationID.ToString());
+
+            bool personFailedAndRetakeExists = clsTestAppointment.IsPersonFailed(_localDrivingLicenseAppID) && retakeTestApplicationID != 0;
+
+            if (personFailedAndRetakeExists)
+                lblRetakeTestAppFees.Text = ((int)_retakeTestFees).ToString();
+        }
+
+        private void _UpdateUIForRetakeMode() {
+            gbRetakeTestInfo.Enabled = true;
+            lblAlreadySatForTest.Visible = false;
+            btnSave.Enabled = true;
+            dtpTestAppointentDate.Enabled = true;
+            lblRetakeTestAppFees.Text = ((int)_retakeTestFees).ToString();
+        }
+  
         private void _UpdateTestTypePhoto()
         {
 
@@ -131,7 +159,6 @@ namespace DVLD.Controls
             }
 
         }
-
 
         private void _InitializeTestAppointment()
         {
@@ -198,6 +225,7 @@ namespace DVLD.Controls
             if (clsTestAppointment.IsPersonFailed(_localDrivingLicenseAppID))
             {
                 _CreateNewRetakeTestApplication();
+                lblRetakeTestAppID.Text = _testAppointment.RetakeTestApplicationID.ToString();
             }
 
             if (_testAppointment.Save())
