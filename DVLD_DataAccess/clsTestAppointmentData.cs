@@ -60,7 +60,7 @@ namespace DVLD_DataAccess
             return appointmentID;
         }
 
-        public static bool IsAppointmentExist(int localDrivingLicenseAppID, int licenseClassID) {
+        public static bool IsAppointmentExist(int localDrivingLicenseAppID, int licenseClassID, int testTypeID) {
 
             bool isExist = false;
 
@@ -74,11 +74,12 @@ namespace DVLD_DataAccess
                              LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
                              Where LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = 
                              @localDrivingLicenseAppID 
-                             And LicenseClasses.LicenseClassID = @licenseClassID";
+                             And LicenseClasses.LicenseClassID = @licenseClassID And TestTypeID = @testTypeID";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@localDrivingLicenseAppID", localDrivingLicenseAppID);
             command.Parameters.AddWithValue("@licenseClassID", licenseClassID);
+            command.Parameters.AddWithValue("@testTypeID", testTypeID);
 
             try
             {
@@ -103,7 +104,7 @@ namespace DVLD_DataAccess
             return isExist;
         }
 
-        public static DataTable ListPersonTestAppointments(int localDrivingLicenseAppID) { 
+        public static DataTable ListPersonTestAppointments(int localDrivingLicenseAppID,int testTypeID) { 
             
             DataTable personTestAppointmentsList = new DataTable();
 
@@ -111,11 +112,13 @@ namespace DVLD_DataAccess
 
             string query = @"Select [Appointment ID] = TestAppointmentID, [Appointment Date] = AppointmentDate, 
                             [Paid Fees] = PaidFees, [Is Locked] = IsLocked From TestAppointments
-                            Where LocalDrivingLicenseApplicationID = @localDrivingLicenseAppID
-                            Order By [Appointment ID] Desc ;";
+                            Where LocalDrivingLicenseApplicationID = @localDrivingLicenseAppID 
+                            And TestTypeID = @testTypeID
+                            Order By [Appointment ID] Desc;";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@localDrivingLicenseAppID", localDrivingLicenseAppID);
+            command.Parameters.AddWithValue("@testTypeID", testTypeID);
 
             try
             {
@@ -213,7 +216,7 @@ namespace DVLD_DataAccess
             return isLocked;
         }
 
-        public static bool IsAppointmentActive(int localDrivingLicenseAppID)
+        public static bool IsAppointmentActive(int localDrivingLicenseAppID, int testTypeID)
         {
             bool isLocked = false;
 
@@ -221,10 +224,12 @@ namespace DVLD_DataAccess
 
             string query = @"Select Found = 1 
                              From TestAppointments 
-                             Where LocalDrivingLicenseApplicationID = @localDrivingLicenseAppID And IsLocked = 0";
+                             Where LocalDrivingLicenseApplicationID = @localDrivingLicenseAppID And IsLocked = 0 
+                             And TestTypeID = @testTypeID";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@localDrivingLicenseAppID", localDrivingLicenseAppID);
+            command.Parameters.AddWithValue("@testTypeID", testTypeID);
 
             try
             {
@@ -333,7 +338,7 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
-        public static bool IsPersonFailed(int localDrivingLicenseApplicationID ) {
+        public static bool IsPersonFailed(int localDrivingLicenseApplicationID, int testTypeID) {
             bool isFailed = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
@@ -342,10 +347,12 @@ namespace DVLD_DataAccess
                              Inner Join Tests
                              On TestAppointments.TestAppointmentID = Tests.TestAppointmentID
                              Where Tests.TestResult = 0 And LocalDrivingLicenseApplicationID = @localDrivingLicenseApplicationID
+                             And TestTypeID = @testTypeID
                              Order By TestAppointments.TestAppointmentID Desc;";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@localDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("@testTypeID", testTypeID);
 
             try
             {

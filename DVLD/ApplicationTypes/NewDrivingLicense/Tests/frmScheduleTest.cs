@@ -13,10 +13,15 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 {
     public partial class frmScheduleTest : Form
     {
+        private enum enTestType { Vision = 1, Written = 2, Street = 3 };
+        private enTestType _testType = enTestType.Vision; 
+
         public frmScheduleTest(int localDrivingLicenseAppID, int testType, int testMode ,int testAppointmentID)
         {
             InitializeComponent();
             CenterToScreen();
+
+            _testType = (enTestType)testType;
 
             _LoadTestAppointmentDetails(localDrivingLicenseAppID, testType, testMode, testAppointmentID);
         }
@@ -31,33 +36,24 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
         }
         private void frmScheduleTest_Load(object sender, EventArgs e)
         {
+            _InitializeTestType();
+        }
 
-            //bool isAppointmentLocked = clsTestAppointment.IsAppointmentLocked(_localDrivingLicenseAppID);
-            //
-            //if (!isAppointmentLocked)
-            //{ 
-            //    gbRetakeTestInfo.Enabled = false;
-            //    return;
-            //}
-            //
-            //gbRetakeTestInfo.Enabled = true;
-            //
-            //if (_Mode == enMode.Edit)
-            //{
-            //    lblTotalFees.Text = ((int)ctrlVisionTest1.PaidFees).ToString();
-            //    lblRetakeTestAppFees.Text = "0";
-            //    return;
-            //}
-            //
-            //const int retakeTestAppType = 8;
-            //int retakeTestFees = (int)clsApplicationType.Find(retakeTestAppType).AppFees;
-            //lblRetakeTestAppFees.Text = retakeTestFees.ToString();
-            //lblTotalFees.Text = (retakeTestFees + (int)ctrlVisionTest1.PaidFees).ToString();
-            //
-            //bool isEditMode = _Mode == enMode.Edit;
-            //
-            //_SetSaveButtonState(_localDrivingLicenseAppID, isEditMode);
+        private void _InitializeTestType() {
+            switch (_testType)
+            {
+                case enTestType.Vision:
+                    gbTestType.Name = "Vision Test";
+                    break;
 
+                case enTestType.Written:
+                    gbTestType.Name = "Written Test";
+                    break;
+
+                case enTestType.Street:
+                    gbTestType.Name = "Street Test";
+                    break;
+            }
         }
         private void btnExist_Click(object sender, EventArgs e)
         {

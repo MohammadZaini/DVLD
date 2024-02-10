@@ -106,12 +106,12 @@ namespace DVLD_Business
             return false;
         }
 
-        public static bool IsAppointmentExist(int localDrivingLicenseAppID, int licenseClassID) {
-            return clsTestAppointmentData.IsAppointmentExist(localDrivingLicenseAppID, licenseClassID);
+        public static bool IsAppointmentExist(int localDrivingLicenseAppID, int licenseClassID, int testTypeID) {
+            return clsTestAppointmentData.IsAppointmentExist(localDrivingLicenseAppID, licenseClassID, testTypeID);
         }
 
-        public static DataTable ListPeronTestAppointments(int localDrivingLicenseAppID) {
-            return clsTestAppointmentData.ListPersonTestAppointments(localDrivingLicenseAppID);
+        public static DataTable ListPeronTestAppointments(int localDrivingLicenseAppID, int testTypeID) {
+            return clsTestAppointmentData.ListPersonTestAppointments(localDrivingLicenseAppID, testTypeID);
         }
 
         public static bool LockTestAppointment(int testAppointmentID) { 
@@ -124,16 +124,15 @@ namespace DVLD_Business
             return clsTestAppointmentData.IsAppointmentLocked(testAppointmentID);
         }
 
-        public static bool IsAppointmentActive(int localDrivingLicenseAppID)
+        public static bool IsAppointmentActive(int localDrivingLicenseAppID, int testTypeID)
         {
 
-            return clsTestAppointmentData.IsAppointmentActive(localDrivingLicenseAppID);
+            return clsTestAppointmentData.IsAppointmentActive(localDrivingLicenseAppID, testTypeID);
         }
 
-        public static bool IsPersonFailed(int localDrivingLicenseAppID) {
-            return clsTestAppointmentData.IsPersonFailed(localDrivingLicenseAppID);
+        public static bool IsPersonFailed(int localDrivingLicenseAppID, int testTypeID) {
+            return clsTestAppointmentData.IsPersonFailed(localDrivingLicenseAppID, testTypeID);
         }
-
-       
+      
     }
 }

@@ -126,7 +126,8 @@ namespace DVLD.Controls
             int retakeTestApplicationID = (int)_testAppointment?.RetakeTestApplicationID;
             lblRetakeTestAppID.Text = (retakeTestApplicationID == 0 ? "N/A" : retakeTestApplicationID.ToString());
 
-            bool personFailedAndRetakeExists = clsTestAppointment.IsPersonFailed(_localDrivingLicenseAppID) && retakeTestApplicationID != 0;
+            bool personFailedAndRetakeExists = clsTestAppointment.IsPersonFailed(_localDrivingLicenseAppID, (int)_testType) 
+                                                && retakeTestApplicationID != 0;
 
             if (personFailedAndRetakeExists)
                 lblRetakeTestAppFees.Text = ((int)_retakeTestFees).ToString();
@@ -162,13 +163,12 @@ namespace DVLD.Controls
 
         private void _InitializeTestAppointment()
         {
-            _testAppointment.TestTypeID = 1; // Vision Test
+            _testAppointment.TestTypeID = (int)_testType; 
             _testAppointment.LocalDrivingLicenseApplicationID = _localDrivingLicenseAppID;
             _testAppointment.AppointmentDate = dtpTestAppointentDate.Value;
-            _testAppointment.PaidFees = 10;
+            _testAppointment.PaidFees = clsTestType.Find((int)_testType).Fees;
             _testAppointment.CreatedByUserID = clsGlobalSettings.LoggedInUser.UserID;
             _testAppointment.IsLocked = false;
-
         }
 
         private void _InitializeTestAppointmentObject()
@@ -222,7 +222,7 @@ namespace DVLD.Controls
 
             _InitializeTestAppointment();
 
-            if (clsTestAppointment.IsPersonFailed(_localDrivingLicenseAppID))
+            if (clsTestAppointment.IsPersonFailed(_localDrivingLicenseAppID, (int)_testType))
             {
                 _CreateNewRetakeTestApplication();
                 lblRetakeTestAppID.Text = _testAppointment.RetakeTestApplicationID.ToString();
@@ -232,6 +232,11 @@ namespace DVLD.Controls
                 MessageBox.Show("Data Saved Successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             else
                 MessageBox.Show("Something went wrong", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void ctrlScheduleTest1_Load(object sender, EventArgs e)
+        {
+            dtpTestAppointentDate.MinDate = DateTime.Now;
         }
     }
 }

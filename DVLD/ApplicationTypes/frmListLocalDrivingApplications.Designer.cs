@@ -43,7 +43,7 @@
             this.deleteApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cancelApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scheduleTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.shToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ScheduleVisionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scheduleWrtitenTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scheduleStreetTestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.issueDrivingLicenseFirstTimeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -194,7 +194,7 @@
             // scheduleTestToolStripMenuItem
             // 
             this.scheduleTestToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.shToolStripMenuItem,
+            this.ScheduleVisionToolStripMenuItem,
             this.scheduleWrtitenTestToolStripMenuItem,
             this.scheduleStreetTestToolStripMenuItem});
             this.scheduleTestToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("scheduleTestToolStripMenuItem.Image")));
@@ -203,14 +203,14 @@
             this.scheduleTestToolStripMenuItem.Size = new System.Drawing.Size(264, 38);
             this.scheduleTestToolStripMenuItem.Text = "Schedule Test";
             // 
-            // shToolStripMenuItem
+            // ScheduleVisionToolStripMenuItem
             // 
-            this.shToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("shToolStripMenuItem.Image")));
-            this.shToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.shToolStripMenuItem.Name = "shToolStripMenuItem";
-            this.shToolStripMenuItem.Size = new System.Drawing.Size(203, 38);
-            this.shToolStripMenuItem.Text = "Schedule Vision Test";
-            this.shToolStripMenuItem.Click += new System.EventHandler(this.shToolStripMenuItem_Click);
+            this.ScheduleVisionToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ScheduleVisionToolStripMenuItem.Image")));
+            this.ScheduleVisionToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.ScheduleVisionToolStripMenuItem.Name = "ScheduleVisionToolStripMenuItem";
+            this.ScheduleVisionToolStripMenuItem.Size = new System.Drawing.Size(203, 38);
+            this.ScheduleVisionToolStripMenuItem.Text = "Schedule Vision Test";
+            this.ScheduleVisionToolStripMenuItem.Click += new System.EventHandler(this.ScheduleVisionToolStripMenuItem_Click);
             // 
             // scheduleWrtitenTestToolStripMenuItem
             // 
@@ -219,6 +219,7 @@
             this.scheduleWrtitenTestToolStripMenuItem.Name = "scheduleWrtitenTestToolStripMenuItem";
             this.scheduleWrtitenTestToolStripMenuItem.Size = new System.Drawing.Size(203, 38);
             this.scheduleWrtitenTestToolStripMenuItem.Text = "Schedule Wrtiten Test";
+            this.scheduleWrtitenTestToolStripMenuItem.Click += new System.EventHandler(this.scheduleWrtitenTestToolStripMenuItem_Click);
             // 
             // scheduleStreetTestToolStripMenuItem
             // 
@@ -227,6 +228,7 @@
             this.scheduleStreetTestToolStripMenuItem.Name = "scheduleStreetTestToolStripMenuItem";
             this.scheduleStreetTestToolStripMenuItem.Size = new System.Drawing.Size(203, 38);
             this.scheduleStreetTestToolStripMenuItem.Text = "Schedule Street Test";
+            this.scheduleStreetTestToolStripMenuItem.Click += new System.EventHandler(this.scheduleStreetTestToolStripMenuItem_Click);
             // 
             // issueDrivingLicenseFirstTimeToolStripMenuItem
             // 
@@ -339,7 +341,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem shToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ScheduleVisionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scheduleWrtitenTestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem scheduleStreetTestToolStripMenuItem;
     }

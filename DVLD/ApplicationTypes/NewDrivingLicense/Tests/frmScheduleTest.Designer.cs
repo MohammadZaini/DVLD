@@ -29,22 +29,22 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmScheduleTest));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbTestType = new System.Windows.Forms.GroupBox();
             this.btnExist = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.ctrlScheduleTest11 = new DVLD.Controls.ctrlScheduleTest1();
-            this.groupBox1.SuspendLayout();
+            this.gbTestType.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gbTestType
             // 
-            this.groupBox1.Controls.Add(this.ctrlScheduleTest11);
-            this.groupBox1.Location = new System.Drawing.Point(12, 24);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(480, 618);
-            this.groupBox1.TabIndex = 24;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Vision Test";
+            this.gbTestType.Controls.Add(this.ctrlScheduleTest11);
+            this.gbTestType.Location = new System.Drawing.Point(12, 24);
+            this.gbTestType.Name = "gbTestType";
+            this.gbTestType.Size = new System.Drawing.Size(480, 618);
+            this.gbTestType.TabIndex = 24;
+            this.gbTestType.TabStop = false;
+            this.gbTestType.Text = "Vision Test";
             // 
             // btnExist
             // 
@@ -93,18 +93,18 @@
             this.ClientSize = new System.Drawing.Size(504, 718);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnExist);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbTestType);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmScheduleTest";
             this.Text = "frmScheduleTest";
             this.Load += new System.EventHandler(this.frmScheduleTest_Load);
-            this.groupBox1.ResumeLayout(false);
+            this.gbTestType.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbTestType;
         private System.Windows.Forms.Button btnExist;
         private System.Windows.Forms.Button btnClose;
         private Controls.ctrlScheduleTest1 ctrlScheduleTest11;

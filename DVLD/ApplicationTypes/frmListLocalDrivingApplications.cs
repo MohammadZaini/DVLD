@@ -103,13 +103,7 @@ namespace DVLD.ApplicationTypes
             _ListLocalLicenseApplications();
         }
 
-        private void shToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            int selectedLocalDrivingAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
-            frmVisionTestAppointment VisionTestAppointmentfrm = new frmVisionTestAppointment(selectedLocalDrivingAppID);
-            VisionTestAppointmentfrm.ShowDialog();
-            _ListLocalLicenseApplications();
-        }
+
 
         private void cmsLicenseApplication_Opening(object sender, CancelEventArgs e)
         {
@@ -139,7 +133,7 @@ namespace DVLD.ApplicationTypes
 
         private void _EnableVisionTest()
         {
-            shToolStripMenuItem.Enabled = true;
+            ScheduleVisionToolStripMenuItem.Enabled = true;
             scheduleWrtitenTestToolStripMenuItem.Enabled = false;
             scheduleStreetTestToolStripMenuItem.Enabled = false;
             scheduleTestToolStripMenuItem.Enabled = true;
@@ -149,7 +143,7 @@ namespace DVLD.ApplicationTypes
 
         private void _EnableWrittenTest()
         {
-            shToolStripMenuItem.Enabled = false;
+            ScheduleVisionToolStripMenuItem.Enabled = false;
             scheduleWrtitenTestToolStripMenuItem.Enabled = true;
             scheduleStreetTestToolStripMenuItem.Enabled = false;
             scheduleTestToolStripMenuItem.Enabled = true;
@@ -159,7 +153,7 @@ namespace DVLD.ApplicationTypes
 
         private void _EnableStreetTest()
         {
-            shToolStripMenuItem.Enabled = false;
+            ScheduleVisionToolStripMenuItem.Enabled = false;
             scheduleWrtitenTestToolStripMenuItem.Enabled = false;
             scheduleStreetTestToolStripMenuItem.Enabled = true;
             scheduleTestToolStripMenuItem.Enabled = true;
@@ -169,12 +163,40 @@ namespace DVLD.ApplicationTypes
 
         private void _DisableAllTests()
         {
-            shToolStripMenuItem.Enabled = false;
+            ScheduleVisionToolStripMenuItem.Enabled = false;
             scheduleWrtitenTestToolStripMenuItem.Enabled = false;
             scheduleStreetTestToolStripMenuItem.Enabled = false;
             scheduleTestToolStripMenuItem.Enabled = false;
             issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = true;
             showLicenseToolStripMenuItem.Enabled = true;
+        }
+
+        private void scheduleWrtitenTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int selectedLocalDrivingAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
+
+            _ShowTestAppointmentForm(selectedLocalDrivingAppID, clsGlobalSettings.WrittenTest);
+        }
+
+        private void scheduleStreetTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int selectedLocalDrivingAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
+
+            _ShowTestAppointmentForm(selectedLocalDrivingAppID, clsGlobalSettings.StreetTest);
+        }
+
+        private void _ShowTestAppointmentForm(int selectedLocalDrivingAppID, int testType) {
+
+            frmVisionTestAppointment VisionTestAppointmentfrm = new frmVisionTestAppointment(selectedLocalDrivingAppID, testType);
+            VisionTestAppointmentfrm.ShowDialog();
+            _ListLocalLicenseApplications();
+        }
+
+        private void ScheduleVisionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int selectedLocalDrivingAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
+
+            _ShowTestAppointmentForm(selectedLocalDrivingAppID, clsGlobalSettings.VisionTest);
         }
     }
 }

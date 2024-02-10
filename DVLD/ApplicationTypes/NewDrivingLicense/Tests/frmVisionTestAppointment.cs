@@ -1,4 +1,5 @@
 ﻿using DVLD.Controls;
+using DVLD.Properties;
 using DVLD_Business;
 using System;
 using System.Collections.Generic;
@@ -14,26 +15,31 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 {
     public partial class frmVisionTestAppointment : Form
     {
+        private enum enTestType { Vision = 1, Written = 2, Street = 3 };
+        private enTestType _testType = enTestType.Vision;
+
         private int _localDrivingApplicationID;
         private clsLocalLicenseApplication _localDrivingLicenseApp;
-        public frmVisionTestAppointment(int localDrivingApplicationID)
+        public frmVisionTestAppointment(int localDrivingApplicationID, int testType)
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;    
+            CenterToScreen();   
             _localDrivingApplicationID = localDrivingApplicationID;
-            
+            _testType = (enTestType)testType;
+
             ctrlDrivingLicenseAppAndApplicationInfo1.LoadApplicationDetials(localDrivingApplicationID);
           
         }
 
         private void _ListPersonAppointments() {
-            dgvTestAppointments.DataSource = clsTestAppointment.ListPeronTestAppointments(_localDrivingApplicationID);
+            dgvTestAppointments.DataSource = clsTestAppointment.ListPeronTestAppointments(_localDrivingApplicationID,
+                                                                                    (int)_testType);
             lblRecordsCount.Text = dgvTestAppointments.RowCount.ToString(); 
         }
 
         private void frmVisionTestAppointment_Load(object sender, EventArgs e)
         {
-            _ListPersonAppointments();
+            _UpdateUIForTestMode();
         }
 
         private void takeTestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,9 +55,8 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
         {
             int selectedTestAppointmentID = (int)dgvTestAppointments.CurrentRow.Cells[0].Value;
 
-            // 1 ---> Vision Test
-            // 2 ---> Edit Mode
-            _ShowScheduleTestForm(1,2,selectedTestAppointmentID);
+            // Edit Mode
+            _ShowScheduleTestForm((int)_testType, clsGlobalSettings.EditMode, selectedTestAppointmentID);
         }
 
         private void btnBookAppointment_Click(object sender, EventArgs e)
@@ -62,27 +67,25 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
                 return;
 
 
-            if (!clsTestAppointment.IsAppointmentExist(_localDrivingApplicationID, _localDrivingLicenseApp.LocalLicenseClassID))
+            if (!clsTestAppointment.IsAppointmentExist(_localDrivingApplicationID, _localDrivingLicenseApp.LocalLicenseClassID,
+                                                        (int)_testType))
             {
-                // 1 ---> Vision Test
-                // 1 ---> First Time Test Mode
-                _ShowScheduleTestForm(1,1);
+                // First Time Test Mode
+                _ShowScheduleTestForm((int)_testType, clsGlobalSettings.FirstTimeMode);
                 return;
             }
 
-            if (clsTestAppointment.IsAppointmentActive(_localDrivingApplicationID))
+            if (clsTestAppointment.IsAppointmentActive(_localDrivingApplicationID, (int)_testType))
             {
                 MessageBox.Show("This person already has an active appointment scheduled for this license class",
                        "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            if (clsTestAppointment.IsPersonFailed(_localDrivingApplicationID))
-            { 
+            if (clsTestAppointment.IsPersonFailed(_localDrivingApplicationID, (int)_testType))
+            {
                 // Show Retake Schedule Test
-                // 1 ---> Vision Test
-                // 3 ---> Retake Mode
-                _ShowScheduleTestForm(1,3);
+                _ShowScheduleTestForm((int)_testType, clsGlobalSettings.RetakeMode);
                 return;
             }
 
@@ -116,5 +119,44 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
                 takeTestToolStripMenuItem.Enabled = true;
 
         }
+
+        private void _UpdateUIForTestMode() {
+
+            switch (_testType) 
+            {
+                case enTestType.Vision:
+                    _UpdateUIForVisionTest();
+                    break;
+
+                case enTestType.Written:
+                    _UpdateUIForWrittenTest();
+                    break;
+
+                case enTestType.Street:
+                    _UpdateUIForStreetTest();
+                    break;
+            }
+        }
+
+        private void _UpdateUIForVisionTest() {
+            pbTestTypePhoto.Image = Resources.Vision_512;
+            lblTestAppointmentType.Text = "Vision Test Appointment";
+            _ListPersonAppointments();
+        }
+
+        private void _UpdateUIForWrittenTest()
+        {
+            pbTestTypePhoto.Image = Resources.Written_Test_512;
+            lblTestAppointmentType.Text = "Written Test Appointment";
+            _ListPersonAppointments();
+        }
+
+        private void _UpdateUIForStreetTest()
+        {
+            pbTestTypePhoto.Image = Resources.driving_test_512;
+            lblTestAppointmentType.Text = "Street Test Appointment";
+            _ListPersonAppointments();
+        }
+
     }
 }

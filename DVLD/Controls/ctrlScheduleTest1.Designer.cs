@@ -437,6 +437,7 @@
             this.Controls.Add(this.pbTestTypePhoto);
             this.Name = "ctrlScheduleTest1";
             this.Size = new System.Drawing.Size(465, 604);
+            this.Load += new System.EventHandler(this.ctrlScheduleTest1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();

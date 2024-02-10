@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVisionTestAppointment));
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblTestAppointmentType = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvTestAppointments = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -41,23 +41,23 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnBookAppointment = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pbTestTypePhoto = new System.Windows.Forms.PictureBox();
             this.ctrlDrivingLicenseAppAndApplicationInfo1 = new DVLD.Controls.ctrlDrivingLicenseAppAndApplicationInfo();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestAppointments)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTestTypePhoto)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // lblTestAppointmentType
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(213, 116);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(331, 31);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Vision Test Appointment";
+            this.lblTestAppointmentType.AutoSize = true;
+            this.lblTestAppointmentType.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTestAppointmentType.ForeColor = System.Drawing.Color.Red;
+            this.lblTestAppointmentType.Location = new System.Drawing.Point(213, 116);
+            this.lblTestAppointmentType.Name = "lblTestAppointmentType";
+            this.lblTestAppointmentType.Size = new System.Drawing.Size(331, 31);
+            this.lblTestAppointmentType.TabIndex = 1;
+            this.lblTestAppointmentType.Text = "Vision Test Appointment";
             // 
             // label2
             // 
@@ -168,15 +168,15 @@
             this.btnBookAppointment.UseVisualStyleBackColor = true;
             this.btnBookAppointment.Click += new System.EventHandler(this.btnBookAppointment_Click);
             // 
-            // pictureBox1
+            // pbTestTypePhoto
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(293, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(168, 101);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.pbTestTypePhoto.Image = ((System.Drawing.Image)(resources.GetObject("pbTestTypePhoto.Image")));
+            this.pbTestTypePhoto.Location = new System.Drawing.Point(293, 12);
+            this.pbTestTypePhoto.Name = "pbTestTypePhoto";
+            this.pbTestTypePhoto.Size = new System.Drawing.Size(168, 101);
+            this.pbTestTypePhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbTestTypePhoto.TabIndex = 0;
+            this.pbTestTypePhoto.TabStop = false;
             // 
             // ctrlDrivingLicenseAppAndApplicationInfo1
             // 
@@ -198,15 +198,15 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnBookAppointment);
             this.Controls.Add(this.ctrlDrivingLicenseAppAndApplicationInfo1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.lblTestAppointmentType);
+            this.Controls.Add(this.pbTestTypePhoto);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmVisionTestAppointment";
             this.Text = "frmVisionTestAppointment";
             this.Load += new System.EventHandler(this.frmVisionTestAppointment_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestAppointments)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbTestTypePhoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,8 +214,8 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pbTestTypePhoto;
+        private System.Windows.Forms.Label lblTestAppointmentType;
         private Controls.ctrlDrivingLicenseAppAndApplicationInfo ctrlDrivingLicenseAppAndApplicationInfo1;
         private System.Windows.Forms.Button btnBookAppointment;
         private System.Windows.Forms.Label label2;
