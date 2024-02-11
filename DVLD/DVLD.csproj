@@ -70,6 +70,18 @@
     <Compile Include="ApplicationTypes\NewDrivingLicense\frmAddLocalDrivingLicenseApplication.Designer.cs">
       <DependentUpon>frmAddLocalDrivingLicenseApplication.cs</DependentUpon>
     </Compile>
+    <Compile Include="ApplicationTypes\NewDrivingLicense\frmIssueDrivingLicenseFirstTime.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApplicationTypes\NewDrivingLicense\frmIssueDrivingLicenseFirstTime.Designer.cs">
+      <DependentUpon>frmIssueDrivingLicenseFirstTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationTypes\NewDrivingLicense\frmLocalLicenseApplicationDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApplicationTypes\NewDrivingLicense\frmLocalLicenseApplicationDetails.Designer.cs">
+      <DependentUpon>frmLocalLicenseApplicationDetails.cs</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmScheduleTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -209,6 +221,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmAddLocalDrivingLicenseApplication.resx">
       <DependentUpon>frmAddLocalDrivingLicenseApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmIssueDrivingLicenseFirstTime.resx">
+      <DependentUpon>frmIssueDrivingLicenseFirstTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmLocalLicenseApplicationDetails.resx">
+      <DependentUpon>frmLocalLicenseApplicationDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\Tests\frmScheduleTest.resx">
       <DependentUpon>frmScheduleTest.cs</DependentUpon>

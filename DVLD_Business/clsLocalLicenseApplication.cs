@@ -95,8 +95,8 @@ namespace DVLD_Business
             return clsLocalLicenseApplicationData.PassedTestsCount(localLicenseApplicationID);
         }
 
-        public static int FailureCount(int localLicenseApplicationID) {
-            return clsLocalLicenseApplicationData.FailureCount(localLicenseApplicationID);
+        public static int FailureCount(int localLicenseApplicationID, int testTypeID) {
+            return clsLocalLicenseApplicationData.FailureCount(localLicenseApplicationID, testTypeID);
         }
 
     }

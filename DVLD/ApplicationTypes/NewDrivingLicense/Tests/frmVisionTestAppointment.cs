@@ -46,7 +46,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
         {
             int selectedTestAppointmentID = (int)dgvTestAppointments.CurrentRow.Cells[0].Value;
 
-            frmTakeTest takeTestFrm = new frmTakeTest(_localDrivingApplicationID, selectedTestAppointmentID);
+            frmTakeTest takeTestFrm = new frmTakeTest(_localDrivingApplicationID, selectedTestAppointmentID, (int)_testType);
             takeTestFrm.ShowDialog();
             _ListPersonAppointments();
         }
@@ -77,8 +77,17 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 
             if (clsTestAppointment.IsAppointmentActive(_localDrivingApplicationID, (int)_testType))
             {
+                // There's an active appointment
                 MessageBox.Show("This person already has an active appointment scheduled for this license class",
                        "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (clsTestAppointment.IsPersonPassed(_localDrivingApplicationID, (int)_testType))
+            {
+                // Succeeded
+                MessageBox.Show("This person has already succeeded in this test!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 return;
             }
 
@@ -88,8 +97,6 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
                 _ShowScheduleTestForm((int)_testType, clsGlobalSettings.RetakeMode);
                 return;
             }
-
-            MessageBox.Show("This person has already succeeded in this test!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
@@ -112,12 +119,11 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
         private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
         {
             int selectedTestAppointmentID = (int)dgvTestAppointments.CurrentRow.Cells[0].Value;
-
+          
             if(clsTestAppointment.IsAppointmentLocked(selectedTestAppointmentID))
                 takeTestToolStripMenuItem.Enabled = false;
             else
                 takeTestToolStripMenuItem.Enabled = true;
-
         }
 
         private void _UpdateUIForTestMode() {

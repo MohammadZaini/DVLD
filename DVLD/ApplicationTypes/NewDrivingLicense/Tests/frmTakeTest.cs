@@ -18,31 +18,32 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 
         public DataBackEventHandler DataBack;
         enum enTestType { VisionTest = 1, WrittenTest = 2, StreetTest = 3 };
+        private enTestType _testType = enTestType.VisionTest;
+
+
 
         private clsTest _test;
         private int _testAppointmentID;
         private clsTestAppointment _testAppointment;
-       // private enTestType _testType = enTestType.VisionTest;
       
-        public frmTakeTest(int localDrivingLicenseApplicationID, int testAppointmentID)
+        public frmTakeTest(int localDrivingLicenseApplicationID, int testAppointmentID, int testTypeID )
         {
             InitializeComponent();
             CenterToScreen();
 
             _testAppointmentID = testAppointmentID;
             _testAppointment = clsTestAppointment.Find(testAppointmentID);
+            _testType = (enTestType)testTypeID;
 
             if (_testAppointment != null)
             { 
                 _InitializeUI();
-                _LoadTestAppointmentDetails(localDrivingLicenseApplicationID, 
-                    _testAppointment.TestTypeID);
+                _LoadTestAppointmentDetails(localDrivingLicenseApplicationID);
             }
         }
 
-        private void _LoadTestAppointmentDetails(int localDrivingLicenseApplicationID, int testTypeID) {
-            ctrlScheduledTest1.LoadTestAppointmentDetails(localDrivingLicenseApplicationID,
-                    testTypeID);
+        private void _LoadTestAppointmentDetails(int localDrivingLicenseApplicationID) {
+            ctrlScheduledTest1.LoadTestAppointmentDetails(localDrivingLicenseApplicationID, (int)_testType);
         }
         private void _InitializeUI()
         {

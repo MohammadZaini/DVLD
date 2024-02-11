@@ -64,7 +64,7 @@ namespace DVLD.Controls
             dtpTestAppointentDate.Value = _testMode == enTestMode.Edit ? _testAppointment.AppointmentDate : DateTime.Now;
             lblLicenseClass.Text = localLicenseApplication?.LicenseClassName;
             lblApplicantName.Text = localLicenseApplication?.ApplicantFullName;
-            lblTrial.Text = clsLocalLicenseApplication.FailureCount(localLicenseApplication.LocalLicenseApplicationID).ToString();
+            lblTrial.Text = clsLocalLicenseApplication.FailureCount(localLicenseApplication.LocalLicenseApplicationID,(int)_testType).ToString();
 
             const int RetakeTestApplicationTypeID = 8;
             _retakeTestFees = clsApplicationType.Find(RetakeTestApplicationTypeID).AppFees;

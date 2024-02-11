@@ -255,7 +255,7 @@ namespace DVLD_DataAccess
             return passedTestsCount;
         }
 
-        public static int FailureCount(int localLicenseApplicationID) { 
+        public static int FailureCount(int localLicenseApplicationID, int testTypeID) { 
 
             int failureCount = 0;
 
@@ -268,10 +268,12 @@ namespace DVLD_DataAccess
                              On TestAppointments.LocalDrivingLicenseApplicationID = 
                              LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID
                              Where Tests.TestResult = 0 
-                             And LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @localLicenseApplicationID;";
+                             And LocalDrivingLicenseApplications.LocalDrivingLicenseApplicationID = @localLicenseApplicationID
+                             And TestTypeID = @testTypeID";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@localLicenseApplicationID", localLicenseApplicationID);
+            command.Parameters.AddWithValue("@testTypeID", testTypeID);
 
             try
             {

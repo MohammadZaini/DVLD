@@ -26,6 +26,7 @@ namespace DVLD.ApplicationTypes
         {
             dgvLocalDrivingApps.DataSource = clsLocalLicenseApplication.ListLocalLicenseApplications();
             lblRecordsCount.Text = dgvLocalDrivingApps.RowCount.ToString();
+            
         }
 
         private void frmListLocalDrivingApplications_Load(object sender, EventArgs e)
@@ -103,11 +104,17 @@ namespace DVLD.ApplicationTypes
             _ListLocalLicenseApplications();
         }
 
-
-
         private void cmsLicenseApplication_Opening(object sender, CancelEventArgs e)
         {
             int selectedLocalDrivingLicenseAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
+
+            const string StatusTypeNew = "New";
+
+            if (clsLocalLicenseApplication.Find(selectedLocalDrivingLicenseAppID).Application.ApplicationStatusName != StatusTypeNew)
+            {
+                scheduleTestToolStripMenuItem.Enabled = false;
+                return;
+            }
 
             int passedTestsCount = clsLocalLicenseApplication.PassedTestsCount(selectedLocalDrivingLicenseAppID);
 
@@ -197,6 +204,15 @@ namespace DVLD.ApplicationTypes
             int selectedLocalDrivingAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
 
             _ShowTestAppointmentForm(selectedLocalDrivingAppID, clsGlobalSettings.VisionTest);
+        }
+
+        private void showApplicationDetailtsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int selectedLocalDrivingLicenseAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
+
+            frmLocalLicenseApplicationDetails localLicenseAppDetailsFrm = new frmLocalLicenseApplicationDetails(selectedLocalDrivingLicenseAppID);
+            localLicenseAppDetailsFrm.ShowDialog();
+            _ListLocalLicenseApplications();
         }
     }
 }

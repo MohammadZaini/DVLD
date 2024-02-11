@@ -378,5 +378,47 @@ namespace DVLD_DataAccess
             return isFailed;
         }
 
+
+        public static bool IsPersonPassed(int localDrivingLicenseApplicationID, int testTypeID)
+        {
+            bool isPassed = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select Top 1 found = 1 From TestAppointments
+                             Inner Join Tests
+                             On TestAppointments.TestAppointmentID = Tests.TestAppointmentID
+                             Where Tests.TestResult = 1 And LocalDrivingLicenseApplicationID = @localDrivingLicenseApplicationID
+                             And TestTypeID = @testTypeID
+                             Order By TestAppointments.TestAppointmentID Desc;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@localDrivingLicenseApplicationID", localDrivingLicenseApplicationID);
+            command.Parameters.AddWithValue("@testTypeID", testTypeID);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    isPassed = true;
+
+            }
+            catch (Exception)
+            {
+
+
+            }
+
+            finally
+            {
+                connection.Close();
+            }
+
+            return isPassed;
+        }
+
     }
 }

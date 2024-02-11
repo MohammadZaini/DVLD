@@ -24,9 +24,10 @@ namespace DVLD.Controls
             InitializeComponent();
         }
 
-        public void LoadTestAppointmentDetails(int drivingLicenseAppID, int testTypeID = 1)
+        public void LoadTestAppointmentDetails(int drivingLicenseAppID, int testTypeID)
         {
             lblDrivingLicenseAppID.Text = drivingLicenseAppID.ToString();
+            _testType = (enTestType)testTypeID;
 
             clsLocalLicenseApplication localLicenseApplication = clsLocalLicenseApplication.Find(drivingLicenseAppID);
 
@@ -43,7 +44,7 @@ namespace DVLD.Controls
             lblLicenseClass.Text = localLicenseApplication.LicenseClassName;
             lblApplicantName.Text = localLicenseApplication.ApplicantFullName;
             lblFees.Text = ((int)PaidFees).ToString();
-            lblTrial.Text = clsLocalLicenseApplication.FailureCount(localLicenseApplication.LocalLicenseApplicationID).ToString();
+            lblTrial.Text = clsLocalLicenseApplication.FailureCount(localLicenseApplication.LocalLicenseApplicationID,(int)_testType).ToString();
             lblTestDate.Text = ApplicationDate.ToString("yyyy/MM/dd");
             clsTestType testType = clsTestType.Find(1);
 

@@ -35,7 +35,7 @@ namespace DVLD.Controls
         private void _UpdateAppointmentDetails(clsLocalLicenseApplication localLicenseApplication) {
             lblLicenseClass.Text = localLicenseApplication.LicenseClassName;
             lblApplicantName.Text = localLicenseApplication.ApplicantFullName;
-            lblTrial.Text = clsLocalLicenseApplication.FailureCount(localLicenseApplication.LocalLicenseApplicationID).ToString();
+           // lblTrial.Text = clsLocalLicenseApplication.FailureCount(localLicenseApplication.LocalLicenseApplicationID).ToString();
 
             clsTestType testType = clsTestType.Find(1); // Vision Test
 

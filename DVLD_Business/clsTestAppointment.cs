@@ -133,6 +133,11 @@ namespace DVLD_Business
         public static bool IsPersonFailed(int localDrivingLicenseAppID, int testTypeID) {
             return clsTestAppointmentData.IsPersonFailed(localDrivingLicenseAppID, testTypeID);
         }
-      
+
+        public static bool IsPersonPassed(int localDrivingLicenseAppID, int testTypeID)
+        {
+            return clsTestAppointmentData.IsPersonPassed(localDrivingLicenseAppID, testTypeID);
+        }
+
     }
 }
