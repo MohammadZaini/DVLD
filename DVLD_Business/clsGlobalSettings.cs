@@ -18,5 +18,9 @@ namespace DVLD_Business
         public static readonly int VisionTest = 1;
         public static readonly int WrittenTest = 2;
         public static readonly int StreetTest = 3;
+
+        public static readonly int IssueLicenseForFirstTime = 1;
+
+        public enum localApplicationMode { New = 1, Cancelled = 2, Completed = 3 };
     }
 }

@@ -10,13 +10,14 @@ namespace DVLD_Business
     public class clsDriver
     {
 
-        public int DriverID { get; set; }
+        public int  ID { get; set; }
         public int PersonID { get; set; }
         public int CreatedByUserID { get; set; }
         public DateTime CreatedDate { get; set; }
 
         public clsDriver() { 
-            DriverID = -1;
+            
+            ID = -1;
             PersonID = -1;
             CreatedByUserID = -1;
             CreatedDate = DateTime.Now;
@@ -24,7 +25,8 @@ namespace DVLD_Business
 
         private clsDriver(int driverID, int personID, int createdByUserID, DateTime createdDate)
         {
-            DriverID = driverID;
+            
+            ID = driverID;
             PersonID = personID;
             CreatedByUserID = createdByUserID;
             CreatedDate = createdDate;
@@ -43,15 +45,15 @@ namespace DVLD_Business
         }
 
 
-        private bool _AddNewDriver() {
+        public int _AddNewDriver() {
 
-            this.DriverID = clsDriverData.AddNewDriver(this.PersonID, this.CreatedByUserID, this.CreatedDate);
+            this.ID = clsDriverData.AddNewDriver(this.PersonID, this.CreatedByUserID, this.CreatedDate);
 
-            return (this.DriverID != -1);
+            return this.ID;
         }
 
-        public bool Save() {
-            return _AddNewDriver();
-        }
+        //public bool Save() {
+        //    return _AddNewDriver();
+        //}
     }
 }

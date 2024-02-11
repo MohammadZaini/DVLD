@@ -214,5 +214,13 @@ namespace DVLD.ApplicationTypes
             localLicenseAppDetailsFrm.ShowDialog();
             _ListLocalLicenseApplications();
         }
+
+        private void issueDrivingLicenseFirstTimeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int selectedLocalDrivingLicenseAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
+            frmIssueDrivingLicenseFirstTime issueDrivingLicenseFrm = new frmIssueDrivingLicenseFirstTime(selectedLocalDrivingLicenseAppID);
+            issueDrivingLicenseFrm.ShowDialog();
+            _ListLocalLicenseApplications();
+        }
     }
 }
