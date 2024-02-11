@@ -49,10 +49,13 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
             int classID = _localDrivingLicenseApplication.LocalLicenseClassID;
             int createdByUserID = clsGlobalSettings.LoggedInUser.UserID;
             int applicationID = _localDrivingLicenseApplication.Application.ApplicationID;
+            int personID = _localDrivingLicenseApplication.Application.ApplicantPersonID;
             clsLicenseClass licenseClass = clsLicenseClass.Find(classID);
 
+
             // Initializing Driver
-            _license.Driver.PersonID = _localDrivingLicenseApplication.Application.ApplicantPersonID;
+            _license.Driver.PersonID = personID;
+
             _license.Driver.CreatedByUserID = createdByUserID;
             _license.Driver.CreatedDate = DateTime.Now;
 

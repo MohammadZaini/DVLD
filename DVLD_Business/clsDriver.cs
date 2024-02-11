@@ -23,7 +23,7 @@ namespace DVLD_Business
             CreatedDate = DateTime.Now;
         }
 
-        private clsDriver(int driverID, int personID, int createdByUserID, DateTime createdDate)
+        private clsDriver(int personID, int driverID, int createdByUserID, DateTime createdDate)
         {
             
             ID = driverID;
@@ -33,21 +33,23 @@ namespace DVLD_Business
         }
 
 
-        public static clsDriver Find(int driverID) {
-            int personID = 0, createdByUserID = 0;
+        public static clsDriver Find(int personID) {
+            int driverID = 0, createdByUserID = 0;
             DateTime createdDate = DateTime.Now;
 
-            if (clsDriverData.FindDriverByID(driverID, ref personID, ref createdByUserID, ref createdDate))
-                return new clsDriver(driverID, personID, createdByUserID, createdDate);
+            if (clsDriverData.FindDriverByID(personID, ref driverID, ref createdByUserID, ref createdDate))
+                return new clsDriver(personID, driverID, createdByUserID, createdDate);
             else
                 return null;
-
         }
 
 
         public int _AddNewDriver() {
 
-            this.ID = clsDriverData.AddNewDriver(this.PersonID, this.CreatedByUserID, this.CreatedDate);
+            if(!clsDriverData.IsDriver(this.PersonID))
+                this.ID = clsDriverData.AddNewDriver(this.PersonID, this.CreatedByUserID, this.CreatedDate);
+            else 
+                this.ID = Find(this.PersonID).ID;
 
             return this.ID;
         }
@@ -55,5 +57,10 @@ namespace DVLD_Business
         //public bool Save() {
         //    return _AddNewDriver();
         //}
+
+        public static bool IsDriver(int personID)
+        {
+            return clsDriverData.IsDriver(personID);
+        }
     }
 }

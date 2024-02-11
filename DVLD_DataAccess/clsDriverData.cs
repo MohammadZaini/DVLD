@@ -9,15 +9,15 @@ namespace DVLD_DataAccess
 {
     public static class clsDriverData
     {
-        public static bool FindDriverByID(int driverID, ref int personID, ref int createdByUserID, ref DateTime createdDate) { 
+        public static bool FindDriverByID(int personID, ref int driverID, ref int createdByUserID, ref DateTime createdDate) { 
             
             bool isFound = false;
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
-            string query = "Select * From Drivers Where DriverID = @driverID";
+            string query = "Select * From Drivers Where PersonID = @personID";
 
             SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@driverID", driverID);
+            command.Parameters.AddWithValue("@personID", personID);
 
             try
             {
@@ -30,7 +30,7 @@ namespace DVLD_DataAccess
 
                     isFound = true;
 
-                    personID = (int)reader["PersonID"];
+                    driverID = (int)reader["DriverID"];
                     createdByUserID = (int)reader["CreatedByUserID"];
                     createdDate = (DateTime)reader["CreatedDate"];
 
@@ -84,6 +84,38 @@ namespace DVLD_DataAccess
             return driverID;
         }
 
- 
+        public static bool IsDriver(int personID)
+        {
+            bool isFound = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select Found = 1 From Drivers
+                             Where PersonID = @personID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@personID", personID);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    isFound = true;
+
+
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
+
     }
 }
