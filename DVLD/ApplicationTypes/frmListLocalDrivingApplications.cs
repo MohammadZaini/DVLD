@@ -222,5 +222,12 @@ namespace DVLD.ApplicationTypes
             issueDrivingLicenseFrm.ShowDialog();
             _ListLocalLicenseApplications();
         }
+
+        private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int selectedLocalDrivingLicenseAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
+            frmLicenseDetails licenesDetailsFrm = new frmLicenseDetails(selectedLocalDrivingLicenseAppID);
+            licenesDetailsFrm.ShowDialog();
+        }
     }
 }

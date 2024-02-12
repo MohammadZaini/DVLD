@@ -19,8 +19,32 @@ namespace DVLD_Business
         public static readonly int WrittenTest = 2;
         public static readonly int StreetTest = 3;
 
-        public static readonly int IssueLicenseForFirstTime = 1;
+        public static readonly byte IssueLicenseForFirstTime = 1;
 
         public enum localApplicationMode { New = 1, Cancelled = 2, Completed = 3 };
+
+        public enum enLicenseIssueReason { FirstTime = 1, UnknownYet = 2, UnknownYet2 = 3, UnknownYet3 = 4 };
+
+        public static string GetIssueReasonString(int issueReason)
+        {
+
+            switch (issueReason)
+            {
+                case (int)enLicenseIssueReason.FirstTime:
+                    return "First Time";
+
+                case (int)enLicenseIssueReason.UnknownYet:
+                    return "UnknownYet";
+
+                case (int)enLicenseIssueReason.UnknownYet2:
+                    return "UnknownYet2";
+
+                case (int)enLicenseIssueReason.UnknownYet3:
+                    return "UnknownYet3";
+            }
+
+            return "Unkown";
+        }
+
     }
 }

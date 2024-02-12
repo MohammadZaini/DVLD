@@ -18,7 +18,7 @@ namespace DVLD_Business
         public string Notes { get; set; }
         public decimal PaidFees { get; set; }
         public bool IsActive { get; set; }
-        public int IssueReason { get; set; }
+        public byte IssueReason { get; set; }
         public int CreatedByUserID { get; set; }
 
         public clsDriver Driver { get; set; }
@@ -36,6 +36,42 @@ namespace DVLD_Business
             IssueReason = 0;
             CreatedByUserID = 0;
             Driver = new clsDriver();
+        }
+
+
+        private clsLicense(int licenesID, int applicationID, int driverID, int licenseClassNo, DateTime issueDate,
+            DateTime eExpirationDate, string notes, decimal paidFees, bool isActive, byte issueReason, int createdByUserID) { 
+            
+            this.ID = licenesID;
+            this.ApplicationID = applicationID;
+            this.DriverID = driverID;
+            this.LicenseClassNo = licenseClassNo;
+            this.IssueDate = issueDate;
+            this.ExpirationDate = eExpirationDate;
+            this.Notes = notes;
+            this.PaidFees = paidFees;
+            this.IsActive = isActive;
+            this.IssueReason = issueReason;
+            this.CreatedByUserID = createdByUserID;
+        }
+
+        public static clsLicense Find(int applicationID) {
+
+            int licenesID = 0, driverID = 0, licenseClassNo = 0;
+            DateTime issueDate = DateTime.Now, expirationDate = DateTime.Now;
+            string notes = "";
+            decimal paidFees = 0;
+            bool isActive = false;
+            byte issueReason = 0;
+            int createdByUserID = 0;
+
+            if (clsLicenseData.FindByApplicationID(applicationID, ref licenesID, ref driverID, ref licenseClassNo, ref issueDate,
+                ref expirationDate, ref notes, ref paidFees, ref isActive, ref issueReason, ref createdByUserID))
+
+                return new clsLicense(licenesID, applicationID,  driverID,  licenseClassNo,  issueDate,
+                 expirationDate,  notes,  paidFees,  isActive,  issueReason,  createdByUserID);
+            else
+                return null;
         }
 
         private bool _AddNewLicense() {

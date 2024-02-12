@@ -403,7 +403,6 @@ namespace DVLD_DataAccess
 
         }
 
-
         public static bool DeletePerson(int PersonID) {
             bool isDeleted = false;
 
