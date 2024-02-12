@@ -16,6 +16,7 @@ namespace DVLD.ApplicationTypes
     {
         private enum ApplicationMode { New = 1, Cancelled = 2, Completed = 3 }
 
+        private clsLocalLicenseApplication _localDrivingLicenseApplication;
         public frmListLocalDrivingApplications()
         {
             InitializeComponent();
@@ -108,15 +109,50 @@ namespace DVLD.ApplicationTypes
         {
             int selectedLocalDrivingLicenseAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
 
+            _localDrivingLicenseApplication = _GetLocalDrivingLicenseApplication(selectedLocalDrivingLicenseAppID);
+
+            if (_localDrivingLicenseApplication == null) return;
+
+            string applicationStatus = _localDrivingLicenseApplication.Application.ApplicationStatusName;
+
+            // Check if applicant has already been issued a driving license and toggle menu tools accordingly
+            bool isLicensed = _IsLicensed();
+            _ToggleMenuOptionsForLicensing(isLicensed);
+
+            if (isLicensed) return;
+
             const string StatusTypeNew = "New";
 
-            if (clsLocalLicenseApplication.Find(selectedLocalDrivingLicenseAppID).Application.ApplicationStatusName != StatusTypeNew)
+            if (applicationStatus != StatusTypeNew)
             {
-                scheduleTestToolStripMenuItem.Enabled = false;
+                _DisableNonNewApplicationOptions(applicationStatus);
                 return;
             }
 
-            int passedTestsCount = clsLocalLicenseApplication.PassedTestsCount(selectedLocalDrivingLicenseAppID);
+            _ToggleMenuOptionsForNewApplication(selectedLocalDrivingLicenseAppID);
+        }
+
+        private bool _IsLicensed() {
+
+            int personID = _localDrivingLicenseApplication.Application.ApplicantPersonID;
+            int licenseClass = _localDrivingLicenseApplication.LocalLicenseClassID;
+
+            return clsDriver.IsLicenseAlreadyHeldInClass(personID, licenseClass);
+        }
+
+        private void _ToggleMenuOptionsForLicensing(bool isLicensed) {
+            
+            editApplicationToolStripMenuItem.Enabled = !isLicensed;
+            deleteApplicationToolStripMenuItem.Enabled = !isLicensed;
+            cancelApplicationToolStripMenuItem.Enabled = !isLicensed;
+            scheduleTestToolStripMenuItem.Enabled = !isLicensed;
+            issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = !isLicensed;
+            showLicenseToolStripMenuItem.Enabled = isLicensed;
+        }
+
+        private void _ToggleMenuOptionsForNewApplication(int localDrivingLicenseAppID) {
+
+            int passedTestsCount = clsLocalLicenseApplication.PassedTestsCount(localDrivingLicenseAppID);
 
             switch (passedTestsCount)
             {
@@ -136,6 +172,18 @@ namespace DVLD.ApplicationTypes
                     _DisableAllTests();
                     break;
             }
+        }
+
+        private clsLocalLicenseApplication _GetLocalDrivingLicenseApplication(int localDrivingLicenseAppID) { 
+            return clsLocalLicenseApplication.Find(localDrivingLicenseAppID);
+        }
+
+        private void _DisableNonNewApplicationOptions(string applicationStatus) {
+
+            if (applicationStatus == "Cancelled")
+                issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = false;
+
+            scheduleTestToolStripMenuItem.Enabled = false;
         }
 
         private void _EnableVisionTest()
@@ -174,8 +222,8 @@ namespace DVLD.ApplicationTypes
             scheduleWrtitenTestToolStripMenuItem.Enabled = false;
             scheduleStreetTestToolStripMenuItem.Enabled = false;
             scheduleTestToolStripMenuItem.Enabled = false;
-            issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = true;
-            showLicenseToolStripMenuItem.Enabled = true;
+            issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = false;
+            showLicenseToolStripMenuItem.Enabled = false;
         }
 
         private void scheduleWrtitenTestToolStripMenuItem_Click(object sender, EventArgs e)

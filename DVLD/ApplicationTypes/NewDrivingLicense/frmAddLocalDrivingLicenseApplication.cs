@@ -27,6 +27,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
             lblApplicationDate.Text = DateTime.Today.ToString("yyyy/MM/dd");
             lblCreatedBy.Text = clsGlobalSettings.LoggedInUser.Username;
         }
+
         private void btnNext_Click(object sender, EventArgs e)
         {
             TabPage appInfoTab = tcDrivingLicenseApp.TabPages[1];
