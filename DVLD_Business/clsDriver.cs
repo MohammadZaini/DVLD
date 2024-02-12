@@ -1,6 +1,7 @@
 ﻿using DVLD_DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,6 +33,9 @@ namespace DVLD_Business
             CreatedDate = createdDate;
         }
 
+        public static DataTable ListDrivers() {
+            return clsDriverData.ListDrivers();
+        }
 
         public static clsDriver Find(int personID) {
             int driverID = 0, createdByUserID = 0;
@@ -43,7 +47,6 @@ namespace DVLD_Business
                 return null;
         }
 
-
         public int _AddNewDriver() {
 
             if(!clsDriverData.IsDriver(this.PersonID))
@@ -53,10 +56,6 @@ namespace DVLD_Business
 
             return this.ID;
         }
-
-        //public bool Save() {
-        //    return _AddNewDriver();
-        //}
 
         public static bool IsDriver(int personID)
         {

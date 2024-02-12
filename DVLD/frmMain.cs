@@ -1,5 +1,6 @@
 ﻿using DVLD.ApplicationTypes;
 using DVLD.ApplicationTypes.NewDrivingLicense;
+using DVLD.Drivers;
 using DVLD.People;
 using DVLD.TestTypes;
 using DVLD.Users;
@@ -82,6 +83,12 @@ namespace DVLD
         {
             frmListLocalDrivingApplications localDrivingApplicationsfrm = new frmListLocalDrivingApplications();    
             localDrivingApplicationsfrm.ShowDialog();
+        }
+
+        private void driversToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListDrivers listDriversFrm = new frmListDrivers();
+            listDriversFrm.ShowDialog();
         }
     }
 }

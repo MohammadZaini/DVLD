@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,39 @@ namespace DVLD_DataAccess
 {
     public static class clsDriverData
     {
+
+        public static DataTable ListDrivers() {
+
+            DataTable DriversList = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = "Select * From DriversListView;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    DriversList.Load(reader);
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return DriversList;
+        }
         public static bool FindDriverByID(int personID, ref int driverID, ref int createdByUserID, ref DateTime createdDate) { 
             
             bool isFound = false;
