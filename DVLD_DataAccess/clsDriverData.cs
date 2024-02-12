@@ -151,5 +151,39 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
+        public static DataTable Filter(string filterWord, string type)
+        {
+
+            DataTable FilteredData = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = $"Select * From DriversListView " +
+                           $"Where [{type}] Like '' + @filterWord + '%';";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@filterWord", filterWord);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    FilteredData.Load(reader);
+
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return FilteredData;
+        }
+
     }
 }

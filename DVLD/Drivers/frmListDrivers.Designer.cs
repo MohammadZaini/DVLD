@@ -114,12 +114,13 @@
             "None",
             "Driver ID",
             "Person ID",
-            "National No.",
+            "National No",
             "Full Name"});
             this.cbFilter.Location = new System.Drawing.Point(87, 278);
             this.cbFilter.Name = "cbFilter";
             this.cbFilter.Size = new System.Drawing.Size(153, 21);
             this.cbFilter.TabIndex = 6;
+            this.cbFilter.SelectedIndexChanged += new System.EventHandler(this.cbFilter_SelectedIndexChanged);
             // 
             // txtFilter
             // 
@@ -128,6 +129,9 @@
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(153, 21);
             this.txtFilter.TabIndex = 7;
+            this.txtFilter.Visible = false;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+            this.txtFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilter_KeyPress);
             // 
             // btnClose
             // 

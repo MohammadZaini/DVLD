@@ -61,5 +61,9 @@ namespace DVLD_Business
         {
             return clsDriverData.IsDriver(personID);
         }
+
+        public static DataTable Filter(string filterWord, string type) {
+            return clsDriverData.Filter(filterWord, type);
+        }
     }
 }
