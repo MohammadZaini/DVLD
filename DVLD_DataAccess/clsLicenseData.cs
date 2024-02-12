@@ -42,14 +42,15 @@ namespace DVLD_DataAccess
                     issueDate = (DateTime)reader["IssueDate"];
                     expirationDate = (DateTime)reader["ExpirationDate"];
 
-                    notes = reader["Notes"] != null ? (string)reader["Notes"] : "No Notes";
+                    if (reader["Notes"] != DBNull.Value)
+                        notes = (string)reader["Notes"];
+                    else
+                        notes = "No Notes";
 
                     paidFees = (decimal)reader["PaidFees"];
                     isActive = (bool)reader["IsActive"];
                     issueReason = (byte)reader["IssueReason"];
                     createdByUserID = (int)reader["CreatedByUserID"];
-
-
                 }
 
                 reader.Close();
@@ -86,7 +87,12 @@ namespace DVLD_DataAccess
             command.Parameters.AddWithValue("licenseClassNo", licenseClassNo);
             command.Parameters.AddWithValue("issueDate", issueDate);
             command.Parameters.AddWithValue("expirationDate", expirationDate);
-            command.Parameters.AddWithValue("notes", notes);
+
+            if(notes != "")
+                command.Parameters.AddWithValue("notes", notes);
+            else
+                command.Parameters.AddWithValue("notes", DBNull.Value);
+
             command.Parameters.AddWithValue("paidFees", paidFees);
             command.Parameters.AddWithValue("isActive", isActive);
             command.Parameters.AddWithValue("issueReason", issueReason);

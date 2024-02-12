@@ -43,6 +43,7 @@ namespace DVLD_DataAccess
 
             return DriversList;
         }
+
         public static bool FindDriverByID(int personID, ref int driverID, ref int createdByUserID, ref DateTime createdDate) { 
             
             bool isFound = false;
@@ -183,6 +184,45 @@ namespace DVLD_DataAccess
             }
 
             return FilteredData;
+        }
+
+        public static bool IsLicenseAlreadyHeldInClass(int personID, int licenseClass) {
+
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select Found = 1
+                             From Drivers
+                             Inner join Licenses
+                             On Licenses.DriverID = Drivers.DriverID
+                             Where PersonID = @personID And LicenseClass = @licenseClass;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@personID", personID);
+            command.Parameters.AddWithValue("@licenseClass", licenseClass);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    isFound = true;
+
+
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+
         }
 
     }

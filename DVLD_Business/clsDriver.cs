@@ -65,5 +65,10 @@ namespace DVLD_Business
         public static DataTable Filter(string filterWord, string type) {
             return clsDriverData.Filter(filterWord, type);
         }
+
+        public static bool IsLicenseAlreadyHeldInClass(int personID, int licenseClass) {
+
+            return clsDriverData.IsLicenseAlreadyHeldInClass(personID, licenseClass);
+        }
     }
 }

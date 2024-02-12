@@ -48,6 +48,8 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
         {
             _localLicenseApplication = new clsLocalLicenseApplication();
 
+            int personID = ctrlPersonCardWithFilter1.PersonID;
+
             if (_localLicenseApplication == null)
             {
                 MessageBox.Show("Please select a different individual.", "Select Another Individual", 
@@ -55,8 +57,16 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
                 return;
             }
 
+            // Check if the applicant already has a license in the particular class
+            if (clsDriver.IsLicenseAlreadyHeldInClass(personID, _GetSelectedLicenseClassID()))
+            {
+                MessageBox.Show("This individual already has an existing license for this class. Please select another option.",
+                       "Duplicate License Detected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             // Checks If the applicant has applied to the same License Class as well as the status NEW
-            if (clsApplication.IsApplicationExist(ctrlPersonCardWithFilter1.PersonID, _GetSelectedLicenseClassID()))
+            if (clsApplication.IsApplicationExist(personID, _GetSelectedLicenseClassID()))
             {
                 MessageBox.Show("This individual already has an existing local license application. Please select another option.", 
                     "Duplicate Local License Application Detected", MessageBoxButtons.OK,MessageBoxIcon.Error);
