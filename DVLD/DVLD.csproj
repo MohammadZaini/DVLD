@@ -82,6 +82,12 @@
     <Compile Include="ApplicationTypes\NewDrivingLicense\frmLicenseDetails.Designer.cs">
       <DependentUpon>frmLicenseDetails.cs</DependentUpon>
     </Compile>
+    <Compile Include="ApplicationTypes\NewDrivingLicense\frmLicenseHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApplicationTypes\NewDrivingLicense\frmLicenseHistory.Designer.cs">
+      <DependentUpon>frmLicenseHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationTypes\NewDrivingLicense\frmLocalLicenseApplicationDetails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmLicenseDetails.resx">
       <DependentUpon>frmLicenseDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmLicenseHistory.resx">
+      <DependentUpon>frmLicenseHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmLocalLicenseApplicationDetails.resx">
       <DependentUpon>frmLocalLicenseApplicationDetails.cs</DependentUpon>

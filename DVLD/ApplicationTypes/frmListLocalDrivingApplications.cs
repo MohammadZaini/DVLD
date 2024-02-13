@@ -26,6 +26,8 @@ namespace DVLD.ApplicationTypes
         private void _ListLocalLicenseApplications()
         {
             dgvLocalDrivingApps.DataSource = clsLocalLicenseApplication.ListLocalLicenseApplications();
+            dgvLocalDrivingApps.Columns["Full Name"].Width = 240;
+            dgvLocalDrivingApps.Columns["Class Name"].Width = 180;
             lblRecordsCount.Text = dgvLocalDrivingApps.RowCount.ToString();
             
         }
@@ -222,7 +224,7 @@ namespace DVLD.ApplicationTypes
             scheduleWrtitenTestToolStripMenuItem.Enabled = false;
             scheduleStreetTestToolStripMenuItem.Enabled = false;
             scheduleTestToolStripMenuItem.Enabled = false;
-            issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = false;
+            issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = true;
             showLicenseToolStripMenuItem.Enabled = false;
         }
 
@@ -276,6 +278,14 @@ namespace DVLD.ApplicationTypes
             int selectedLocalDrivingLicenseAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
             frmLicenseDetails licenesDetailsFrm = new frmLicenseDetails(selectedLocalDrivingLicenseAppID);
             licenesDetailsFrm.ShowDialog();
+        }
+
+        private void showPersonLicenseHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int selectedLocalDrivingLicenseAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
+
+            frmLicenseHistory licenseHistory = new frmLicenseHistory(selectedLocalDrivingLicenseAppID);
+            licenseHistory.ShowDialog();
         }
     }
 }

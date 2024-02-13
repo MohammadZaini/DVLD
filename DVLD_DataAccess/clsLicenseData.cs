@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -116,6 +117,49 @@ namespace DVLD_DataAccess
             }
 
             return licenseID;
+        }
+
+
+        public static DataTable ListLocalLicenses(int personID) {
+
+            DataTable localLicensesList = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select [Lic.ID] = LicenseID, [App.ID] = Licenses.ApplicationID, [Class Name] = LicenseClasses.ClassName,
+                             [Issue Date] = IssueDate, [Expiration Date] = ExpirationDate,  [Is Active] = IsActive 
+                             From Licenses Inner Join LicenseClasses
+                             On LicenseClasses.LicenseClassID = Licenses.LicenseClass
+                             Inner Join Applications
+                             On Licenses.ApplicationID = Applications.ApplicationID
+                             Inner Join People
+                             On People.PersonID = Applications.ApplicantPersonID
+                             Where PersonID = @personID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@personID", personID);
+
+            try
+            {   
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    localLicensesList.Load(reader);
+
+                reader.Close();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return localLicensesList;
         }
     }
 }
