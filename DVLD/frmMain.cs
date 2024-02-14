@@ -90,5 +90,11 @@ namespace DVLD
             frmListDrivers listDriversFrm = new frmListDrivers();
             listDriversFrm.ShowDialog();
         }
+
+        private void internationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmInternationalLicense internationalLicenseAppFrm = new frmInternationalLicense();
+            internationalLicenseAppFrm.ShowDialog();
+        }
     }
 }

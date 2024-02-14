@@ -22,15 +22,23 @@ namespace DVLD.Controls
             InitializeComponent();
         }
 
-        public void _LoadLicenseInfoDetails(int localDrivingLicenseAppID) {
+        public void _LoadLicenseInfoDetails(int localDrivingLicenseAppID, int licenseID) {
 
-            _InitializeLicense(localDrivingLicenseAppID);
+            if (licenseID != -1)
+                _InitializeLicenseByLicenseID(licenseID);
+            else
+                _InitializeLicense(localDrivingLicenseAppID);
 
             if (_license == null)
                 return;
 
-            _UpdateLicenseInfo();
+            FillApplicationInfo();
 
+            clsPerson person = _GetPerson();
+
+            _FillPersonInfo(person);
+
+            _UpdateLicenseUI(person);
         }
 
         private void _InitializeLicense(int localDrivingLicenseAppID) {
@@ -39,22 +47,18 @@ namespace DVLD.Controls
             _license = clsLicense.Find(_localDrivingLicenseApplication.Application.ApplicationID);
         }
 
-        private void _UpdateLicenseInfo() {
+        private void _InitializeLicenseByLicenseID(int licenseID)
+        {
+            _license = clsLicense.FindByLicenseID(licenseID);
+        }
 
-            clsPerson person = clsPerson.Find(_localDrivingLicenseApplication.Application.ApplicantPersonID);
-
-            byte gender = person.Gender;
-
-            _ChangeGenderIcon(gender);
-
-            lblLicenseClass.Text = clsLicenseClass.Find(_license.LicenseClassNo).Name;
-
-            lblPersonName.Text = _localDrivingLicenseApplication.ApplicantFullName;
-
-
+        private void _UpdateLicenseUI(clsPerson person ) {
+       
+            lblLicenseClass.Text = _GetLicenseClassName();
+            lblPersonName.Text = person.FullName();
             lblLicenseID.Text = _license.ID.ToString();
             lblNationalNo.Text = person.NationalityNo.ToString();
-            lblGender.Text = gender == 0 ? "Male" : "Female";
+            lblGender.Text = person.Gender == 0 ? "Male" : "Female";
             lblIssueDate.Text = _license.IssueDate.ToString("yyy/MM/dd");
             lblIssueReason.Text =  clsGlobalSettings.GetIssueReasonString(_license.IssueReason);
             lblNotes.Text = _license.Notes;
@@ -63,12 +67,35 @@ namespace DVLD.Controls
             lblDriverID.Text = _license.DriverID.ToString();
             lblExpirationDate.Text = _license.ExpirationDate.ToString("yyy/MM/dd");
             pbPersonalPic.ImageLocation = person.ImagePath;
-            lblIsDetained.Text = "Unknown yer";
+            lblIsDetained.Text = "Unknown yet";
+        }
+
+        private clsApplication _GetApplication() {         
+            return clsApplication.Find(_license.ApplicationID);
+        }
+
+        private clsPerson _GetPerson() { 
+            return clsPerson.Find(_license.Application.ApplicantPersonID);
+        }
+        
+        private string _GetLicenseClassName() {
+            return clsLicenseClass.Find(_license.LicenseClassNo).Name;
         }
 
         private void _ChangeGenderIcon(byte gender) {
 
             pbGenderIcon.Image = gender == 0 ? Resources.Man_32 : Resources.Woman_32;
+        }
+
+        private void FillApplicationInfo()
+        {
+            _license.Application = _GetApplication();
+        }
+
+        private void _FillPersonInfo(clsPerson person)
+        {
+            byte gender = person.Gender;
+            _ChangeGenderIcon(gender);
         }
     }
 }

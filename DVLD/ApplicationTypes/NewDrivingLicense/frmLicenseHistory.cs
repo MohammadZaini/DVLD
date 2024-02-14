@@ -14,7 +14,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
     public partial class frmLicenseHistory : Form
     {
         private clsLocalLicenseApplication _localDrivingLicenseApplication;
-        //private clsLicense _localLicense;
+
         public frmLicenseHistory(int localDrivingLicensAppID)
         {
             InitializeComponent();
@@ -33,8 +33,14 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
         private void _ListLocalLicenses() {
             int personID = _localDrivingLicenseApplication.Application.ApplicantPersonID;
             dgvLocalLicensesList.DataSource = clsLicense.ListLocalLicenses(personID);
+
+            dgvLocalLicensesList.Columns["Class Name"].Width = 210;
+            dgvLocalLicensesList.Columns["Issue Date"].Width = 180;
+            dgvLocalLicensesList.Columns["Expiration Date"].Width = 180;
+
             lblRecordsCount.Text = dgvLocalLicensesList.RowCount.ToString();    
         }
+
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();

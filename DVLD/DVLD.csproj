@@ -52,6 +52,12 @@
     <Compile Include="ApplicationTypes\frmApplicationTypes.Designer.cs">
       <DependentUpon>frmApplicationTypes.cs</DependentUpon>
     </Compile>
+    <Compile Include="ApplicationTypes\frmInternationalLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApplicationTypes\frmInternationalLicense.Designer.cs">
+      <DependentUpon>frmInternationalLicense.cs</DependentUpon>
+    </Compile>
     <Compile Include="ApplicationTypes\frmListLocalDrivingApplications.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,12 @@
     </Compile>
     <Compile Include="Controls\ctrlLicenseCard.Designer.cs">
       <DependentUpon>ctrlLicenseCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ctrlLicenseCardWithFilter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlLicenseCardWithFilter.Designer.cs">
+      <DependentUpon>ctrlLicenseCardWithFilter.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ctrlPersonCard.cs">
       <SubType>UserControl</SubType>
@@ -237,6 +249,9 @@
     <EmbeddedResource Include="ApplicationTypes\frmApplicationTypes.resx">
       <DependentUpon>frmApplicationTypes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationTypes\frmInternationalLicense.resx">
+      <DependentUpon>frmInternationalLicense.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ApplicationTypes\frmListLocalDrivingApplications.resx">
       <DependentUpon>frmListLocalDrivingApplications.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ctrlLicenseCard.resx">
       <DependentUpon>ctrlLicenseCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlLicenseCardWithFilter.resx">
+      <DependentUpon>ctrlLicenseCardWithFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ctrlPersonCard.resx">
       <DependentUpon>ctrlPersonCard.cs</DependentUpon>

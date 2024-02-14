@@ -287,5 +287,28 @@ namespace DVLD.ApplicationTypes
             frmLicenseHistory licenseHistory = new frmLicenseHistory(selectedLocalDrivingLicenseAppID);
             licenseHistory.ShowDialog();
         }
+
+        private void deleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int selectedLocalDrivingLicenseAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
+
+            DialogResult deletingResult = MessageBox.Show("Are you sure you want to delete this application?","Deletion",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if(deletingResult == DialogResult.Yes )
+            {
+                if (clsLocalLicenseApplication.DeleteApplication(selectedLocalDrivingLicenseAppID))
+                {
+                    MessageBox.Show("Application has been deleted successfully!", "Success", MessageBoxButtons.OK,
+                           MessageBoxIcon.Information);
+
+                    _ListLocalLicenseApplications();
+                }
+                   
+                else
+                    MessageBox.Show("Application has not been deleted...", "Failure", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+            }
+        }
     }
 }

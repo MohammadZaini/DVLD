@@ -8,26 +8,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DVLD.ApplicationTypes.NewDrivingLicense
+namespace DVLD.ApplicationTypes
 {
-    public partial class frmLicenseDetails : Form
+    public partial class frmInternationalLicense : Form
     {
-        public frmLicenseDetails(int localDrivingLicenseAppID)
+        public frmInternationalLicense()
         {
             InitializeComponent();
             CenterToScreen();
-
-            ctrlLicenseCard1._LoadLicenseInfoDetails(localDrivingLicenseAppID,-1);
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
             Close();
         }
+
     }
 }

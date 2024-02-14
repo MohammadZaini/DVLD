@@ -9,6 +9,53 @@ namespace DVLD_DataAccess
 {
     public static class clsApplicationData
     {
+
+        public static bool FindByApplicationID(int applicationID, ref int applicantPersonID, ref DateTime applicationDate, ref int applicationTypeID,
+            ref byte applicationStatus, ref DateTime lastStatusDate, ref decimal paidFees, ref int createdByUserID)
+        {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+            string query = "Select * From Applications Where ApplicationID = @applicationID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@applicationID", applicationID);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+
+                    isFound = true;
+
+                    applicantPersonID = (int)reader["ApplicantPersonID"];
+                    applicationDate = (DateTime)reader["ApplicationDate"];
+                    applicationTypeID = (int)reader["ApplicationTypeID"];
+                    applicationStatus = (byte)reader["ApplicationStatus"];
+                    lastStatusDate = (DateTime)reader["LastStatusDate"];
+                    paidFees = (decimal)reader["PaidFees"];
+                    createdByUserID = (int)reader["CreatedByUserID"];
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+            return isFound;
+
+        }
+
         public static int AddNewApplication(int applicantPersonID, DateTime applicationDate, int applicationTypeID, decimal applicationStatus,
             DateTime lastStatusDate, decimal paidFees, int createdByUserID)
         {

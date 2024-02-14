@@ -197,7 +197,7 @@ namespace DVLD.Controls
             return clsLocalLicenseApplication.Find(localDrivingLicenseAppID);
         }
 
-        private clsApplication _InitializeNewRetakeTestApplication(int applicantPersonID, int retakeTestTypeID, int appStatusNew)
+        private clsApplication _InitializeNewRetakeTestApplication(int applicantPersonID, int retakeTestTypeID, byte appStatusNew)
         {
 
             clsApplication newApplication = new clsApplication();

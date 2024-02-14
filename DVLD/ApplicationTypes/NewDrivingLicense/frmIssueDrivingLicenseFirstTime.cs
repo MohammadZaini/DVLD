@@ -39,19 +39,21 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
                 return;
 
             _InitializeLicense();
-
         }
 
         private void _InitializeLicense() { 
         
             _license = new clsLicense();
 
+            _license.Application = _localDrivingLicenseApplication.Application;
+
+
             int classID = _localDrivingLicenseApplication.LocalLicenseClassID;
             int createdByUserID = clsGlobalSettings.LoggedInUser.UserID;
-            int applicationID = _localDrivingLicenseApplication.Application.ApplicationID;
-            int personID = _localDrivingLicenseApplication.Application.ApplicantPersonID;
+            int applicationID = _license.Application.ApplicationID;
             clsLicenseClass licenseClass = clsLicenseClass.Find(classID);
 
+            int personID = _license.Application.ApplicantPersonID;
 
             // Initializing Driver
             _license.Driver.PersonID = personID;

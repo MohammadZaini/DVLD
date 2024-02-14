@@ -43,3 +43,5 @@ E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Drivers.frmListDrivers.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.NewDrivingLicense.frmLicenseDetails.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Controls.ctrlLicenseCard.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.NewDrivingLicense.frmLicenseHistory.resources
+E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Controls.ctrlLicenseCardWithFilter.resources
+E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.frmInternationalLicense.resources

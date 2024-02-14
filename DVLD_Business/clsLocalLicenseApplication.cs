@@ -99,5 +99,9 @@ namespace DVLD_Business
             return clsLocalLicenseApplicationData.FailureCount(localLicenseApplicationID, testTypeID);
         }
 
+        public static bool DeleteApplication(int localLicenseApplicationID) {
+
+            return clsLocalLicenseApplicationData.DeleteLocalLicenesApplication(localLicenseApplicationID);
+        }
     }
 }

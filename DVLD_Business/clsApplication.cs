@@ -13,7 +13,7 @@ namespace DVLD_Business
         public int ApplicationID { get; set; }
         public int ApplicantPersonID { get; set; }
         public DateTime ApplicationDate { get; set; }
-        public decimal ApplicationStatus { get; set; }
+        public byte ApplicationStatus { get; set; }
         public DateTime LastStatusDate { get; set; }
         public int ApplicationTypeID { get; set; }
         public decimal PaidFees { get; set; }
@@ -21,7 +21,6 @@ namespace DVLD_Business
         public string CreatedByUserName { get; set; }
         public int PassedTests { get; set; }
         public string ApplicationStatusName { get; set; }
-
 
         public clsApplication()
         {
@@ -33,6 +32,35 @@ namespace DVLD_Business
             this.ApplicationTypeID = 1;
             this.PaidFees = 0;
             this.CreatedByUserID = -1;
+        }
+
+        private clsApplication(int applicationID, int applicantPersonID, DateTime applicationDate, int applicationTypeID,
+                byte applicationStatus, DateTime lastStatusDate, decimal paidFees, int createdByUserID)
+        {
+            this.ApplicationID = applicationID;
+            this.ApplicantPersonID = applicantPersonID;
+            this.ApplicationDate = applicationDate;
+            this.ApplicationStatus = applicationStatus;
+            this.LastStatusDate = lastStatusDate;
+            this.ApplicationTypeID = applicationTypeID;
+            this.PaidFees = paidFees;
+            this.CreatedByUserID = createdByUserID;
+        }
+
+        public static clsApplication Find(int applicationID) {
+
+            int applicantPersonID = 0, applicationTypeID = 0, createdByUserID = 0;
+            DateTime applicationDate = DateTime.Now, lastStatusDate = DateTime.Now;
+            decimal paidFees = 0;
+            byte applicationStatus = 0;
+
+            if (clsApplicationData.FindByApplicationID(applicationID, ref applicantPersonID, ref applicationDate, ref applicationTypeID,
+                ref applicationStatus, ref lastStatusDate, ref paidFees, ref createdByUserID))
+
+                return new clsApplication(applicationID, applicantPersonID, applicationDate, applicationTypeID, applicationStatus,
+                    lastStatusDate,paidFees, createdByUserID);
+            else
+                return null;    
         }
 
         public static string GetFees(int applicationTypeID)

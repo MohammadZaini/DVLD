@@ -22,6 +22,8 @@ namespace DVLD_Business
         public byte IssueReason { get; set; }
         public int CreatedByUserID { get; set; }
 
+
+        public clsApplication Application { get; set; }
         public clsDriver Driver { get; set; }
 
         public clsLicense() {
@@ -36,9 +38,9 @@ namespace DVLD_Business
             IsActive = true;
             IssueReason = 0;
             CreatedByUserID = 0;
+            Application = new clsApplication();
             Driver = new clsDriver();
         }
-
 
         private clsLicense(int licenesID, int applicationID, int driverID, int licenseClassNo, DateTime issueDate,
             DateTime eExpirationDate, string notes, decimal paidFees, bool isActive, byte issueReason, int createdByUserID) { 
@@ -54,6 +56,8 @@ namespace DVLD_Business
             this.IsActive = isActive;
             this.IssueReason = issueReason;
             this.CreatedByUserID = createdByUserID;
+
+            Application = new clsApplication();
         }
 
         public static clsLicense Find(int applicationID) {
@@ -71,6 +75,27 @@ namespace DVLD_Business
 
                 return new clsLicense(licenesID, applicationID,  driverID,  licenseClassNo,  issueDate,
                  expirationDate,  notes,  paidFees,  isActive,  issueReason,  createdByUserID);
+            else
+                return null;
+        }
+
+
+        public static clsLicense FindByLicenseID(int licenesID)
+        {
+
+            int applicationID = 0, driverID = 0, licenseClassNo = 0;
+            DateTime issueDate = DateTime.Now, expirationDate = DateTime.Now;
+            string notes = "";
+            decimal paidFees = 0;
+            bool isActive = false;
+            byte issueReason = 0;
+            int createdByUserID = 0;
+
+            if (clsLicenseData.FindByLicenseID(licenesID, ref applicationID, ref driverID, ref licenseClassNo, ref issueDate,
+                ref expirationDate, ref notes, ref paidFees, ref isActive, ref issueReason, ref createdByUserID))
+
+                return new clsLicense(licenesID, applicationID, driverID, licenseClassNo, issueDate,
+                 expirationDate, notes, paidFees, isActive, issueReason, createdByUserID);
             else
                 return null;
         }
