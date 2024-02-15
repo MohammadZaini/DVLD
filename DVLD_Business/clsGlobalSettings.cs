@@ -25,6 +25,12 @@ namespace DVLD_Business
 
         public enum enLicenseIssueReason { FirstTime = 1, UnknownYet = 2, UnknownYet2 = 3, UnknownYet3 = 4 };
 
+        public enum enApplicationTypes { NewLocalDrivingLicenseService = 1, RenewDrivingLicenseService = 2,
+            ReplacementForALostDrivingLicense = 3, ReplacementForADamagedDrivingLicense = 4, ReleaseDetainedDrivingLicsense = 5,
+            NewInternationalLicense = 6, RetakeDrivingLicenseTestService = 8
+        };
+
+
         public static string GetIssueReasonString(int issueReason)
         {
 

@@ -220,5 +220,38 @@ namespace DVLD_DataAccess
 
             return localLicensesList;
         }
+
+        public static bool IsLicenesValid(int licenseID) {
+
+            bool isValid = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select Valid = 1 From Licenses
+                            Where LicenseID = @licenseID And IsActive = 1 And ExpirationDate > GETDATE() And LicenseClass = 3;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@licenseID", licenseID);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    isValid = true;
+
+
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isValid;
+        }
     }
 }

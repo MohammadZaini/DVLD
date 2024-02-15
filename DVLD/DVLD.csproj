@@ -52,10 +52,16 @@
     <Compile Include="ApplicationTypes\frmApplicationTypes.Designer.cs">
       <DependentUpon>frmApplicationTypes.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationTypes\frmInternationalLicense.cs">
+    <Compile Include="ApplicationTypes\InternationalLicense\frmInternationalDriverInfo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationTypes\frmInternationalLicense.Designer.cs">
+    <Compile Include="ApplicationTypes\InternationalLicense\frmInternationalDriverInfo.Designer.cs">
+      <DependentUpon>frmInternationalDriverInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationTypes\InternationalLicense\frmInternationalLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ApplicationTypes\InternationalLicense\frmInternationalLicense.Designer.cs">
       <DependentUpon>frmInternationalLicense.cs</DependentUpon>
     </Compile>
     <Compile Include="ApplicationTypes\frmListLocalDrivingApplications.cs">
@@ -117,6 +123,12 @@
     </Compile>
     <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmVisionTestAppointment.Designer.cs">
       <DependentUpon>frmVisionTestAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ctrlInternationalLicenseCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlInternationalLicenseCard.Designer.cs">
+      <DependentUpon>ctrlInternationalLicenseCard.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ctrlLicenseCard.cs">
       <SubType>UserControl</SubType>
@@ -249,7 +261,10 @@
     <EmbeddedResource Include="ApplicationTypes\frmApplicationTypes.resx">
       <DependentUpon>frmApplicationTypes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationTypes\frmInternationalLicense.resx">
+    <EmbeddedResource Include="ApplicationTypes\InternationalLicense\frmInternationalDriverInfo.resx">
+      <DependentUpon>frmInternationalDriverInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ApplicationTypes\InternationalLicense\frmInternationalLicense.resx">
       <DependentUpon>frmInternationalLicense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationTypes\frmListLocalDrivingApplications.resx">
@@ -281,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\Tests\frmVisionTestAppointment.resx">
       <DependentUpon>frmVisionTestAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlInternationalLicenseCard.resx">
+      <DependentUpon>ctrlInternationalLicenseCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ctrlLicenseCard.resx">
       <DependentUpon>ctrlLicenseCard.cs</DependentUpon>
@@ -401,5 +419,6 @@
   <ItemGroup>
     <None Include="Resources\Woman 32.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

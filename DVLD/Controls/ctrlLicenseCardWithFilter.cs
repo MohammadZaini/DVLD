@@ -13,6 +13,11 @@ namespace DVLD.Controls
 {
     public partial class ctrlLicenseCardWithFilter : UserControl
     {
+        public int licenseID { get; set; }
+
+        public delegate void DataBackEventHandler(int licenseID);
+
+        public DataBackEventHandler DataBack;
         public ctrlLicenseCardWithFilter()
         {
             InitializeComponent();
@@ -31,7 +36,15 @@ namespace DVLD.Controls
         {
             int licenseID = Convert.ToInt32(txtFilter.Text);
 
-            ctrlLicenseCard1._LoadLicenseInfoDetails(-1, licenseID);
+            this.licenseID = licenseID;
+
+            if (clsLicense.IsLicenseValid(licenseID))
+            { 
+                ctrlLicenseCard1._LoadLicenseInfoDetails(-1, licenseID);
+                DataBack?.Invoke(licenseID);
+            }
+            else
+                MessageBox.Show("License is invalid!", "Failure",MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

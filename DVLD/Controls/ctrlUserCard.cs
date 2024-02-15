@@ -27,10 +27,7 @@ namespace DVLD.Controls
             lblUserID.Text = User.UserID.ToString();
             lblUsername.Text = User.Username;
 
-            if (User.IsActive)
-                lblIsActive.Text = "Yes";
-            else
-                lblIsActive.Text = "No";
+            lblIsActive.Text = User.IsActive ? "Yes" : "No";
         }
     }
 }

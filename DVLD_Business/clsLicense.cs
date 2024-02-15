@@ -118,5 +118,10 @@ namespace DVLD_Business
         public static DataTable ListLocalLicenses(int personID) { 
             return clsLicenseData.ListLocalLicenses(personID);
         }
+
+        public static bool IsLicenseValid(int licenesID) { 
+            
+            return clsLicenseData.IsLicenesValid(licenesID);
+        }
     }
 }
