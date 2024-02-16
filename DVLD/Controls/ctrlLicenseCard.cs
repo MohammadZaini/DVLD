@@ -16,6 +16,7 @@ namespace DVLD.Controls
     {
 
         private clsLicense _license;
+        public int PersonID { get; set; }
         private clsLocalLicenseApplication _localDrivingLicenseApplication;
         public ctrlLicenseCard()
         {
@@ -35,6 +36,8 @@ namespace DVLD.Controls
             FillApplicationInfo();
 
             clsPerson person = _GetPerson();
+
+            PersonID = person.PersonID;
 
             _FillPersonInfo(person);
 

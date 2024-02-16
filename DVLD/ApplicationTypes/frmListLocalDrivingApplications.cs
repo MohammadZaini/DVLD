@@ -284,8 +284,15 @@ namespace DVLD.ApplicationTypes
         {
             int selectedLocalDrivingLicenseAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
 
-            frmLicenseHistory licenseHistory = new frmLicenseHistory(selectedLocalDrivingLicenseAppID);
+            int personID = _GetPersonID(selectedLocalDrivingLicenseAppID);
+
+            frmLicenseHistory licenseHistory = new frmLicenseHistory(personID);
             licenseHistory.ShowDialog();
+        }
+
+        private int _GetPersonID(int localDrivingLicenseAppID) { 
+            return clsLocalLicenseApplication.Find(localDrivingLicenseAppID).Application.ApplicantPersonID;
+
         }
 
         private void deleteApplicationToolStripMenuItem_Click(object sender, EventArgs e)

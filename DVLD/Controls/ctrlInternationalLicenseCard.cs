@@ -49,7 +49,7 @@ namespace DVLD.Controls
             lblApplicationID.Text = _internationalLicense.ApplicationID.ToString();
             lblIsActive.Text = _internationalLicense.IsActive ? "Yes" : "No";
             lblDateOfBirth.Text = person.DateOfBirth.ToString("yyyy/MM/dd");
-            lblDriverID.Text = clsLicense.Find(licenseID).DriverID.ToString();
+            lblDriverID.Text = clsLicense.FindByLicenseID(licenseID).DriverID.ToString();
             lblExpirationDate.Text = _internationalLicense.ExpirationDate.ToString("yyyy/MM/dd");
             pbProfilePic.ImageLocation = person.ImagePath;
         }

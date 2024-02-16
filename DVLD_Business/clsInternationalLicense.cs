@@ -1,6 +1,7 @@
 ﻿using DVLD_DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,7 +76,7 @@ namespace DVLD_Business
             bool isActive = false;
 
 
-            if (clsInternationalLicenseData.FindByInternationlLicenseID(internationLicenseID, ref applicationID, ref driverID,
+            if (clsInternationalLicenseData.FindByInternationalLicenseID(internationLicenseID, ref applicationID, ref driverID,
                 ref issuedUsingLocalLicenseID, ref issueDate, ref expirationDate, ref isActive, ref createdByUserID))
 
                 return new clsInternationalLicense(internationLicenseID, applicationID, driverID,
@@ -83,6 +84,11 @@ namespace DVLD_Business
             else
                 return null;
 
+        }
+
+        public static DataTable ListInternationalLicenses(int applicationID) {
+
+            return clsInternationalLicenseData.ListInternationalLicenses(applicationID);
         }
     }
 }

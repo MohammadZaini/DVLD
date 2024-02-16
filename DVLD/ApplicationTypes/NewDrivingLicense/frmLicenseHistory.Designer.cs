@@ -35,7 +35,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblRecordsCount = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tcLicenses = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvLocalLicensesList = new System.Windows.Forms.DataGridView();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -44,7 +44,7 @@
             this.ctrlPersonCardWithFilter1 = new DVLD.Controls.ctrlPersonCardWithFilter();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
-            this.tabControl1.SuspendLayout();
+            this.tcLicenses.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalLicensesList)).BeginInit();
             this.tabPage2.SuspendLayout();
@@ -89,7 +89,7 @@
             // 
             this.groupBox1.Controls.Add(this.lblRecordsCount);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.tabControl1);
+            this.groupBox1.Controls.Add(this.tcLicenses);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 448);
             this.groupBox1.Name = "groupBox1";
@@ -118,15 +118,16 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "# Records:";
             // 
-            // tabControl1
+            // tcLicenses
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(7, 30);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(944, 182);
-            this.tabControl1.TabIndex = 0;
+            this.tcLicenses.Controls.Add(this.tabPage1);
+            this.tcLicenses.Controls.Add(this.tabPage2);
+            this.tcLicenses.Location = new System.Drawing.Point(7, 30);
+            this.tcLicenses.Name = "tcLicenses";
+            this.tcLicenses.SelectedIndex = 0;
+            this.tcLicenses.Size = new System.Drawing.Size(944, 182);
+            this.tcLicenses.TabIndex = 0;
+            this.tcLicenses.SelectedIndexChanged += new System.EventHandler(this.tcLicenses_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -166,11 +167,15 @@
             // 
             // dgvInternationalLicensesList
             // 
+            this.dgvInternationalLicensesList.AllowUserToAddRows = false;
+            this.dgvInternationalLicensesList.AllowUserToDeleteRows = false;
+            this.dgvInternationalLicensesList.AllowUserToOrderColumns = true;
             this.dgvInternationalLicensesList.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvInternationalLicensesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInternationalLicensesList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvInternationalLicensesList.Location = new System.Drawing.Point(3, 3);
             this.dgvInternationalLicensesList.Name = "dgvInternationalLicensesList";
+            this.dgvInternationalLicensesList.ReadOnly = true;
             this.dgvInternationalLicensesList.Size = new System.Drawing.Size(930, 147);
             this.dgvInternationalLicensesList.TabIndex = 0;
             // 
@@ -214,7 +219,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
+            this.tcLicenses.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalLicensesList)).EndInit();
             this.tabPage2.ResumeLayout(false);
@@ -231,7 +236,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl tcLicenses;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label lblRecordsCount;

@@ -373,6 +373,7 @@
             // lbShowLicenseHistory
             // 
             this.lbShowLicenseHistory.AutoSize = true;
+            this.lbShowLicenseHistory.Enabled = false;
             this.lbShowLicenseHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbShowLicenseHistory.Location = new System.Drawing.Point(18, 667);
             this.lbShowLicenseHistory.Name = "lbShowLicenseHistory";
@@ -397,7 +398,7 @@
             // 
             // ctrlLicenseCardWithFilter1
             // 
-            this.ctrlLicenseCardWithFilter1.licenseID = 0;
+            this.ctrlLicenseCardWithFilter1.LicenseID = 0;
             this.ctrlLicenseCardWithFilter1.Location = new System.Drawing.Point(12, 106);
             this.ctrlLicenseCardWithFilter1.Name = "ctrlLicenseCardWithFilter1";
             this.ctrlLicenseCardWithFilter1.Size = new System.Drawing.Size(801, 395);
@@ -419,6 +420,7 @@
             // 
             // btnIssue
             // 
+            this.btnIssue.Enabled = false;
             this.btnIssue.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIssue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIssue.Image = ((System.Drawing.Image)(resources.GetObject("btnIssue.Image")));

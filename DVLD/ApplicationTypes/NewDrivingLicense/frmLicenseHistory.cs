@@ -13,32 +13,36 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 {
     public partial class frmLicenseHistory : Form
     {
-        private clsLocalLicenseApplication _localDrivingLicenseApplication;
-
-        public frmLicenseHistory(int localDrivingLicensAppID)
+        private int _personID;
+        public frmLicenseHistory(int personID)
         {
             InitializeComponent();
             CenterToScreen();
 
-            _localDrivingLicenseApplication = clsLocalLicenseApplication.Find(localDrivingLicensAppID);
+            _personID = personID;
 
-            if (_localDrivingLicenseApplication == null)
-                return;
-
-            int personID = _localDrivingLicenseApplication.Application.ApplicantPersonID;
-
-            ctrlPersonCardWithFilter1.LoadUserData(personID);
+            ctrlPersonCardWithFilter1.LoadUserData(_personID);
         }
 
         private void _ListLocalLicenses() {
-            int personID = _localDrivingLicenseApplication.Application.ApplicantPersonID;
-            dgvLocalLicensesList.DataSource = clsLicense.ListLocalLicenses(personID);
+            dgvLocalLicensesList.DataSource = clsLicense.ListLocalLicenses(_personID);
 
             dgvLocalLicensesList.Columns["Class Name"].Width = 210;
             dgvLocalLicensesList.Columns["Issue Date"].Width = 180;
             dgvLocalLicensesList.Columns["Expiration Date"].Width = 180;
 
             lblRecordsCount.Text = dgvLocalLicensesList.RowCount.ToString();    
+        }
+
+        private void _ListInternationalLicenses()
+        {
+            dgvInternationalLicensesList.DataSource = clsInternationalLicense.ListInternationalLicenses(_personID);
+
+            if (dgvInternationalLicensesList.RowCount == 0) return;
+
+            dgvInternationalLicensesList.Columns["Issue Date"].Width = 180;
+            dgvInternationalLicensesList.Columns["Expiration Date"].Width = 180;
+            lblRecordsCount.Text = dgvInternationalLicensesList.RowCount.ToString();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -53,7 +57,18 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 
         private void frmLicenseHistory_Load(object sender, EventArgs e)
         {
+            _ListInternationalLicenses();
             _ListLocalLicenses();
+        }
+
+        private void tcLicenses_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TabPage localLicensePage = tcLicenses.TabPages[0];
+
+            if (tcLicenses.SelectedTab == localLicensePage)
+                lblRecordsCount.Text = dgvLocalLicensesList.RowCount.ToString();
+            else
+                lblRecordsCount.Text = dgvInternationalLicensesList.RowCount.ToString();
         }
     }
 }

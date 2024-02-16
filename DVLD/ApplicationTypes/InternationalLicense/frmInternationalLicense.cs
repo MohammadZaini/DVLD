@@ -17,20 +17,20 @@ namespace DVLD.ApplicationTypes
     {
         private clsLicense _localLicense;
         private clsInternationalLicense _internationalLicense;
+        private int _personID;
         public frmInternationalLicense()
         {
             InitializeComponent();
             CenterToScreen();
 
-            ctrlLicenseCardWithFilter1.DataBack += _UpdateLocalLicenseID;
+            ctrlLicenseCardWithFilter1.DataBack += _UpdateUIOnSearchButtonClicked;
         }
         private void _UpdateApplicationInfoUI() {
             lblApplicationDate.Text = DateTime.Now.ToString("yyyy/MM/dd");
             lblIssueDate.Text = DateTime.Now.ToString("yyyy/MM/dd");
             lblFees.Text = _GetInternationlLicenseAppFees().ToString();
             lblExpirationDate.Text = DateTime.Now.AddYears(1).ToString("yyyy/MM/dd");
-            lblCreatedBy.Text = clsGlobalSettings.LoggedInUser.Username;
-           
+            lblCreatedBy.Text = clsGlobalSettings.LoggedInUser.Username;           
         }
 
         private int _GetInternationlLicenseAppFees() { 
@@ -45,6 +45,7 @@ namespace DVLD.ApplicationTypes
         private void frmInternationalLicense_Load(object sender, EventArgs e)
         {
             _UpdateApplicationInfoUI();
+           // lbShowLicenseInfo.Enabled = true;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -54,11 +55,11 @@ namespace DVLD.ApplicationTypes
 
         private void btnIssue_Click(object sender, EventArgs e)
         {
-            int licenseID = ctrlLicenseCardWithFilter1.licenseID;
+            int licenseID = ctrlLicenseCardWithFilter1.LicenseID;
 
             if (clsInternationalLicense.IsInternationalLicenseExist(licenseID))
             {
-                MessageBox.Show("This individual already has a International License!", "Failure", MessageBoxButtons.OK, 
+                MessageBox.Show("This individual already has an International License!", "Failure", MessageBoxButtons.OK, 
                     MessageBoxIcon.Error);
 
                 return;
@@ -133,11 +134,17 @@ namespace DVLD.ApplicationTypes
 
         private void lbShowLicenseHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //frmLicenseHistory licenseHistory = new frmLicenseHistory();
+            frmLicenseHistory licenseHistory = new frmLicenseHistory(_personID);
+            licenseHistory.ShowDialog();
         }
 
-        private void _UpdateLocalLicenseID(int localLicenseID) { 
-            lblLocalLicenseID.Text = localLicenseID.ToString(); 
+        private void _UpdateUIOnSearchButtonClicked(int localLicenseID,  int personID ,bool controlState) { 
+            _personID = personID;
+            lblLocalLicenseID.Text = localLicenseID.ToString();
+            btnIssue.Enabled = controlState;
+            lbShowLicenseInfo.Enabled = !controlState;
+            lbShowLicenseHistory.Enabled = true;
         }
+
     }
 }

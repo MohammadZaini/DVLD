@@ -13,7 +13,7 @@ namespace DVLD_Business
     {
 
         public int LocalLicenseApplicationID { get; set; }
-
+        public int ApplicationID { get; set; }
         public int LocalLicenseClassID { get; set; }
 
         public string LicenseClassName { get; set; }

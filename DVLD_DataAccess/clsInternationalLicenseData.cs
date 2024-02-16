@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace DVLD_DataAccess
     public static class clsInternationalLicenseData
     {
 
-        public static bool FindByInternationlLicenseID(int internationalLicenseID, ref int applicationID, ref int driverID, 
+        public static bool FindByInternationalLicenseID(int internationalLicenseID, ref int applicationID, ref int driverID, 
                 ref int issuedUsingLocalLicenseID, ref DateTime issueDate, ref DateTime expirationDate, ref bool isActive, 
                 ref int createdByUserID)
         {
@@ -139,6 +140,47 @@ namespace DVLD_DataAccess
             }
 
             return isFound;
+        }
+
+        public static DataTable ListInternationalLicenses(int personID) {
+
+            DataTable localLicensesList = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select  [Int.LicenseID] = InternationalLicenseID, [Application ID] = InternationalLicenses.ApplicationID, [L.License ID] = IssuedUsingLocalLicenseID, [Issue Date] = IssueDate, [Expiration Date] = ExpirationDate, 
+                             [Is Active] = IsActive
+                             From InternationalLicenses
+                             Inner Join Applications
+                             On InternationalLicenses.ApplicationID = Applications.ApplicationID
+                             Inner Join People
+                             On People.PersonID = Applications.ApplicantPersonID
+                             Where PersonID = @personID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@personID", personID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    localLicensesList.Load(reader);
+
+                reader.Close();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return localLicensesList;
         }
     }
 }
