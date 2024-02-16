@@ -61,6 +61,57 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
+
+        public static bool FindByLocalLicenseID(int issuedUsingLocalLicenseID, ref int internationalLicenseID, ref int applicationID, ref int driverID,
+                 ref DateTime issueDate, ref DateTime expirationDate, ref bool isActive,
+                ref int createdByUserID)
+        {
+
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select * From InternationalLicenses
+                             Where IssuedUsingLocalLicenseID = @issuedUsingLocalLicenseID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@issuedUsingLocalLicenseID", issuedUsingLocalLicenseID);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.Read())
+                {
+
+                    isFound = true;
+
+                    internationalLicenseID = (int)reader["InternationalLicenseID"];
+                    applicationID = (int)reader["ApplicationID"];
+                    driverID = (int)reader["DriverID"];
+                    issueDate = (DateTime)reader["IssueDate"];
+                    expirationDate = (DateTime)reader["ExpirationDate"];
+                    isActive = (bool)reader["IsActive"];
+                    createdByUserID = (int)reader["CreatedByUserID"];
+                }
+
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+
+            }
+
+
+            return isFound;
+        }
+
         public static int AddNewInternationalLicense(int applicationID, int driverID, int issuedUsingLocalLicenseID, 
             DateTime issueDate, DateTime expirationDate, bool isActive, int createdByUserID) {
 
@@ -142,7 +193,7 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
-        public static DataTable ListInternationalLicenses(int personID) {
+        public static DataTable GetInternationalLicense(int personID) {
 
             DataTable localLicensesList = new DataTable();
 
@@ -182,5 +233,47 @@ namespace DVLD_DataAccess
 
             return localLicensesList;
         }
+
+
+        public static DataTable ListInternationalLicenses()
+        {
+
+            DataTable localLicensesList = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select  [Int.LicenseID] = InternationalLicenseID, [Application ID] = InternationalLicenses.ApplicationID, [L.License ID] = IssuedUsingLocalLicenseID, [Issue Date] = IssueDate, [Expiration Date] = ExpirationDate, 
+                             [Is Active] = IsActive
+                             From InternationalLicenses
+                             Inner Join Applications
+                             On InternationalLicenses.ApplicationID = Applications.ApplicationID
+                             Inner Join People
+                             On People.PersonID = Applications.ApplicantPersonID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    localLicensesList.Load(reader);
+
+                reader.Close();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return localLicensesList;
+        }
+
     }
 }

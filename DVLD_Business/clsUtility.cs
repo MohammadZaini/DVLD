@@ -60,7 +60,6 @@ namespace DVLD_Business
         public static bool IsPasswordMatch(string password, string confirmPassword) {
             return password == confirmPassword;
         }
-
         public static bool IsDigit(char inputChar) {
             return (!char.IsDigit(inputChar) && !char.IsControl(inputChar));
         }

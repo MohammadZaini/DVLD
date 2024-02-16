@@ -1,4 +1,5 @@
 ﻿using DVLD.ApplicationTypes;
+using DVLD.ApplicationTypes.InternationalLicense;
 using DVLD.ApplicationTypes.NewDrivingLicense;
 using DVLD.Drivers;
 using DVLD.People;
@@ -95,6 +96,12 @@ namespace DVLD
         {
             frmInternationalLicense internationalLicenseAppFrm = new frmInternationalLicense();
             internationalLicenseAppFrm.ShowDialog();
+        }
+
+        private void internationalDrivingLiceseApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListInternationalLicenseApplications internationalLicenseApplications = new frmListInternationalLicenseApplications();
+            internationalLicenseApplications.ShowDialog();
         }
     }
 }

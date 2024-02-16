@@ -16,7 +16,7 @@ namespace DVLD.Controls
         public int LicenseID { get; set; }
         public int PersonID { get; set; }
 
-    public delegate void DataBackEventHandler(int licenseID, int personID ,bool controlState);
+    public delegate void DataBackEventHandler(int licenseID, int personID , int internationalLicenseID, bool controlState);
 
         public DataBackEventHandler DataBack;
         public ctrlLicenseCardWithFilter()
@@ -39,29 +39,70 @@ namespace DVLD.Controls
 
             int enteredLicenseID = Convert.ToInt32(txtFilter.Text);
 
+            if (!_IsLocalLicenseExist(enteredLicenseID))
+            {
+                MessageBox.Show($"There is no local license with ID = {enteredLicenseID}!", "Failure", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
 
-            this.LicenseID = enteredLicenseID;
+            _LoadLicenseInfo(enteredLicenseID);
+        }
+      
+        private void _LoadLicenseInfo(int enteredLicenseID) {
+
+            LicenseID = enteredLicenseID;
             _LoadLicenseCardInfo(enteredLicenseID);
 
-            PersonID = ctrlLicenseCard1.PersonID;
-            DataBack?.Invoke(enteredLicenseID, PersonID, true);
+            int internationalLicenseID = _GetInternationalID();
 
-            if (clsInternationalLicense.IsInternationalLicenseExist(enteredLicenseID))
+            PersonID = ctrlLicenseCard1.PersonID;
+            DataBack?.Invoke(enteredLicenseID, PersonID, internationalLicenseID, true);
+
+            if (!_IsLicenseValid(enteredLicenseID))
             {
-                DataBack?.Invoke(enteredLicenseID, PersonID , false);
+                DataBack?.Invoke(enteredLicenseID, PersonID, internationalLicenseID, false);
+                MessageBox.Show("License is invalid!", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+            if (_IsInternationalLicenseExist(enteredLicenseID))
+            {
+                DataBack?.Invoke(enteredLicenseID, PersonID, internationalLicenseID, false);
 
                 MessageBox.Show("This individual already has an International License!", "Failure", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
 
                 return;
             }
-
-            if (!clsLicense.IsLicenseValid(enteredLicenseID))
-                MessageBox.Show("License is invalid!", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void _LoadLicenseCardInfo(int enteredLicenseID) { 
+        private void _LoadLicenseCardInfo(int enteredLicenseID)
+        {
             ctrlLicenseCard1._LoadLicenseInfoDetails(-1, enteredLicenseID);
+        }
+
+        private int _GetInternationalID() {
+
+            clsInternationalLicense internationalLicense = clsInternationalLicense.FindByLicenseID(LicenseID);
+
+            if (internationalLicense == null) return -1;
+
+            return internationalLicense.ID;
+        }
+
+        private bool _IsInternationalLicenseExist(int localLicenseID) {
+            return clsInternationalLicense.IsInternationalLicenseExist(localLicenseID);
+        }
+
+        private bool _IsLocalLicenseExist(int localLicenseID)
+        {
+            return clsLicense.IsLicenseExist(localLicenseID);
+        }
+
+        private bool _IsLicenseValid(int localLicenseID) {
+            return clsLicense.IsLicenseValid(localLicenseID);
         }
     }
 }

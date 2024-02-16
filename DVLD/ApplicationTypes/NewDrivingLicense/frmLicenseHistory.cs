@@ -27,6 +27,8 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
         private void _ListLocalLicenses() {
             dgvLocalLicensesList.DataSource = clsLicense.ListLocalLicenses(_personID);
 
+            if (dgvLocalLicensesList.RowCount == 0) return;
+
             dgvLocalLicensesList.Columns["Class Name"].Width = 210;
             dgvLocalLicensesList.Columns["Issue Date"].Width = 180;
             dgvLocalLicensesList.Columns["Expiration Date"].Width = 180;
@@ -36,7 +38,7 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 
         private void _ListInternationalLicenses()
         {
-            dgvInternationalLicensesList.DataSource = clsInternationalLicense.ListInternationalLicenses(_personID);
+            dgvInternationalLicensesList.DataSource = clsInternationalLicense.GetInternationalLicense(_personID);
 
             if (dgvInternationalLicensesList.RowCount == 0) return;
 

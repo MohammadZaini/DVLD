@@ -18,6 +18,7 @@ namespace DVLD.ApplicationTypes
         private clsLicense _localLicense;
         private clsInternationalLicense _internationalLicense;
         private int _personID;
+        private int _internationalLicenseID;
         public frmInternationalLicense()
         {
             InitializeComponent();
@@ -127,8 +128,11 @@ namespace DVLD.ApplicationTypes
         
         private void lbShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            int internationalLicenseID = _internationalLicense.ID;
-            frmInternationalDriverInfo internationalDriverInfoFrm = new frmInternationalDriverInfo(internationalLicenseID);
+
+            if (_internationalLicense != null)
+                _internationalLicenseID = _internationalLicense.ID;
+
+            frmInternationalDriverInfo internationalDriverInfoFrm = new frmInternationalDriverInfo(_internationalLicenseID);
             internationalDriverInfoFrm.ShowDialog();
         }
 
@@ -138,13 +142,13 @@ namespace DVLD.ApplicationTypes
             licenseHistory.ShowDialog();
         }
 
-        private void _UpdateUIOnSearchButtonClicked(int localLicenseID,  int personID ,bool controlState) { 
+        private void _UpdateUIOnSearchButtonClicked(int localLicenseID,  int personID ,int internationalLicenseID, bool controlState) { 
             _personID = personID;
+            _internationalLicenseID = internationalLicenseID;
             lblLocalLicenseID.Text = localLicenseID.ToString();
             btnIssue.Enabled = controlState;
             lbShowLicenseInfo.Enabled = !controlState;
             lbShowLicenseHistory.Enabled = true;
         }
-
     }
 }

@@ -83,12 +83,33 @@ namespace DVLD_Business
                  issuedUsingLocalLicenseID, issueDate, expirationDate, isActive, createdByUserID);
             else
                 return null;
-
         }
 
-        public static DataTable ListInternationalLicenses(int applicationID) {
+        public static clsInternationalLicense FindByLicenseID(int localLicenseID)
+        {
 
-            return clsInternationalLicenseData.ListInternationalLicenses(applicationID);
+            int applicationID = 0, driverID = 0, internationLicenseID = 0, createdByUserID = 0;
+            DateTime issueDate = DateTime.Now, expirationDate = DateTime.Now;
+            bool isActive = false;
+
+
+            if (clsInternationalLicenseData.FindByLocalLicenseID(localLicenseID, ref internationLicenseID, ref applicationID,
+                ref driverID, ref issueDate, ref expirationDate, ref isActive, ref createdByUserID))
+
+                return new clsInternationalLicense(internationLicenseID, applicationID, driverID,
+                 localLicenseID, issueDate, expirationDate, isActive, createdByUserID);
+            else
+                return null;
+        }
+
+        public static DataTable GetInternationalLicense(int personID) {
+
+            return clsInternationalLicenseData.GetInternationalLicense(personID);
+        }
+
+        public static DataTable ListInternationalLicenses()
+        {
+            return clsInternationalLicenseData.ListInternationalLicenses();
         }
     }
 }

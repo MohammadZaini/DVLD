@@ -253,5 +253,38 @@ namespace DVLD_DataAccess
 
             return isValid;
         }
+
+        public static bool IsLicenseExist(int localLicenseID) {
+            bool isFound = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select * From Licenses
+                             Where LicenseID = @localLicenseID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@localLicenseID", localLicenseID);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                isFound = reader.HasRows;
+
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isFound;
+        }
     }
 }
