@@ -80,7 +80,7 @@ namespace DVLD.Controls
 
         private void _LoadLicenseCardInfo(int enteredLicenseID)
         {
-            ctrlLicenseCard1._LoadLicenseInfoDetails(-1, enteredLicenseID);
+            ctrlLicenseCard1._LoadLicenseInfoDetails(enteredLicenseID);
         }
 
         private int _GetInternationalID() {

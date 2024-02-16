@@ -17,19 +17,15 @@ namespace DVLD.Controls
 
         private clsLicense _license;
         public int PersonID { get; set; }
-        private clsLocalLicenseApplication _localDrivingLicenseApplication;
         public ctrlLicenseCard()
         {
             InitializeComponent();
         }
 
-        public void _LoadLicenseInfoDetails(int localDrivingLicenseAppID, int licenseID) {
+        public void _LoadLicenseInfoDetails(int licenseID) {
 
-            if (licenseID != -1)
-                _InitializeLicenseByLicenseID(licenseID);
-            else
-                _InitializeLicense(localDrivingLicenseAppID);
-
+            _InitializeLicense(licenseID);
+           
             if (_license == null)
                 return;
 
@@ -44,13 +40,7 @@ namespace DVLD.Controls
             _UpdateLicenseUI(person);
         }
 
-        private void _InitializeLicense(int localDrivingLicenseAppID) {
-
-            _localDrivingLicenseApplication = clsLocalLicenseApplication.Find(localDrivingLicenseAppID);
-            _license = clsLicense.Find(_localDrivingLicenseApplication.Application.ApplicationID);
-        }
-
-        private void _InitializeLicenseByLicenseID(int licenseID)
+        private void _InitializeLicense(int licenseID)
         {
             _license = clsLicense.FindByLicenseID(licenseID);
         }

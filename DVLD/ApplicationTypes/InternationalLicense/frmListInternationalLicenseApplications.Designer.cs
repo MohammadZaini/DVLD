@@ -28,33 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmListInternationalLicenseApplications));
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
             this.dgvInternationalLicenseApps = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblRecordsCount = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnAddInternationalLicense = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbFilter = new System.Windows.Forms.ComboBox();
             this.txtFilter = new System.Windows.Forms.TextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showPersonDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showLicenseDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.showPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalLicenseApps)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // btnExit
             // 
-            this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(864, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "X";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnExit.BackColor = System.Drawing.Color.Red;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnExit.ForeColor = System.Drawing.Color.White;
+            this.btnExit.Location = new System.Drawing.Point(864, 12);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(25, 23);
+            this.btnExit.TabIndex = 0;
+            this.btnExit.Text = "X";
+            this.btnExit.UseVisualStyleBackColor = false;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // dgvInternationalLicenseApps
             // 
@@ -63,6 +69,7 @@
             this.dgvInternationalLicenseApps.AllowUserToOrderColumns = true;
             this.dgvInternationalLicenseApps.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvInternationalLicenseApps.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvInternationalLicenseApps.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvInternationalLicenseApps.Location = new System.Drawing.Point(14, 306);
             this.dgvInternationalLicenseApps.Name = "dgvInternationalLicenseApps";
             this.dgvInternationalLicenseApps.ReadOnly = true;
@@ -100,15 +107,16 @@
             this.lblRecordsCount.TabIndex = 6;
             this.lblRecordsCount.Text = "[???]";
             // 
-            // button2
+            // btnAddInternationalLicense
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(813, 230);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(76, 70);
-            this.button2.TabIndex = 4;
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnAddInternationalLicense.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddInternationalLicense.Image = ((System.Drawing.Image)(resources.GetObject("btnAddInternationalLicense.Image")));
+            this.btnAddInternationalLicense.Location = new System.Drawing.Point(813, 230);
+            this.btnAddInternationalLicense.Name = "btnAddInternationalLicense";
+            this.btnAddInternationalLicense.Size = new System.Drawing.Size(76, 70);
+            this.btnAddInternationalLicense.TabIndex = 4;
+            this.btnAddInternationalLicense.UseVisualStyleBackColor = true;
+            this.btnAddInternationalLicense.Click += new System.EventHandler(this.btnAddInternationalLicense_Click);
             // 
             // pictureBox1
             // 
@@ -147,6 +155,7 @@
             this.cbFilter.Name = "cbFilter";
             this.cbFilter.Size = new System.Drawing.Size(178, 21);
             this.cbFilter.TabIndex = 8;
+            this.cbFilter.SelectedIndexChanged += new System.EventHandler(this.cbFilter_SelectedIndexChanged);
             // 
             // txtFilter
             // 
@@ -156,6 +165,44 @@
             this.txtFilter.Size = new System.Drawing.Size(178, 22);
             this.txtFilter.TabIndex = 9;
             this.txtFilter.Visible = false;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+            this.txtFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilter_KeyPress);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showPersonDetailsToolStripMenuItem,
+            this.showLicenseDetailsToolStripMenuItem,
+            this.showPToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(242, 140);
+            // 
+            // showPersonDetailsToolStripMenuItem
+            // 
+            this.showPersonDetailsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("showPersonDetailsToolStripMenuItem.Image")));
+            this.showPersonDetailsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showPersonDetailsToolStripMenuItem.Name = "showPersonDetailsToolStripMenuItem";
+            this.showPersonDetailsToolStripMenuItem.Size = new System.Drawing.Size(241, 38);
+            this.showPersonDetailsToolStripMenuItem.Text = "Show Person Details";
+            this.showPersonDetailsToolStripMenuItem.Click += new System.EventHandler(this.showPersonDetailsToolStripMenuItem_Click);
+            // 
+            // showLicenseDetailsToolStripMenuItem
+            // 
+            this.showLicenseDetailsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("showLicenseDetailsToolStripMenuItem.Image")));
+            this.showLicenseDetailsToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showLicenseDetailsToolStripMenuItem.Name = "showLicenseDetailsToolStripMenuItem";
+            this.showLicenseDetailsToolStripMenuItem.Size = new System.Drawing.Size(241, 38);
+            this.showLicenseDetailsToolStripMenuItem.Text = "Show License Details";
+            this.showLicenseDetailsToolStripMenuItem.Click += new System.EventHandler(this.showLicenseDetailsToolStripMenuItem_Click);
+            // 
+            // showPToolStripMenuItem
+            // 
+            this.showPToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("showPToolStripMenuItem.Image")));
+            this.showPToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showPToolStripMenuItem.Name = "showPToolStripMenuItem";
+            this.showPToolStripMenuItem.Size = new System.Drawing.Size(241, 38);
+            this.showPToolStripMenuItem.Text = "Show Person License History";
+            this.showPToolStripMenuItem.Click += new System.EventHandler(this.showPToolStripMenuItem_Click);
             // 
             // frmListInternationalLicenseApplications
             // 
@@ -167,17 +214,18 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblRecordsCount);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnAddInternationalLicense);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.dgvInternationalLicenseApps);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnExit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmListInternationalLicenseApplications";
             this.Text = "frmListInternationalLicenseApplications";
             this.Load += new System.EventHandler(this.frmListInternationalLicenseApplications_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalLicenseApps)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,15 +233,19 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.DataGridView dgvInternationalLicenseApps;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAddInternationalLicense;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblRecordsCount;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbFilter;
         private System.Windows.Forms.TextBox txtFilter;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem showPersonDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showLicenseDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem showPToolStripMenuItem;
     }
 }

@@ -111,5 +111,9 @@ namespace DVLD_Business
         {
             return clsInternationalLicenseData.ListInternationalLicenses();
         }
+
+        public static DataTable Filter(string filterWord, string type) {
+            return clsInternationalLicenseData.Filter(filterWord, type);
+        }
     }
 }

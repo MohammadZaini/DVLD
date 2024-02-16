@@ -276,7 +276,12 @@ namespace DVLD.ApplicationTypes
         private void showLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int selectedLocalDrivingLicenseAppID = (int)dgvLocalDrivingApps.CurrentRow.Cells[0].Value;
-            frmLicenseDetails licenesDetailsFrm = new frmLicenseDetails(selectedLocalDrivingLicenseAppID);
+
+            int applicationID = clsLocalLicenseApplication.Find(selectedLocalDrivingLicenseAppID).Application.ApplicationID;
+
+            int licenseID = clsLicense.Find(applicationID).ID;
+
+            frmLicenseDetails licenesDetailsFrm = new frmLicenseDetails(licenseID);
             licenesDetailsFrm.ShowDialog();
         }
 

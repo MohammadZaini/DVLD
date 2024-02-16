@@ -234,7 +234,6 @@ namespace DVLD_DataAccess
             return localLicensesList;
         }
 
-
         public static DataTable ListInternationalLicenses()
         {
 
@@ -242,13 +241,7 @@ namespace DVLD_DataAccess
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
 
-            string query = @"Select  [Int.LicenseID] = InternationalLicenseID, [Application ID] = InternationalLicenses.ApplicationID, [L.License ID] = IssuedUsingLocalLicenseID, [Issue Date] = IssueDate, [Expiration Date] = ExpirationDate, 
-                             [Is Active] = IsActive
-                             From InternationalLicenses
-                             Inner Join Applications
-                             On InternationalLicenses.ApplicationID = Applications.ApplicationID
-                             Inner Join People
-                             On People.PersonID = Applications.ApplicantPersonID;";
+            string query = @"Select * From InternationalLicensesView;";
 
             SqlCommand command = new SqlCommand(query, connection);
 
@@ -273,6 +266,40 @@ namespace DVLD_DataAccess
             }
 
             return localLicensesList;
+        }
+
+        public static DataTable Filter(string filterWord, string type)
+        {
+
+            DataTable FilteredData = new DataTable();
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = $"Select * From InternationalLicensesView " +
+                           $"Where [{type}] Like '' + @filterWord + '%';";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@filterWord", filterWord);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    FilteredData.Load(reader);
+
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return FilteredData;
         }
 
     }

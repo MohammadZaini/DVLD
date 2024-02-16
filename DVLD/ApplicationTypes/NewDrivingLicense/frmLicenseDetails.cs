@@ -12,12 +12,12 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
 {
     public partial class frmLicenseDetails : Form
     {
-        public frmLicenseDetails(int localDrivingLicenseAppID)
+        public frmLicenseDetails(int licenseID)
         {
             InitializeComponent();
             CenterToScreen();
 
-            ctrlLicenseCard1._LoadLicenseInfoDetails(localDrivingLicenseAppID,-1);
+            ctrlLicenseCard1._LoadLicenseInfoDetails(licenseID);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
