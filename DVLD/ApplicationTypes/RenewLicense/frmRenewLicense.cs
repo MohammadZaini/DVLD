@@ -51,11 +51,6 @@ namespace DVLD.ApplicationTypes.RenewLicense
             return clsLicense.IsLicenseExpired(licenesID);  
         }
 
-        private byte _GetValidityLengthForLicenseClass() {
-
-            return clsLicenseClass.Find(_oldLicense.LicenseClassNo).DefaultValidityLength;
-        } 
-
         private void _UpdateUIOnLicenseSearch(int licenseID, int personID, bool controlState)
         {
             _GetOldLicense(licenseID);
@@ -64,7 +59,7 @@ namespace DVLD.ApplicationTypes.RenewLicense
             btnRenew.Enabled = controlState;
 
             lbShowLicenseHistory.Enabled = true;
-            lblExpirationDate.Text = DateTime.Now.AddYears(_GetValidityLengthForLicenseClass()).ToString(clsGlobalSettings.dateFormat);
+            lblExpirationDate.Text = DateTime.Now.AddYears(clsGlobalSettings.GetValidityLengthForLicenseClass(_oldLicense.LicenseClassNo)).ToString(clsGlobalSettings.dateFormat);
             lblLicenseFees.Text = 20.ToString();
             lblTotalFees.Text = (((int)_GetRenewApplicationFees()) + 20).ToString();
             lblOldLicenseID.Text = licenseID.ToString();
@@ -104,10 +99,11 @@ namespace DVLD.ApplicationTypes.RenewLicense
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (renewLicenseResult == DialogResult.Yes)
+            { 
+                _InitializeRenewedLicense();
+
                 if (_renewedLicense.Save())
                 {
-                    _InitializeRenewedLicense();
-
                     clsLicense.UpdateLicenseActivation(_oldLicense.ID, false);
                     MessageBox.Show("License has been renewed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     lblRenewLicenseAppID.Text = _renewedLicense.ApplicationID.ToString();
@@ -116,7 +112,8 @@ namespace DVLD.ApplicationTypes.RenewLicense
                     btnRenew.Enabled = false;
                 }
                 else
-                    MessageBox.Show("License has Not been renewed...", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);           
+                    MessageBox.Show("License has Not been renewed...", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }                  
         }
 
         private void _InitializeRenewedLicense() {
@@ -134,7 +131,7 @@ namespace DVLD.ApplicationTypes.RenewLicense
             _renewedLicense.Driver.PersonID = _personID;
             _renewedLicense.LicenseClassNo = _oldLicense.LicenseClassNo;
             _renewedLicense.IssueDate = DateTime.Now;
-            _renewedLicense.ExpirationDate = DateTime.Now.AddYears(_GetValidityLengthForLicenseClass());
+            _renewedLicense.ExpirationDate = DateTime.Now.AddYears(clsGlobalSettings.GetValidityLengthForLicenseClass(_oldLicense.LicenseClassNo));
             _renewedLicense.Notes = txtNotes.Text;
             _renewedLicense.PaidFees = 20;
             _renewedLicense.IsActive = true;

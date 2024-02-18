@@ -49,3 +49,4 @@ E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Controls.ctrlInternationalLicenseCar
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.InternationalLicense.frmInternationalDriverInfo.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.InternationalLicense.frmListInternationalLicenseApplications.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.RenewLicense.frmRenewLicense.resources
+E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.ReplaceLicense.frmReplaceLicenseForDamagedLost.resources
