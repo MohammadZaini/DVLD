@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -193,7 +194,8 @@ namespace DVLD_DataAccess
                              On Licenses.ApplicationID = Applications.ApplicationID
                              Inner Join People
                              On People.PersonID = Applications.ApplicantPersonID
-                             Where PersonID = @personID;";
+                             Where PersonID = @personID
+                             Order By [Lic.ID] Desc;";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@personID", personID);
@@ -254,6 +256,101 @@ namespace DVLD_DataAccess
             return isValid;
         }
 
+        public static bool IsLicenseActive(int licenseID) {
+            bool isValid = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select Valid = 1 From Licenses
+                            Where LicenseID = @licenseID And IsActive = 1;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@licenseID", licenseID);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    isValid = true;
+
+
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isValid;
+        }
+
+        public static bool IsLicenseExpired(int licenseID) {
+
+            bool isValid = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select Valid = 1 From Licenses
+                 Where LicenseID = @licenseID And ExpirationDate > GETDATE();";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@licenseID", licenseID);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    isValid = true;
+
+
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isValid;
+        }
+
+        public static bool IsLicenseClassOdinaryDrivingLicense(int licenseID) {
+            bool isValid = false;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select Valid = 1 From Licenses
+                 Where LicenseID = @licenseID And LicenseClass = 3;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@licenseID", licenseID);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                    isValid = true;
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isValid;
+        }
+
         public static bool IsLicenseExist(int localLicenseID) {
             bool isFound = false;
 
@@ -285,6 +382,73 @@ namespace DVLD_DataAccess
             }
 
             return isFound;
+        }
+
+        public static bool IsDetained(int localLicenseID) {
+
+            bool isDetained = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+
+            string query = @"Select detaind = 1 From DetainedLicenses
+                             Where LicenseID = @localLicenseID";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@localLicenseID", localLicenseID);
+
+            try
+            {
+                connection.Open();
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                isDetained = reader.HasRows;
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isDetained;
+        }
+
+        public static bool UpdateLicenseActivation(int licenseID, bool isActive)
+        {
+            bool isUpdated = false;
+
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
+         
+            string query = @"Update Licenses 
+                             Set IsActive = @isActive 
+                             Where licenseID = @licenseID;";
+
+            SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@licenseID", licenseID);
+            command.Parameters.AddWithValue("@isActive", isActive);
+
+            try
+            {
+                connection.Open();
+                int AffectedRows = command.ExecuteNonQuery();
+
+                if (AffectedRows > 0)
+                    isUpdated = true;
+            }
+            catch
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return isUpdated;
         }
     }
 }

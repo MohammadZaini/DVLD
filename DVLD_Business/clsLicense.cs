@@ -58,6 +58,7 @@ namespace DVLD_Business
             this.CreatedByUserID = createdByUserID;
 
             Application = new clsApplication();
+            Driver = new clsDriver();
         }
 
         public static clsLicense Find(int applicationID) {
@@ -128,5 +129,34 @@ namespace DVLD_Business
 
             return clsLicenseData.IsLicenseExist(licenesID);
         }
+
+        public static bool IsLicenseActive(int licenseID) { 
+            return clsLicenseData.IsLicenseActive(licenseID);
+        }
+
+        public static bool IsLicenseExpired(int licenseID)
+        {
+            return clsLicenseData.IsLicenseExpired(licenseID);
+        }
+
+        public static bool IsLicenseClassOdinaryDrivingLicense(int licenseID)
+        {
+            return clsLicenseData.IsLicenseClassOdinaryDrivingLicense(licenseID);
+        }
+
+        public static bool IsDetaind(int licenseID)
+        {
+            return clsLicenseData.IsDetained(licenseID);
+        }
+
+        public  bool RenewLocalLicense() {
+            return this.Save();
+        }
+
+        public static bool UpdateLicenseActivation(int licenseID, bool isActive) {
+
+            return clsLicenseData.UpdateLicenseActivation(licenseID, isActive);
+        }
+
     }
 }

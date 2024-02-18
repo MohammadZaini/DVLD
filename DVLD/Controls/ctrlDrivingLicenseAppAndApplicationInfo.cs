@@ -43,7 +43,7 @@ namespace DVLD.Controls
             lblStatusDate.Text = localLicenseApplication.Application.LastStatusDate.ToString("yyyy/MM/dd");
             lblDate.Text = localLicenseApplication.Application.LastStatusDate.ToString("yyyy/MM/dd");
             lblFees.Text = clsApplication.GetFees(localLicenseApplication.Application.ApplicationTypeID);
-            lblType.Text = clsApplicationType.Find(localLicenseApplication.Application.ApplicationTypeID).AppTitle;
+            lblType.Text = clsApplicationType.Find(localLicenseApplication.Application.ApplicationTypeID).Title;
         }
 
         private void ctrlDrivingLicenseAppAndApplicationInfo_Load(object sender, EventArgs e)

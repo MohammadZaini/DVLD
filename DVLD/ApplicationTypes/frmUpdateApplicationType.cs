@@ -29,8 +29,8 @@ namespace DVLD.ApplicationTypes
             _ApplicationType = clsApplicationType.Find(_AppTypeID);
 
             if (_ApplicationType != null) {
-                txtTitle.Text = _ApplicationType.AppTitle;
-                txtFees.Text = _ApplicationType.AppFees.ToString();
+                txtTitle.Text = _ApplicationType.Title;
+                txtFees.Text = _ApplicationType.Fees.ToString();
             }
         }
 
@@ -43,8 +43,8 @@ namespace DVLD.ApplicationTypes
         {
             if (_ApplicationType != null) { 
                 
-                _ApplicationType.AppTitle = txtTitle.Text;
-                _ApplicationType.AppFees = Convert.ToDecimal(txtFees.Text);
+                _ApplicationType.Title = txtTitle.Text;
+                _ApplicationType.Fees = Convert.ToDecimal(txtFees.Text);
 
                 if (_ApplicationType.Save())
                     MessageBox.Show("Data Saved Successfully");

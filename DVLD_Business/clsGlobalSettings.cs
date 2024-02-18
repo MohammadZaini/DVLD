@@ -23,7 +23,7 @@ namespace DVLD_Business
 
         public enum localApplicationMode { New = 1, Cancelled = 2, Completed = 3 };
 
-        public enum enLicenseIssueReason { FirstTime = 1, UnknownYet = 2, UnknownYet2 = 3, UnknownYet3 = 4 };
+        public enum enLicenseIssueReason { FirstTime = 1, Renew = 2, UnknownYet2 = 3, UnknownYet3 = 4 };
 
         public enum enApplicationTypes { NewLocalDrivingLicenseService = 1, RenewDrivingLicenseService = 2,
             ReplacementForALostDrivingLicense = 3, ReplacementForADamagedDrivingLicense = 4, ReleaseDetainedDrivingLicsense = 5,
@@ -39,8 +39,8 @@ namespace DVLD_Business
                 case (int)enLicenseIssueReason.FirstTime:
                     return "First Time";
 
-                case (int)enLicenseIssueReason.UnknownYet:
-                    return "UnknownYet";
+                case (int)enLicenseIssueReason.Renew:
+                    return "Renew";
 
                 case (int)enLicenseIssueReason.UnknownYet2:
                     return "UnknownYet2";
@@ -51,6 +51,9 @@ namespace DVLD_Business
 
             return "Unkown";
         }
+
+        public static string dateFormat = "yyyy/MM/dd";
+         
 
     }
 }

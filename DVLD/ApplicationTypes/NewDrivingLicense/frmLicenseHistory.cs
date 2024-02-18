@@ -72,5 +72,12 @@ namespace DVLD.ApplicationTypes.NewDrivingLicense
             else
                 lblRecordsCount.Text = dgvInternationalLicensesList.RowCount.ToString();
         }
+
+        private void showLicenseInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int selectedLicenseID = (int)dgvLocalLicensesList.CurrentRow.Cells[0].Value;
+            frmLicenseDetails licenseDetails = new frmLicenseDetails(selectedLicenseID);
+            licenseDetails.ShowDialog();
+        }
     }
 }

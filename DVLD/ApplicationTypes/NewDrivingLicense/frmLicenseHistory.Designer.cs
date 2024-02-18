@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLicenseHistory));
             this.btnExit = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblRecordsCount = new System.Windows.Forms.Label();
@@ -41,14 +41,18 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgvInternationalLicensesList = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ctrlPersonCardWithFilter1 = new DVLD.Controls.ctrlPersonCardWithFilter();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showLicenseInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.tcLicenses.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalLicensesList)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalLicensesList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnExit
@@ -63,16 +67,6 @@
             this.btnExit.Text = "X";
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 196);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(170, 201);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 2;
-            this.pictureBox1.TabStop = false;
             // 
             // label1
             // 
@@ -147,6 +141,7 @@
             this.dgvLocalLicensesList.AllowUserToOrderColumns = true;
             this.dgvLocalLicensesList.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvLocalLicensesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLocalLicensesList.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvLocalLicensesList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLocalLicensesList.Location = new System.Drawing.Point(3, 3);
             this.dgvLocalLicensesList.Name = "dgvLocalLicensesList";
@@ -176,7 +171,7 @@
             this.dgvInternationalLicensesList.Location = new System.Drawing.Point(3, 3);
             this.dgvInternationalLicensesList.Name = "dgvInternationalLicensesList";
             this.dgvInternationalLicensesList.ReadOnly = true;
-            this.dgvInternationalLicensesList.Size = new System.Drawing.Size(930, 147);
+            this.dgvInternationalLicensesList.Size = new System.Drawing.Size(930, 150);
             this.dgvInternationalLicensesList.TabIndex = 0;
             // 
             // btnClose
@@ -193,6 +188,16 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 196);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(170, 201);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
+            // 
             // ctrlPersonCardWithFilter1
             // 
             this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(188, 74);
@@ -200,6 +205,22 @@
             this.ctrlPersonCardWithFilter1.PersonID = 0;
             this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(776, 356);
             this.ctrlPersonCardWithFilter1.TabIndex = 1;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showLicenseInfoToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(197, 64);
+            // 
+            // showLicenseInfoToolStripMenuItem
+            // 
+            this.showLicenseInfoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("showLicenseInfoToolStripMenuItem.Image")));
+            this.showLicenseInfoToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.showLicenseInfoToolStripMenuItem.Name = "showLicenseInfoToolStripMenuItem";
+            this.showLicenseInfoToolStripMenuItem.Size = new System.Drawing.Size(196, 38);
+            this.showLicenseInfoToolStripMenuItem.Text = " Show License Info";
+            this.showLicenseInfoToolStripMenuItem.Click += new System.EventHandler(this.showLicenseInfoToolStripMenuItem_Click);
             // 
             // frmLicenseHistory
             // 
@@ -216,7 +237,6 @@
             this.Name = "frmLicenseHistory";
             this.Text = "frmLicenseHistory";
             this.Load += new System.EventHandler(this.frmLicenseHistory_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tcLicenses.ResumeLayout(false);
@@ -224,6 +244,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLocalLicensesList)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInternationalLicensesList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -244,5 +266,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DataGridView dgvLocalLicensesList;
         private System.Windows.Forms.DataGridView dgvInternationalLicensesList;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem showLicenseInfoToolStripMenuItem;
     }
 }

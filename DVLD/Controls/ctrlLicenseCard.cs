@@ -52,15 +52,15 @@ namespace DVLD.Controls
             lblLicenseID.Text = _license.ID.ToString();
             lblNationalNo.Text = person.NationalityNo.ToString();
             lblGender.Text = person.Gender == 0 ? "Male" : "Female";
-            lblIssueDate.Text = _license.IssueDate.ToString("yyy/MM/dd");
+            lblIssueDate.Text = _license.IssueDate.ToString(clsGlobalSettings.dateFormat);
             lblIssueReason.Text =  clsGlobalSettings.GetIssueReasonString(_license.IssueReason);
             lblNotes.Text = _license.Notes;
             lblIsActive.Text = _license.IsActive ? "Yes" : "No";
-            lblDateOfBirth.Text = person.DateOfBirth.ToString("yyy/MM/dd");
+            lblDateOfBirth.Text = person.DateOfBirth.ToString(clsGlobalSettings.dateFormat);
             lblDriverID.Text = _license.DriverID.ToString();
-            lblExpirationDate.Text = _license.ExpirationDate.ToString("yyy/MM/dd");
+            lblExpirationDate.Text = _license.ExpirationDate.ToString(clsGlobalSettings.dateFormat);
             pbPersonalPic.ImageLocation = person.ImagePath;
-            lblIsDetained.Text = "Unknown yet";
+            lblIsDetained.Text = clsLicense.IsDetaind(_license.ID) ? "Yes" : "No";
         }
 
         private clsApplication _GetApplication() {         

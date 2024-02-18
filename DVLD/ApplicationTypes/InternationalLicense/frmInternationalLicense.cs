@@ -35,7 +35,7 @@ namespace DVLD.ApplicationTypes
         }
 
         private int _GetInternationlLicenseAppFees() { 
-            return (int)clsApplicationType.Find((int)clsGlobalSettings.enApplicationTypes.NewInternationalLicense).AppFees;
+            return (int)clsApplicationType.Find((int)clsGlobalSettings.enApplicationTypes.NewInternationalLicense).Fees;
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -142,13 +142,43 @@ namespace DVLD.ApplicationTypes
             licenseHistory.ShowDialog();
         }
 
-        private void _UpdateUIOnSearchButtonClicked(int localLicenseID,  int personID ,int internationalLicenseID, bool controlState) { 
+        private void _UpdateUIOnSearchButtonClicked(int localLicenseID,  int personID , bool controlState) { 
             _personID = personID;
-            _internationalLicenseID = internationalLicenseID;
+
+            FillInternationalLicenseObject(localLicenseID);
+
+            if (_internationalLicense != null)
+            {
+                _internationalLicenseID = _internationalLicense.ID;
+                lblInternationalAppID.Text = _internationalLicense.ApplicationID.ToString();
+                lblInternationalLocalLicenseID.Text = _internationalLicense.ID.ToString();
+            }
+
             lblLocalLicenseID.Text = localLicenseID.ToString();
             btnIssue.Enabled = controlState;
             lbShowLicenseInfo.Enabled = !controlState;
             lbShowLicenseHistory.Enabled = true;
+
+            if (controlState == false) return;
+
+            _IsInternationalLicenseExist(localLicenseID);          
+        }
+
+        private void _IsInternationalLicenseExist(int localLicenseID)
+        {         
+            if (clsInternationalLicense.IsInternationalLicenseExist(localLicenseID))
+            {
+                btnIssue.Enabled = false;
+                lbShowLicenseInfo.Enabled = true;
+                MessageBox.Show("This individual already has an International License!", "Failure", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+        private void FillInternationalLicenseObject(int localLicenseID) {
+            _internationalLicense = clsInternationalLicense.FindByLicenseID(localLicenseID);
+
+            if (_internationalLicense == null) return;
         }
     }
 }

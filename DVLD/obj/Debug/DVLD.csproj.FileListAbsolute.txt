@@ -48,3 +48,4 @@ E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.frmInternationalLic
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Controls.ctrlInternationalLicenseCard.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.InternationalLicense.frmInternationalDriverInfo.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.InternationalLicense.frmListInternationalLicenseApplications.resources
+E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.RenewLicense.frmRenewLicense.resources

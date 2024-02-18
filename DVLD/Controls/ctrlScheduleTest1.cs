@@ -67,7 +67,7 @@ namespace DVLD.Controls
             lblTrial.Text = clsLocalLicenseApplication.FailureCount(localLicenseApplication.LocalLicenseApplicationID,(int)_testType).ToString();
 
             const int RetakeTestApplicationTypeID = 8;
-            _retakeTestFees = clsApplicationType.Find(RetakeTestApplicationTypeID).AppFees;
+            _retakeTestFees = clsApplicationType.Find(RetakeTestApplicationTypeID).Fees;
 
             clsTestType testType = clsTestType.Find((int)_testType); // Vision Test
 
@@ -209,7 +209,7 @@ namespace DVLD.Controls
             newApplication.LastStatusDate = DateTime.Now;
 
             clsApplicationType testType = clsApplicationType.Find(retakeTestTypeID);
-            newApplication.PaidFees = testType.AppFees;
+            newApplication.PaidFees = testType.Fees;
             newApplication.CreatedByUserID = clsGlobalSettings.LoggedInUser.UserID;
 
             return newApplication;
