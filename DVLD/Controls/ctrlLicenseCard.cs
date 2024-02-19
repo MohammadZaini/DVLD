@@ -60,7 +60,7 @@ namespace DVLD.Controls
             lblDriverID.Text = _license.DriverID.ToString();
             lblExpirationDate.Text = _license.ExpirationDate.ToString(clsGlobalSettings.dateFormat);
             pbPersonalPic.ImageLocation = person.ImagePath;
-            lblIsDetained.Text = clsLicense.IsDetaind(_license.ID) ? "Yes" : "No";
+            lblIsDetained.Text = clsLicense.IsDetained(_license.ID) ? "Yes" : "No";
         }
 
         private clsApplication _GetApplication() {         

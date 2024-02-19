@@ -144,7 +144,7 @@ namespace DVLD_Business
             return clsLicenseData.IsLicenseClassOdinaryDrivingLicense(licenseID);
         }
 
-        public static bool IsDetaind(int licenseID)
+        public static bool IsDetained(int licenseID)
         {
             return clsLicenseData.IsDetained(licenseID);
         }

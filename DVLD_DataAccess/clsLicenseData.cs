@@ -391,7 +391,7 @@ namespace DVLD_DataAccess
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
 
             string query = @"Select detaind = 1 From DetainedLicenses
-                             Where LicenseID = @localLicenseID";
+                             Where LicenseID = @localLicenseID And IsReleased = 0";
 
             SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@localLicenseID", localLicenseID);
@@ -450,5 +450,6 @@ namespace DVLD_DataAccess
 
             return isUpdated;
         }
+
     }
 }

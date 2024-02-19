@@ -131,8 +131,16 @@ namespace DVLD.ApplicationTypes.ReplaceLicense
 
         private void rbDamagedLicense_CheckedChanged(object sender, EventArgs e)
         {
-            lblApplicationFees.Text = (rbDamagedLicense.Checked ? (int)_GetReplacementForDamagedLicenseApplicationFees() :
-                                     (int)_GetReplacementForLostLicenseApplicationFees()).ToString();
+            if (rbDamagedLicense.Checked)
+            {
+                lblApplicationFees.Text = ((int)_GetReplacementForDamagedLicenseApplicationFees()).ToString();
+                lblReplacementForLostDamagedLicense.Text = "Replacement For Damaged License";
+            }
+            else 
+            {
+                lblApplicationFees.Text = ((int)_GetReplacementForLostLicenseApplicationFees()).ToString();
+                lblReplacementForLostDamagedLicense.Text = "Replacement For Lost License";
+            }
         }
 
         private void _GetOldLicense(int licenseID) {

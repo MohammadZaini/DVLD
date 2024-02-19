@@ -50,3 +50,6 @@ E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.InternationalLicens
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.InternationalLicense.frmListInternationalLicenseApplications.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.RenewLicense.frmRenewLicense.resources
 E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.ApplicationTypes.ReplaceLicense.frmReplaceLicenseForDamagedLost.resources
+E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Detain_Licenses.frmDetainLicense.resources
+E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Detain_Licenses.frmListDetainedLicenses.resources
+E:\C# Full Project\DVLD\DVLD\obj\Debug\DVLD.Detain_Licenses.frmReleaseDetainedLicense.resources

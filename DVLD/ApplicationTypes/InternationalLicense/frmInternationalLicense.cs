@@ -145,6 +145,30 @@ namespace DVLD.ApplicationTypes
         private void _UpdateUIOnSearchButtonClicked(int localLicenseID,  int personID , bool controlState) { 
             _personID = personID;
 
+            _UpdateInternationalLicenseInfo(localLicenseID);
+   
+            lblLocalLicenseID.Text = localLicenseID.ToString();
+            btnIssue.Enabled = controlState;
+            lbShowLicenseInfo.Enabled = !controlState;
+            lbShowLicenseHistory.Enabled = true;
+
+            if (controlState == false) return;
+
+            if (!_IsLicenseClassOdinaryDrivingLicense(localLicenseID))
+            {
+                btnIssue.Enabled = false;
+
+                MessageBox.Show("Local license must be Odinary Driving License in order to issue the international license",
+                    "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                return;
+            }
+
+            _CheckInternationalLicenseExistence(localLicenseID);          
+        }
+
+        private void _UpdateInternationalLicenseInfo(int localLicenseID)
+        {
             FillInternationalLicenseObject(localLicenseID);
 
             if (_internationalLicense != null)
@@ -153,18 +177,9 @@ namespace DVLD.ApplicationTypes
                 lblInternationalAppID.Text = _internationalLicense.ApplicationID.ToString();
                 lblInternationalLocalLicenseID.Text = _internationalLicense.ID.ToString();
             }
-
-            lblLocalLicenseID.Text = localLicenseID.ToString();
-            btnIssue.Enabled = controlState;
-            lbShowLicenseInfo.Enabled = !controlState;
-            lbShowLicenseHistory.Enabled = true;
-
-            if (controlState == false) return;
-
-            _IsInternationalLicenseExist(localLicenseID);          
         }
 
-        private void _IsInternationalLicenseExist(int localLicenseID)
+        private void _CheckInternationalLicenseExistence(int localLicenseID)
         {         
             if (clsInternationalLicense.IsInternationalLicenseExist(localLicenseID))
             {
@@ -179,6 +194,11 @@ namespace DVLD.ApplicationTypes
             _internationalLicense = clsInternationalLicense.FindByLicenseID(localLicenseID);
 
             if (_internationalLicense == null) return;
+        }
+
+        private bool _IsLicenseClassOdinaryDrivingLicense(int localLicenseID) {
+
+            return clsLicense.IsLicenseClassOdinaryDrivingLicense(localLicenseID);
         }
     }
 }

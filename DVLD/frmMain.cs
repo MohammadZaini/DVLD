@@ -3,6 +3,7 @@ using DVLD.ApplicationTypes.InternationalLicense;
 using DVLD.ApplicationTypes.NewDrivingLicense;
 using DVLD.ApplicationTypes.RenewLicense;
 using DVLD.ApplicationTypes.ReplaceLicense;
+using DVLD.Detain_Licenses;
 using DVLD.Drivers;
 using DVLD.People;
 using DVLD.TestTypes;
@@ -116,6 +117,30 @@ namespace DVLD
         {
             frmReplaceLicenseForDamagedLost replaceDamagedLostLicense = new frmReplaceLicenseForDamagedLost();
             replaceDamagedLostLicense.ShowDialog();
+        }
+
+        private void retakeTestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListLocalDrivingApplications localLicenseApplicationsList = new frmListLocalDrivingApplications();
+            localLicenseApplicationsList.ShowDialog();
+        }
+
+        private void detainLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmDetainLicense detainLicense = new frmDetainLicense();
+            detainLicense.ShowDialog();
+        }
+
+        private void managedDetainedLicensesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmListDetainedLicenses detainedLicensesList = new frmListDetainedLicenses();
+            detainedLicensesList.ShowDialog();
+        }
+
+        private void releaseDetainedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReleaseDetainedLicense releaseDetainedLicense = new frmReleaseDetainedLicense();
+            releaseDetainedLicense.ShowDialog();
         }
     }
 }

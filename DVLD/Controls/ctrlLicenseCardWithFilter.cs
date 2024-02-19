@@ -17,21 +17,20 @@ namespace DVLD.Controls
         public int PersonID { get; set; }
         public int ApplicationType { get; set; }
 
-        private enApplicationType _applicationType = enApplicationType.AddNewInternational;
-        private enum enApplicationType { AddNewInternational = 1, RenewLocalLicense = 2, ReplacementForDamageOrLost = 3 , 
-            DetainLicense = 4 }
-
         public delegate void DataBackEventHandler(int licenseID, int personID, bool controlState);
 
         public DataBackEventHandler DataBack;
 
-
-        public delegate void DataBackEventHandler2(int licenseID, int personID, bool controlState);
-        
-        public DataBackEventHandler2 DataBack2;
         public ctrlLicenseCardWithFilter()
         {
             InitializeComponent();
+        }
+
+
+        public void LoadDetainedLicenseInfo(int licenseID) { 
+            ctrlLicenseCard1._LoadLicenseInfoDetails(licenseID);
+            gbFilter.Enabled = false;
+            txtFilter.Text = licenseID.ToString();
         }
 
         private void txtFilter_KeyPress(object sender, KeyPressEventArgs e)
@@ -70,16 +69,13 @@ namespace DVLD.Controls
             if (!clsLicense.IsLicenseActive(enteredLicenseID))
             {
                 DataBack?.Invoke(enteredLicenseID, PersonID, false);
-                //DataBack2?.Invoke(enteredLicenseID, PersonID, false);
 
                 MessageBox.Show("License is Inactive !", "Failure", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 return;
             }
 
-            DataBack?.Invoke(enteredLicenseID, PersonID, true); // International
-
-            //DataBack2?.Invoke(enteredLicenseID, PersonID, true); // Renew         
+            DataBack?.Invoke(enteredLicenseID, PersonID, true); 
         }
 
         private void _LoadLicenseCardInfo(int enteredLicenseID)
@@ -90,55 +86,6 @@ namespace DVLD.Controls
         private bool _IsLocalLicenseExist(int localLicenseID)
         {
             return clsLicense.IsLicenseExist(localLicenseID);
-        }
-
-        private bool _IsLicenseValid(int localLicenseID) {
-            return clsLicense.IsLicenseValid(localLicenseID);
-        }
-
-
-        private void _Test() {
-
-            switch (_applicationType)
-            {
-                case enApplicationType.AddNewInternational:
-                    {
-                        if (!clsLicense.IsLicenseActive(5))
-                        {
-                            MessageBox.Show("Not Active");
-                            break;
-
-                        }
-                        if (!clsLicense.IsLicenseExpired(5))
-                        {
-                            MessageBox.Show("License is Expired");
-                            break;
-
-                        }
-
-                        if (!clsLicense.IsLicenseClassOdinaryDrivingLicense(5))
-                            MessageBox.Show("License must be of type Odinary Driving License");
-                        break;
-                    }
-                    
-                case enApplicationType.RenewLocalLicense:
-                    if (clsLicense.IsLicenseActive(5))
-                        MessageBox.Show("License Is already active and it will expire on [....]");
-                    break;
-                case enApplicationType.ReplacementForDamageOrLost:
-                    if (!clsLicense.IsLicenseActive(5))
-                        MessageBox.Show("Cannot replace a Not Active license");
-                    break;
-                case enApplicationType.DetainLicense:
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void ctrlLicenseCardWithFilter_Load(object sender, EventArgs e)
-        {
-            _applicationType = (enApplicationType)ApplicationType; 
         }
     }
 }
