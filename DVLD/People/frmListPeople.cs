@@ -35,7 +35,7 @@ namespace DVLD.People
 
         private void btnAddPerson_Click(object sender, EventArgs e)
         {
-            frmAddEditPerson frm = new frmAddEditPerson(-1);
+            frmAddEditPerson frm = new frmAddEditPerson();
             frm.ShowDialog();
             _LoadPeople();       
         }

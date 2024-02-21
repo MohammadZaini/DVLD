@@ -16,7 +16,7 @@ namespace DVLD_DataAccess
 
             SqlConnection connection = new SqlConnection(clsDataAccessSettings.connectionString);
 
-            string query = @"Select * From LocalDrivingLicenseApplicationsListView;";
+            string query = @"Select * From LocalDrivingLicenseApplicationsListView Order By [L.D.L.App ID] Desc;";
 
             SqlCommand command = new SqlCommand(query, connection);
 

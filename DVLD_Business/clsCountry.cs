@@ -28,7 +28,7 @@ namespace DVLD_Business
 
             string CountryName = "";
 
-            if (clsCountryData.FindCountryInfoByID(ref CountryID, ref CountryName))
+            if (clsCountryData.FindCountryInfoByID( CountryID, ref CountryName))
                 return new clsCountry(CountryID,CountryName);
             else 
                 return null;
@@ -36,10 +36,9 @@ namespace DVLD_Business
 
         public static clsCountry Find(string CountryName)
         {
-
             int CountryID = -1;
             
-            if (clsCountryData.FindCountryInfoByName(ref CountryID, ref CountryName))
+            if (clsCountryData.FindCountryInfoByName(ref CountryID, CountryName))
                 return new clsCountry(CountryID, CountryName);
             else
                 return null;

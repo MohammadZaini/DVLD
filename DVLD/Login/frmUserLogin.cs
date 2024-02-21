@@ -59,7 +59,6 @@ namespace DVLD
             clsUtility.SaveCredentialsToFile(textFilePath, chkRememberMe.Checked ? credentials : string.Empty);
 
             _ShowMainForm();
-
         }
 
         private void _ShowMainForm() {

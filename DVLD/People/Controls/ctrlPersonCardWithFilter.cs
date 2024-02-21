@@ -20,6 +20,32 @@ namespace DVLD.Controls
             InitializeComponent();
         }
 
+        private bool _showAddPerson = true;
+        public bool ShowAddPerson
+        {
+            get {
+                return _showAddPerson;        
+            }
+
+            set { 
+                _showAddPerson = value;
+                btnAddNewPerson.Visible = _showAddPerson;
+            }
+        }
+
+        private bool _filterEnabled = true;
+        public bool FilterEnabled {
+        
+            get { 
+                return  _filterEnabled;
+            }
+            
+            set { 
+                _filterEnabled = value; 
+                gbFilter.Enabled = _filterEnabled;
+            }
+        }
+
         private void ctrlPersonCardWithFilter_Load(object sender, EventArgs e)
         {
             cbFilters.SelectedIndex = 0;
@@ -75,17 +101,18 @@ namespace DVLD.Controls
             }
         }
 
-        private void btnAddUser_Click(object sender, EventArgs e)
-        {
-            frmAddEditPerson addEditPerson = new frmAddEditPerson(-1);
-            addEditPerson.DataBack += _UpdatePersonCard;
-            addEditPerson.ShowDialog();
-        }
 
-        private void _UpdatePersonCard(int PersonID) {          
+        private void _UpdatePersonCard(int PersonID) {
+            cbFilters.SelectedIndex = 0; // Person ID
             txtFilter.Text = PersonID.ToString();
             ctrlPersonCard1.LoadPersonData(PersonID);
         }
 
+        private void btnAddNewPerson_Click(object sender, EventArgs e)
+        {
+            frmAddEditPerson addEditPerson = new frmAddEditPerson();
+            addEditPerson.DataBack += _UpdatePersonCard; // Subcribe to the event
+            addEditPerson.ShowDialog();
+        }
     }
 }

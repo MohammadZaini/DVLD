@@ -133,7 +133,7 @@ namespace DVLD_DataAccess
 
             return PersonID;
         }
-
+        
         public static bool UpdatePerson(int PersonID, string NationalNo, string FirstName, string SecondName, string ThirdName, string LastName, DateTime DateOfBirth,
             byte Gender, string Address, string Phone, string Email, int NationalityCountryID, string ImagePath) {
 
@@ -184,30 +184,30 @@ namespace DVLD_DataAccess
 
             if (ImagePath != "" && ImagePath != null)
             {
-                string destinationFolderPath = @"C:\\DVLD_People_Images";
-
-                // Ensure the destination folder exists, if not, create it
-                if (!Directory.Exists(destinationFolderPath))
-                {
-                    Directory.CreateDirectory(destinationFolderPath);
-                }
-
-                if (File.Exists(ImagePath)) { 
-                    
-                }
-
-                // Construct the destination path including the file name
-                string destinationImagePath = Path.Combine(destinationFolderPath, Path.GetFileName(ImagePath));
-
-                // Copy the file
-                File.Copy(ImagePath, destinationImagePath, true);
-
-                // Generate a new GUID for the filename
-                string newFileName = Guid.NewGuid().ToString() + Path.GetExtension(destinationImagePath);
-                string newDestinationImagePath = Path.Combine(destinationFolderPath, newFileName);
-
-                // Rename the copied file to the new filename with GUID
-                File.Move(destinationImagePath, newDestinationImagePath);
+                //string destinationFolderPath = @"C:\\DVLD_People_Images";
+                //
+                //// Ensure the destination folder exists, if not, create it
+                //if (!Directory.Exists(destinationFolderPath))
+                //{
+                //    Directory.CreateDirectory(destinationFolderPath);
+                //}
+                //
+                //if (File.Exists(ImagePath)) { 
+                //    
+                //}
+                //
+                //// Construct the destination path including the file name
+                //string destinationImagePath = Path.Combine(destinationFolderPath, Path.GetFileName(ImagePath));
+                //
+                //// Copy the file
+                //File.Copy(ImagePath, destinationImagePath, true);
+                //
+                //// Generate a new GUID for the filename
+                //string newFileName = Guid.NewGuid().ToString() + Path.GetExtension(destinationImagePath);
+                //string newDestinationImagePath = Path.Combine(destinationFolderPath, newFileName);
+                //
+                //// Rename the copied file to the new filename with GUID
+                //File.Move(destinationImagePath, newDestinationImagePath);
 
                 command.Parameters.AddWithValue("@ImagePath", ImagePath);
             }
@@ -268,7 +268,7 @@ namespace DVLD_DataAccess
                     FirstName = (string)reader["FirstName"];
                     SecondName = (string)reader["SecondName"];
 
-                    if (reader["ThirdName"] != null)
+                    if (reader["ThirdName"] != DBNull.Value)
                         ThirdName = (string)reader["ThirdName"];
 
                     LastName = (string)reader["LastName"];
@@ -277,12 +277,12 @@ namespace DVLD_DataAccess
                     Address = (string)reader["Address"];
                     Phone = (string)reader["Phone"];
 
-                    if (reader["Email"] != null)
+                    if (reader["Email"] != DBNull.Value)
                         Email = (string)reader["Email"];
 
                     NationalityCountryID = (int)reader["NationalityCountryID"];
 
-                    if (reader["ImagePath"] != null)
+                    if (reader["ImagePath"] != DBNull.Value)
                         ImagePath = (string)reader["ImagePath"];
 
                 }

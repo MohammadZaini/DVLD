@@ -64,10 +64,10 @@
     <Compile Include="ApplicationTypes\InternationalLicense\frmInternationalLicense.Designer.cs">
       <DependentUpon>frmInternationalLicense.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationTypes\frmListLocalDrivingApplications.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\frmListLocalDrivingApplications.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationTypes\frmListLocalDrivingApplications.Designer.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\frmListLocalDrivingApplications.Designer.cs">
       <DependentUpon>frmListLocalDrivingApplications.cs</DependentUpon>
     </Compile>
     <Compile Include="ApplicationTypes\frmUpdateApplicationType.cs">
@@ -82,52 +82,52 @@
     <Compile Include="ApplicationTypes\InternationalLicense\frmListInternationalLicenseApplications.Designer.cs">
       <DependentUpon>frmListInternationalLicenseApplications.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmAddLocalDrivingLicenseApplication.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\frmAddLocalDrivingLicenseApplication.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmAddLocalDrivingLicenseApplication.Designer.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\frmAddLocalDrivingLicenseApplication.Designer.cs">
       <DependentUpon>frmAddLocalDrivingLicenseApplication.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmIssueDrivingLicenseFirstTime.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\frmIssueDrivingLicenseFirstTime.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmIssueDrivingLicenseFirstTime.Designer.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\frmIssueDrivingLicenseFirstTime.Designer.cs">
       <DependentUpon>frmIssueDrivingLicenseFirstTime.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmLicenseDetails.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\frmLicenseDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmLicenseDetails.Designer.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\frmLicenseDetails.Designer.cs">
       <DependentUpon>frmLicenseDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmLicenseHistory.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\frmLicenseHistory.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmLicenseHistory.Designer.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\frmLicenseHistory.Designer.cs">
       <DependentUpon>frmLicenseHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmLocalLicenseApplicationDetails.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\frmLocalLicenseApplicationDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\frmLocalLicenseApplicationDetails.Designer.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\frmLocalLicenseApplicationDetails.Designer.cs">
       <DependentUpon>frmLocalLicenseApplicationDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmScheduleTest.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\Tests\frmScheduleTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmScheduleTest.Designer.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\Tests\frmScheduleTest.Designer.cs">
       <DependentUpon>frmScheduleTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmTakeTest.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\Tests\frmTakeTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmTakeTest.Designer.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\Tests\frmTakeTest.Designer.cs">
       <DependentUpon>frmTakeTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmVisionTestAppointment.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\Tests\frmVisionTestAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ApplicationTypes\NewDrivingLicense\Tests\frmVisionTestAppointment.Designer.cs">
+    <Compile Include="ApplicationTypes\Local Driving License\Tests\frmVisionTestAppointment.Designer.cs">
       <DependentUpon>frmVisionTestAppointment.cs</DependentUpon>
     </Compile>
     <Compile Include="ApplicationTypes\RenewLicense\frmRenewLicense.cs">
@@ -160,16 +160,17 @@
     <Compile Include="Controls\ctrlLicenseCardWithFilter.Designer.cs">
       <DependentUpon>ctrlLicenseCardWithFilter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ctrlPersonCard.cs">
+    <Compile Include="Global Classes\clsUtil.cs" />
+    <Compile Include="People\Controls\ctrlPersonCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ctrlPersonCard.Designer.cs">
+    <Compile Include="People\Controls\ctrlPersonCard.Designer.cs">
       <DependentUpon>ctrlPersonCard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ctrlPersonCardWithFilter.cs">
+    <Compile Include="People\Controls\ctrlPersonCardWithFilter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ctrlPersonCardWithFilter.Designer.cs">
+    <Compile Include="People\Controls\ctrlPersonCardWithFilter.Designer.cs">
       <DependentUpon>ctrlPersonCardWithFilter.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ctrlScheduleTest1.cs">
@@ -303,7 +304,7 @@
     <EmbeddedResource Include="ApplicationTypes\InternationalLicense\frmInternationalLicense.resx">
       <DependentUpon>frmInternationalLicense.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationTypes\frmListLocalDrivingApplications.resx">
+    <EmbeddedResource Include="ApplicationTypes\Local Driving License\frmListLocalDrivingApplications.resx">
       <DependentUpon>frmListLocalDrivingApplications.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationTypes\frmUpdateApplicationType.resx">
@@ -312,28 +313,28 @@
     <EmbeddedResource Include="ApplicationTypes\InternationalLicense\frmListInternationalLicenseApplications.resx">
       <DependentUpon>frmListInternationalLicenseApplications.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmAddLocalDrivingLicenseApplication.resx">
+    <EmbeddedResource Include="ApplicationTypes\Local Driving License\frmAddLocalDrivingLicenseApplication.resx">
       <DependentUpon>frmAddLocalDrivingLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmIssueDrivingLicenseFirstTime.resx">
+    <EmbeddedResource Include="ApplicationTypes\Local Driving License\frmIssueDrivingLicenseFirstTime.resx">
       <DependentUpon>frmIssueDrivingLicenseFirstTime.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmLicenseDetails.resx">
+    <EmbeddedResource Include="ApplicationTypes\Local Driving License\frmLicenseDetails.resx">
       <DependentUpon>frmLicenseDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmLicenseHistory.resx">
+    <EmbeddedResource Include="ApplicationTypes\Local Driving License\frmLicenseHistory.resx">
       <DependentUpon>frmLicenseHistory.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\frmLocalLicenseApplicationDetails.resx">
+    <EmbeddedResource Include="ApplicationTypes\Local Driving License\frmLocalLicenseApplicationDetails.resx">
       <DependentUpon>frmLocalLicenseApplicationDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\Tests\frmScheduleTest.resx">
+    <EmbeddedResource Include="ApplicationTypes\Local Driving License\Tests\frmScheduleTest.resx">
       <DependentUpon>frmScheduleTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\Tests\frmTakeTest.resx">
+    <EmbeddedResource Include="ApplicationTypes\Local Driving License\Tests\frmTakeTest.resx">
       <DependentUpon>frmTakeTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ApplicationTypes\NewDrivingLicense\Tests\frmVisionTestAppointment.resx">
+    <EmbeddedResource Include="ApplicationTypes\Local Driving License\Tests\frmVisionTestAppointment.resx">
       <DependentUpon>frmVisionTestAppointment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ApplicationTypes\RenewLicense\frmRenewLicense.resx">
@@ -351,10 +352,10 @@
     <EmbeddedResource Include="Controls\ctrlLicenseCardWithFilter.resx">
       <DependentUpon>ctrlLicenseCardWithFilter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ctrlPersonCard.resx">
+    <EmbeddedResource Include="People\Controls\ctrlPersonCard.resx">
       <DependentUpon>ctrlPersonCard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ctrlPersonCardWithFilter.resx">
+    <EmbeddedResource Include="People\Controls\ctrlPersonCardWithFilter.resx">
       <DependentUpon>ctrlPersonCardWithFilter.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ctrlScheduleTest1.resx">
@@ -473,6 +474,11 @@
   <ItemGroup>
     <None Include="Resources\Woman 32.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\Male 512.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Female 512.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

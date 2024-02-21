@@ -183,7 +183,12 @@ namespace DVLD.ApplicationTypes
         private void _DisableNonNewApplicationOptions(string applicationStatus) {
 
             if (applicationStatus == "Cancelled")
+            { 
                 issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = false;
+                cancelApplicationToolStripMenuItem.Enabled = false;
+                editApplicationToolStripMenuItem.Enabled = false;
+                deleteApplicationToolStripMenuItem.Enabled = false;
+            }
 
             scheduleTestToolStripMenuItem.Enabled = false;
         }

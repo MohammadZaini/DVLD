@@ -44,7 +44,7 @@ namespace DVLD_DataAccess
             return CounriesList;
         }
 
-        public static bool FindCountryInfoByID(ref int CountryID, ref string CountryName)
+        public static bool FindCountryInfoByID( int CountryID, ref string CountryName)
         {
             bool isFound = false;
 
@@ -81,7 +81,7 @@ namespace DVLD_DataAccess
             return isFound;
         }
 
-        public static bool FindCountryInfoByName(ref int CountryID, ref string CountryName)
+        public static bool FindCountryInfoByName(ref int CountryID, string CountryName)
         {
             bool isFound = false;
 

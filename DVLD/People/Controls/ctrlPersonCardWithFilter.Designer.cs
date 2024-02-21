@@ -33,7 +33,7 @@
             this.cbFilters = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gbFilter = new System.Windows.Forms.GroupBox();
-            this.btnAddUser = new System.Windows.Forms.Button();
+            this.btnAddNewPerson = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.ctrlPersonCard1 = new DVLD.Controls.ctrlPersonCard();
             this.gbFilter.SuspendLayout();
@@ -74,7 +74,7 @@
             // 
             // gbFilter
             // 
-            this.gbFilter.Controls.Add(this.btnAddUser);
+            this.gbFilter.Controls.Add(this.btnAddNewPerson);
             this.gbFilter.Controls.Add(this.btnSearch);
             this.gbFilter.Controls.Add(this.label3);
             this.gbFilter.Controls.Add(this.cbFilters);
@@ -87,15 +87,15 @@
             this.gbFilter.TabStop = false;
             this.gbFilter.Text = "Filter";
             // 
-            // btnAddUser
+            // btnAddNewPerson
             // 
-            this.btnAddUser.Image = ((System.Drawing.Image)(resources.GetObject("btnAddUser.Image")));
-            this.btnAddUser.Location = new System.Drawing.Point(478, 36);
-            this.btnAddUser.Name = "btnAddUser";
-            this.btnAddUser.Size = new System.Drawing.Size(44, 34);
-            this.btnAddUser.TabIndex = 12;
-            this.btnAddUser.UseVisualStyleBackColor = true;
-            this.btnAddUser.Click += new System.EventHandler(this.btnAddUser_Click);
+            this.btnAddNewPerson.Image = ((System.Drawing.Image)(resources.GetObject("btnAddNewPerson.Image")));
+            this.btnAddNewPerson.Location = new System.Drawing.Point(478, 36);
+            this.btnAddNewPerson.Name = "btnAddNewPerson";
+            this.btnAddNewPerson.Size = new System.Drawing.Size(44, 34);
+            this.btnAddNewPerson.TabIndex = 12;
+            this.btnAddNewPerson.UseVisualStyleBackColor = true;
+            this.btnAddNewPerson.Click += new System.EventHandler(this.btnAddNewPerson_Click);
             // 
             // btnSearch
             // 
@@ -135,7 +135,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox gbFilter;
         private ctrlPersonCard ctrlPersonCard1;
-        private System.Windows.Forms.Button btnAddUser;
+        private System.Windows.Forms.Button btnAddNewPerson;
         private System.Windows.Forms.Button btnSearch;
     }
 }
