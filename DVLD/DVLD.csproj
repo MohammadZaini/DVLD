@@ -179,10 +179,10 @@
     <Compile Include="Controls\ctrlScheduleTest1.Designer.cs">
       <DependentUpon>ctrlScheduleTest1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ctrlUserCard.cs">
+    <Compile Include="Users\ctrlUserCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\ctrlUserCard.Designer.cs">
+    <Compile Include="Users\ctrlUserCard.Designer.cs">
       <DependentUpon>ctrlUserCard.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\ctrlVisionTest.cs">
@@ -361,7 +361,7 @@
     <EmbeddedResource Include="Controls\ctrlScheduleTest1.resx">
       <DependentUpon>ctrlScheduleTest1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\ctrlUserCard.resx">
+    <EmbeddedResource Include="Users\ctrlUserCard.resx">
       <DependentUpon>ctrlUserCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ctrlScheduleTest.resx">

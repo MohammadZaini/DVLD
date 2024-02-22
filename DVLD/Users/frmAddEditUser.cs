@@ -1,4 +1,5 @@
-﻿using DVLD_Business;
+﻿using DVLD.Global_Classes;
+using DVLD_Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,36 +15,50 @@ namespace DVLD.Users
     public partial class frmAddEditUser : Form
     {
 
-        private int _UserID;
+        private int _UserID = -1;
         private clsUser _User;
 
-        enum enMode { Add = 0, Update = 1 };
+        enum enMode { AddNew = 0, Update = 1 };
 
-        private enMode _Mode = enMode.Add;
+        private enMode _Mode = enMode.AddNew;
 
+        public frmAddEditUser()
+        {
+            InitializeComponent();
+            _Mode = enMode.AddNew;
+        }
         public frmAddEditUser(int UserID)
         {
             InitializeComponent();
 
             _UserID = UserID;
-
-            if (UserID == -1)
-                _Mode = enMode.Add;
-            else
-                _Mode = enMode.Update;
-
-            this.StartPosition = FormStartPosition.CenterScreen;
+            _Mode = enMode.Update;
         }
-
+     
         private void btnNext_Click(object sender, EventArgs e)
         {
-            if (!clsUser.IsUser(ctrlPersonCardWithFilter1.PersonID) && ctrlPersonCardWithFilter1.PersonID != 0)
+
+            if (_Mode == enMode.Update)
+            { 
+               btnSave.Enabled = true;
+               tpLoginInfo.Enabled = true;
+               tcUserInfo.SelectedTab = tcUserInfo.TabPages["tpLoginInfo"];
+                return;
+            }
+
+            if (ctrlPersonCardWithFilter1.PersonID == -1)
+            {
+                clsUtil.ShowErrorMessage("Please Select A Person", "Failure");
+                return;
+            }
+             
+            if (!clsUser.IsUserExist(ctrlPersonCardWithFilter1.PersonID) && ctrlPersonCardWithFilter1.PersonID != 0)
             {
                 TabPage LoginInfoTab = tcUserInfo.TabPages[1];
                 tcUserInfo.SelectedTab = LoginInfoTab;
             }
             else
-                MessageBox.Show("This Person is already a User, choose another one","Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                clsUtil.ShowErrorMessage("This Person is already a User, choose another one","Failure");
         }
 
         private void tcUserInfo_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,7 +81,7 @@ namespace DVLD.Users
 
         private void _Load() {
 
-            if (_Mode == enMode.Add) { 
+            if (_Mode == enMode.AddNew) { 
             
                 lblAddEditUser.Text = "Add New User";
                 _User = new clsUser();
@@ -76,6 +91,13 @@ namespace DVLD.Users
             lblAddEditUser.Text = "Update User";
 
             _User = clsUser.Find(_UserID);
+
+            if (_User == null)
+            {
+                clsUtil.ShowErrorMessage("No User Was Found With ID = " + _UserID, "Failure");
+                return;
+            }
+
             ctrlPersonCardWithFilter1.LoadUserData(_User.PersonID);
             lblUserID.Text = _UserID.ToString();
             txtUsername.Text = _User.Username;
@@ -93,8 +115,6 @@ namespace DVLD.Users
         {
             btnSave.Enabled = false;
             _Load();
-
-
         }
 
         private void txtConfirmPassword_Validating(object sender, CancelEventArgs e)
@@ -119,9 +139,37 @@ namespace DVLD.Users
                 e.Cancel = true;
                 txtUsername.Focus();
                 errorProvider1.SetError(txtUsername, "Username cannot be empty");
+                return;
             }
             else
             { 
+                e.Cancel = false;
+                errorProvider1.SetError(txtUsername, "");
+            }
+
+
+            if (_Mode == enMode.Update)
+            {
+                if (_User.Username != txtUsername.Text.Trim())
+                    CheckUsernameExistance(e);
+
+                return;
+            }
+
+            // Add New Mode
+            CheckUsernameExistance(e);
+        }
+
+        private void CheckUsernameExistance(CancelEventArgs e) {
+
+            if (clsUser.IsUserExist(txtUsername.Text.Trim()))
+            {
+                e.Cancel = true;
+                txtUsername.Focus();
+                errorProvider1.SetError(txtUsername, "Username is already in use, choose another one");
+            }
+            else
+            {
                 e.Cancel = false;
                 errorProvider1.SetError(txtUsername, "");
             }
@@ -145,20 +193,28 @@ namespace DVLD.Users
         private void btnSave_Click(object sender, EventArgs e)
         {
 
+            if (!this.ValidateChildren())
+            {
+                clsUtil.ShowErrorMessage("Some fields are not valid!", "Failure");
+                return;
+            }
+
             _User.PersonID = ctrlPersonCardWithFilter1.PersonID;
             _User.Username = txtUsername.Text;
             _User.Password = txtPassword.Text;
             _User.IsActive = chkIsActive.Checked;
 
             if (_User.Save())
-                MessageBox.Show("Data Saved Successfully","User Added",MessageBoxButtons.OK,MessageBoxIcon.Information);
+            {
+                clsUtil.ShowInformationMessage("Data Saved Successfully", "User Added");
+                _Mode = enMode.Update;
+                lblAddEditUser.Text = "Update User";
+                lblUserID.Text = _User.UserID.ToString();
+
+            }
             else
-                MessageBox.Show("Something went wrong","Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            _Mode = enMode.Update;
-            lblAddEditUser.Text = "Update User";
-            lblUserID.Text = _User.UserID.ToString();
-
+                clsUtil.ShowErrorMessage("Something went wrong","Error");
+        
         }
     }
 }

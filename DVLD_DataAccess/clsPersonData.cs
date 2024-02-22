@@ -14,7 +14,7 @@ namespace DVLD_DataAccess
     public static class clsPersonData
     {
 
-        public static DataTable ListPeople() {
+        public static DataTable GetAllPeople() {
 
             DataTable PeopleDataTable = new DataTable();
 

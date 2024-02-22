@@ -48,7 +48,7 @@ namespace DVLD.Controls
         private void _UpdateLicenseUI(clsPerson person ) {
        
             lblLicenseClass.Text = _GetLicenseClassName();
-            lblPersonName.Text = person.FullName();
+            lblPersonName.Text = person.FullName;
             lblLicenseID.Text = _license.ID.ToString();
             lblNationalNo.Text = person.NationalityNo.ToString();
             lblGender.Text = person.Gender == 0 ? "Male" : "Female";

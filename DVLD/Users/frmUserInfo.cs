@@ -13,18 +13,18 @@ namespace DVLD.Users
 {
     public partial class frmUserInfo : Form
     {
-        public frmUserInfo(int PersonID)
+        private int _userID;
+        public frmUserInfo(int userID)
         {
             InitializeComponent();
-            ctrlUserCard1.LoadUserInfo(PersonID);
+            CenterToScreen();
 
-            this.StartPosition = FormStartPosition.CenterScreen;
+            _userID = userID;
         }
 
-
-        private void _UpdatedPersonCard(int PersonID) { 
-        
-
+        private void frmUserInfo_Load(object sender, EventArgs e)
+        {
+            ctrlUserCard1.LoadUserInfo(_userID);
         }
     }
 }

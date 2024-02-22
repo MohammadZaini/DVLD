@@ -23,7 +23,7 @@ namespace DVLD.Controls
 
         private clsPerson _person;
 
-        public clsPerson SelectedPersonInfo { get { return _person; } }
+        public clsPerson Person { get { return _person; } }
         public ctrlPersonCard()
         {
             InitializeComponent();
@@ -80,7 +80,7 @@ namespace DVLD.Controls
             lblEmail.Text = _person.Email;
             lblPhone.Text = _person.Phone;
             lblNationalNo.Text = _person.NationalityNo;
-            lblName.Text = _person.FullName();
+            lblName.Text = _person.FullName;
             lblGender.Text = _person.Gender == 0 ? "Male" : "Female";
             lblCountry.Text = _person.CountryInfo.CountryName;
             pbPersonalPic.ImageLocation = _person.ImagePath;

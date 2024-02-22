@@ -16,21 +16,30 @@ namespace DVLD.People
 {
     public partial class frmListPeople : Form
     {
+
+        private static DataTable _dtAllPeople = clsPerson.GetAllPeople();
+
+        //private DataTable _dtPeople = _dtAllPeople.DefaultView.ToTable(false, "PersonID", "NationalNo",
+        //                                               "FirstName", "SecondName", "ThirdName", "LastName",
+        //                                               "GendorCaption", "DateOfBirth", "CountryName",
+        //                                               "Phone", "Email");
         public frmListPeople()
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;
+            CenterToScreen();
         }
-
+  
         private void _LoadPeople() {
-            dgvPeopleList.DataSource = clsPerson.ListPeople();
+            _dtAllPeople = clsPerson.GetAllPeople();
+            dgvPeopleList.DataSource = _dtAllPeople;
             lblRecordsCount.Text = dgvPeopleList.RowCount.ToString();
-            cbFilters.SelectedIndex = 0;
         }
 
         private void frmListPeople_Load(object sender, EventArgs e)
         {
-            _LoadPeople();
+            dgvPeopleList.DataSource = _dtAllPeople;
+            cbFilters.SelectedIndex = 0;
+            // _LoadPeople();
         }
 
         private void btnAddPerson_Click(object sender, EventArgs e)
@@ -48,10 +57,7 @@ namespace DVLD.People
 
         private void cbFilters_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbFilters.SelectedIndex != 0)
-                txtFilter.Visible = true;
-            else
-                txtFilter.Visible = false;
+            txtFilter.Visible = cbFilters.Text != "None";
         }
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -63,6 +69,7 @@ namespace DVLD.People
         private void addToolStripMenuItem_Click(object sender, EventArgs e)
         {
             btnAddPerson_Click(sender, e);
+            //btnAddPerson.PerformClick();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -90,8 +97,26 @@ namespace DVLD.People
 
         private void txtFilter_TextChanged(object sender, EventArgs e)
         {
-            DataTable FilteredData = clsPerson.Filter(txtFilter.Text, cbFilters.Text.Replace(" ", ""));
-            dgvPeopleList.DataSource = FilteredData;
+
+            string filterColumn = cbFilters.Text.Replace(" ", "");
+
+            //DataTable FilteredData = clsPerson.Filter(txtFilter.Text, filterColumn);
+            //dgvPeopleList.DataSource = FilteredData;
+
+            if (txtFilter.Text == "" || cbFilters.Text == "None")
+            {
+                _dtAllPeople.DefaultView.RowFilter = "";
+                lblRecordsCount.Text = dgvPeopleList.RowCount.ToString();
+                return;
+            }
+
+            if (filterColumn == "PersonID")
+                _dtAllPeople.DefaultView.RowFilter = string.Format("[{0}] = {1}", filterColumn, txtFilter.Text.Trim());
+
+            else
+                _dtAllPeople.DefaultView.RowFilter = string.Format("[{0}] LIKE '{1}%'", filterColumn, txtFilter.Text.Trim());
+
+            lblRecordsCount.Text = dgvPeopleList.RowCount.ToString();
         }
 
         private void txtFilter_KeyPress(object sender, KeyPressEventArgs e)

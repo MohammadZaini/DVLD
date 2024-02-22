@@ -40,7 +40,7 @@ namespace DVLD.Controls
 
             int licenseID = _internationalLicense.IssuedUsingLocalLicenseID;
 
-            lblDriverName.Text = person.FullName();
+            lblDriverName.Text = person.FullName;
             lblInternationalLicenseID.Text = _internationalLicense.ID.ToString();
             lblLocalLicenseID.Text = licenseID.ToString();
             lblNationalNo.Text = person.NationalityNo.ToString();

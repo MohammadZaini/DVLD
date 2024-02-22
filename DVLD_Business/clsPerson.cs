@@ -27,9 +27,12 @@ namespace DVLD_Business
         public int NationalityCountryID { get; set; }
 
         public clsCountry CountryInfo { get; set; }
-        public string FullName() { 
-            return FirstName + " " + SecondName + " " + ThirdName + " " + LastName;
+
+        public string FullName
+        {
+            get { return FirstName + ' ' + SecondName + ' ' + ThirdName + ' ' + LastName; }
         }
+       
         public clsPerson() {
             PersonID = -1;
             FirstName = string.Empty;
@@ -69,8 +72,8 @@ namespace DVLD_Business
 
         }
 
-        public static DataTable ListPeople() { 
-            return clsPersonData.ListPeople();
+        public static DataTable GetAllPeople() { 
+            return clsPersonData.GetAllPeople();
         }
 
         private bool _AddNewPerson() {

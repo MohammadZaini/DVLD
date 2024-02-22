@@ -65,7 +65,7 @@ namespace DVLD.Global_Classes
             return true;
         }
 
-        public static void ShowErrorMessage(string errorMessage, string errorCaption) {
+        public static void ShowErrorMessage(string errorMessage, string errorCaption = "Failure") {
             MessageBox.Show(errorMessage, errorCaption, MessageBoxButtons.OK,MessageBoxIcon.Error);
         }
 

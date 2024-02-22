@@ -17,13 +17,20 @@ namespace DVLD.People
     {
 
         public int  _PersonID;
-        public frmPersonDetails(int PersonID)
+        public frmPersonDetails(int personID)
         {
             InitializeComponent();
             CenterToScreen();
 
-            ctrlPersonCard1.LoadPersonData(PersonID);
+            ctrlPersonCard1.LoadPersonData(personID);
+        }
 
+        public frmPersonDetails(string nationalNo)
+        {
+            InitializeComponent();
+            CenterToScreen();
+
+            ctrlPersonCard1.LoadPersonData(nationalNo);
         }
 
     }

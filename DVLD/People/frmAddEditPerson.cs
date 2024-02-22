@@ -147,16 +147,16 @@ namespace DVLD.People
             if (pbProfilePic.ImageLocation == null) return true;
 
             //then we copy the new image to the image folder after we rename it
-            string SourceImageFile = pbProfilePic.ImageLocation.ToString();
+            string sourceImageFile = pbProfilePic.ImageLocation.ToString();
 
-            if (clsUtil.CopyImageToProjectImagesFolder(ref SourceImageFile))
+            if (clsUtil.CopyImageToProjectImagesFolder(ref sourceImageFile))
             {
-                pbProfilePic.ImageLocation = SourceImageFile;
+                pbProfilePic.ImageLocation = sourceImageFile;
                 return true;
             }
             else
             {
-                MessageBox.Show("Error Copying Image File", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                clsUtil.ShowErrorMessage("Error While Copying Image File", "Error");
                 return false;
             }
         }

@@ -232,7 +232,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1144, 669);
+            this.ClientSize = new System.Drawing.Size(1144, 596);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.txtFilter);
             this.Controls.Add(this.btnAddPerson);

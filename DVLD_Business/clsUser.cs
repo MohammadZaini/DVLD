@@ -26,7 +26,7 @@ namespace DVLD_Business
             this.UserID = -1;
             this.Username = string.Empty;
             this.Password = string.Empty;
-            this.IsActive = false;
+            this.IsActive = true;
             Person = new clsPerson();
         }
 
@@ -37,7 +37,7 @@ namespace DVLD_Business
             this.Password = Password;
             this.IsActive = IsActive;
             this.PersonID = PersonID;
-            Person = new clsPerson();
+            this.Person = clsPerson.Find(PersonID);
 
             _Mode = enMode.Update;
         }
@@ -73,9 +73,29 @@ namespace DVLD_Business
                 return null;
         }
 
-        public static bool IsUser(int PersonID) {
-            return clsUserData.IsUser(PersonID);
+        public static clsUser FindByPersonID(int PersonID)
+        {
+
+            string Username = "";
+            string Password = "";
+            int UserID = 0;
+            bool IsActive = false;
+
+            if (clsUserData.FindByPersonID(PersonID, ref Username, ref UserID, ref Password, ref IsActive))
+                return new clsUser(UserID, PersonID, Username, Password, IsActive);
+            else
+                return null;
         }
+
+        public static bool IsUserExist(int PersonID) {
+            return clsUserData.IsUserExist(PersonID);
+        }
+
+        public static bool IsUserExist(string username)
+        {
+            return clsUserData.IsUserExist(username);
+        }
+
 
         public static DataTable Filter(string filterWord, string type) {
             return clsUserData.Filter(filterWord, type);

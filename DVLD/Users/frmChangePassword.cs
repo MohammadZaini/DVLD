@@ -1,4 +1,5 @@
-﻿using DVLD_Business;
+﻿using DVLD.Global_Classes;
+using DVLD_Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,29 +14,34 @@ namespace DVLD.Users
 {
     public partial class frmChangePassword : Form
     {
-        private int _UserID;
-        public frmChangePassword(int PersonID, int userID)
+        private int _userID;
+        private clsUser _user;
+        public frmChangePassword(int userID)
         {
             InitializeComponent();
-            ctrlUserCard1.LoadUserInfo(PersonID);
-            _UserID = userID;
-
-            this.StartPosition = FormStartPosition.CenterScreen;
+            _userID = userID;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
 
-            if (clsUser.ChangePassword(_UserID, txtNewPassword.Text))
-                MessageBox.Show("Password has changed successfully", "Password Change", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-                MessageBox.Show("Password has NOT changed..", "Password Change", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            if (!this.ValidateChildren())
+            {
+                clsUtil.ShowErrorMessage("Some fields are not valid, hover over the red icon(s) to see the message");
+                return;
+            }
 
+            _user.Password = txtNewPassword.Text.Trim();
+
+            if(_user.Save())
+                clsUtil.ShowInformationMessage("Password has changed successfully", "Password Change");
+            else
+                clsUtil.ShowErrorMessage("Password has NOT changed..", "Password Change");
         }
 
         private void txtCurrentPassword_Validating(object sender, CancelEventArgs e)
         {
-            if (!clsUser.IsPasswordMatch(_UserID, txtCurrentPassword.Text))
+            if (_user.Password != txtCurrentPassword.Text)
             {
                 e.Cancel = true;
                 txtCurrentPassword.Focus();
@@ -84,6 +90,24 @@ namespace DVLD.Users
 
         private void frmChangePassword_Load(object sender, EventArgs e)
         {
+            _ResetDefaultValues();
+
+            _user = clsUser.Find(_userID);
+
+            if (_user == null)
+            {
+                clsUtil.ShowErrorMessage("Couldn't find user with ID: " + _userID);
+                Close();
+                return;
+            }
+
+            ctrlUserCard1.LoadUserInfo(_userID);
+        }
+
+        private void _ResetDefaultValues() {
+            txtCurrentPassword.Text = "";
+            txtNewPassword.Text = "";
+            txtConfirmPassword.Text = "";
             txtCurrentPassword.Focus();
         }
     }

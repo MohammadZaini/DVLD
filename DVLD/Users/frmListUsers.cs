@@ -35,13 +35,14 @@ namespace DVLD.Users
 
         private void addNewUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmAddEditUser AddNewUser = new frmAddEditUser(-1);
+            frmAddEditUser AddNewUser = new frmAddEditUser();
             AddNewUser.ShowDialog();
         }
 
         private void showDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmUserInfo UserInfo = new frmUserInfo((int)dgvListUsers.CurrentRow.Cells[1].Value);
+            // Send the USER ID to the constructor
+            frmUserInfo UserInfo = new frmUserInfo((int)dgvListUsers.CurrentRow.Cells[0].Value);
             UserInfo.ShowDialog();
 
         }
@@ -82,7 +83,7 @@ namespace DVLD.Users
 
         private void btnAddUser_Click(object sender, EventArgs e)
         {
-            frmAddEditUser AddNewUser = new frmAddEditUser(-1);
+            frmAddEditUser AddNewUser = new frmAddEditUser();
             AddNewUser.ShowDialog();
             _ListUsers();
         }
@@ -96,10 +97,8 @@ namespace DVLD.Users
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            int UserID = (int)dgvListUsers.CurrentRow.Cells[0].Value;
-            int PersonID = (int)dgvListUsers.CurrentRow.Cells[1].Value;
-
-            frmChangePassword ChangePasswordfrm = new frmChangePassword(PersonID,UserID);
+            // Send User ID to Change Password Form
+            frmChangePassword ChangePasswordfrm = new frmChangePassword((int)dgvListUsers.CurrentRow.Cells[0].Value);
             ChangePasswordfrm.ShowDialog();
         }
 

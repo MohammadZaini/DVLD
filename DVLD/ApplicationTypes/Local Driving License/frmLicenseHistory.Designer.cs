@@ -202,7 +202,6 @@
             // 
             this.ctrlPersonCardWithFilter1.Location = new System.Drawing.Point(188, 74);
             this.ctrlPersonCardWithFilter1.Name = "ctrlPersonCardWithFilter1";
-            this.ctrlPersonCardWithFilter1.PersonID = 0;
             this.ctrlPersonCardWithFilter1.Size = new System.Drawing.Size(776, 356);
             this.ctrlPersonCardWithFilter1.TabIndex = 1;
             // 

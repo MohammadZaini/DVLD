@@ -5,9 +5,11 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DVLD.Global_Classes;
 using DVLD_Business;
 
 
@@ -36,19 +38,19 @@ namespace DVLD
            
             if (User == null) 
             {
-                _ShowErrorMessage("Username/Password is incorrect");
+                clsUtil.ShowErrorMessage("Username/Password is incorrect", "Invalid Credentials");
                 return;
             }
 
             if ((User.Username != txtUsername.Text) || (User.Password != txtPassword.Text))
             {
-                _ShowErrorMessage("Username/Password is incorrect");
+                clsUtil.ShowErrorMessage("Username/Password is incorrect", "Invalid Credentials");
                 return;
             }
 
             if (!User.IsActive)
             {
-                _ShowErrorMessage("Your account is deactivated, please contact your admin");
+                clsUtil.ShowErrorMessage("Your account is deactivated, please contact your admin", "Account Deactivated");
                 return;
             }
 
@@ -69,10 +71,6 @@ namespace DVLD
             this.Dispose();
         }
 
-        private void _ShowErrorMessage(string message) { 
-                MessageBox.Show(message);     
-        }
-
         private void frmUserLogin_Load(object sender, EventArgs e)
         {
             string textFilePath = "E:\\C# Full Project\\DVLD\\UsersCredentials.txt";
@@ -85,6 +83,5 @@ namespace DVLD
             }
 
         }
-
     }
 }

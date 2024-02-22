@@ -42,7 +42,7 @@ namespace DVLD_Business
             Application.PassedTests = passedTests;
             Application.CreatedByUserName = createByUserName;
             Application.ApplicationTypeID = applicationTypeID;
-            Application.ApplicantPersonID = applicantPersonID;      
+            Application.ApplicantPersonID = applicantPersonID;
         }
 
         public static DataTable ListLocalLicenseApplications() { 

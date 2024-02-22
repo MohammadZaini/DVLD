@@ -38,7 +38,7 @@ namespace DVLD
 
         private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmUserInfo UserInfo = new frmUserInfo(clsGlobalSettings.LoggedInUser.PersonID);
+            frmUserInfo UserInfo = new frmUserInfo(clsGlobalSettings.LoggedInUser.UserID);
             UserInfo.ShowDialog();
         }
 
@@ -60,8 +60,7 @@ namespace DVLD
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmChangePassword ChangePasswordform = new frmChangePassword(clsGlobalSettings.LoggedInUser.PersonID, 
-                                                                         clsGlobalSettings.LoggedInUser.UserID);
+            frmChangePassword ChangePasswordform = new frmChangePassword(clsGlobalSettings.LoggedInUser.UserID);
             ChangePasswordform.ShowDialog();
         }
 
