@@ -123,6 +123,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvApplicationTypes);
             this.Name = "frmApplicationTypes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Application Types";
             this.Load += new System.EventHandler(this.frmApplicationTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvApplicationTypes)).EndInit();

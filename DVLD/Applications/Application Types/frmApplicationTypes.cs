@@ -16,7 +16,6 @@ namespace DVLD.ApplicationTypes
         public frmApplicationTypes()
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void _ListAppTypes() {

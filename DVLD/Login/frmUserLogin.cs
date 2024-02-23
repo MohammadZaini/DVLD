@@ -21,7 +21,6 @@ namespace DVLD
         public frmUserLogin()
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -64,11 +63,9 @@ namespace DVLD
         }
 
         private void _ShowMainForm() {
-            this.Hide();
-            frmMain frmMain = new frmMain();
+            Hide();
+            frmMain frmMain = new frmMain(this);
             frmMain.ShowDialog();
-
-            this.Dispose();
         }
 
         private void frmUserLogin_Load(object sender, EventArgs e)

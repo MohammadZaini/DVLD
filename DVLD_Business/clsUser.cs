@@ -42,8 +42,9 @@ namespace DVLD_Business
             _Mode = enMode.Update;
         }
 
-        public static DataTable ListUsers() { 
-            return clsUserData.ListUsers();
+        public static DataTable GetAllUsers() 
+        { 
+            return clsUserData.GetAllUsers();
         }
 
         public static clsUser Find(string UserName) {
@@ -95,7 +96,6 @@ namespace DVLD_Business
         {
             return clsUserData.IsUserExist(username);
         }
-
 
         public static DataTable Filter(string filterWord, string type) {
             return clsUserData.Filter(filterWord, type);

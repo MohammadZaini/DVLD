@@ -23,11 +23,12 @@ namespace DVLD
 {
     public partial class frmMain : Form
     {
-        public frmMain()
+        private frmUserLogin _frmLogin;
+        public frmMain(frmUserLogin frmLogin)
         {
             InitializeComponent();
 
-            this.WindowState = FormWindowState.Maximized;
+            _frmLogin = frmLogin;        
         }
 
         private void peopleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -51,11 +52,8 @@ namespace DVLD
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsGlobalSettings.LoggedInUser = null;
-            this.Close();
-            this.Dispose();
-          
-            frmUserLogin userLogin = new frmUserLogin();
-            userLogin.ShowDialog();
+            _frmLogin.Show();
+            Close();
         }
 
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)

@@ -10,7 +10,7 @@ namespace DVLD_DataAccess
 {
     public static class clsUserData
     {
-        public static DataTable ListUsers() { 
+        public static DataTable GetAllUsers() { 
             
             DataTable UsersList = new DataTable();
 

@@ -34,7 +34,7 @@ namespace DVLD.Global_Classes
             }
         }
 
-        public static string ReplaceFileNameWithGUID(string sourceFile ) { 
+        public static string ReplaceFileNameWithGUID(string sourceFile) { 
             
             string fileName = sourceFile;
             FileInfo fi = new FileInfo(fileName);
@@ -69,9 +69,14 @@ namespace DVLD.Global_Classes
             MessageBox.Show(errorMessage, errorCaption, MessageBoxButtons.OK,MessageBoxIcon.Error);
         }
 
-        public static void ShowInformationMessage(string errorMessage, string errorCaption)
+        public static void ShowInformationMessage(string infoMessage, string infoCaption = "Success")
         {
-            MessageBox.Show(errorMessage, errorCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(infoMessage, infoCaption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        public static DialogResult ShowWarningMessage(string warningMessage, string warningCaption)
+        {
+           return MessageBox.Show(warningMessage, warningCaption, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
         }
     }
 }

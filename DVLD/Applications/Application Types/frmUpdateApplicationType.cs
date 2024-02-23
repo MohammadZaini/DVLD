@@ -1,4 +1,5 @@
-﻿using DVLD_Business;
+﻿using DVLD.Global_Classes;
+using DVLD_Business;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,8 +20,6 @@ namespace DVLD.ApplicationTypes
         {
             InitializeComponent();
             _AppTypeID = appTypeID;
-
-            this.StartPosition = FormStartPosition.CenterScreen;
         }
 
         private void _LoadAppTypeInfo() { 
@@ -28,15 +27,15 @@ namespace DVLD.ApplicationTypes
 
             _ApplicationType = clsApplicationType.Find(_AppTypeID);
 
-            if (_ApplicationType != null) {
-                txtTitle.Text = _ApplicationType.Title;
-                txtFees.Text = _ApplicationType.Fees.ToString();
-            }
+            if (_ApplicationType == null) return;
+
+            txtTitle.Text = _ApplicationType.Title;
+            txtFees.Text = _ApplicationType.Fees.ToString();        
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -47,10 +46,9 @@ namespace DVLD.ApplicationTypes
                 _ApplicationType.Fees = Convert.ToDecimal(txtFees.Text);
 
                 if (_ApplicationType.Save())
-                    MessageBox.Show("Data Saved Successfully");
+                    clsUtil.ShowInformationMessage("Application has been updated successfully!");
                 else
-                    MessageBox.Show("Something went wrong");
-
+                    clsUtil.ShowErrorMessage("Application has noy been updated.");
             }       
         }
 
@@ -61,7 +59,7 @@ namespace DVLD.ApplicationTypes
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

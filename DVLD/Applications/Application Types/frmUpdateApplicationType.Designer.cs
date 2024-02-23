@@ -158,6 +158,7 @@
             this.Controls.Add(this.btnClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmUpdateApplicationType";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmUpdateApplicationType";
             this.Load += new System.EventHandler(this.frmUpdateApplicationType_Load);
             this.ResumeLayout(false);
